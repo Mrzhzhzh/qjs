@@ -1,0 +1,112 @@
+<!--mine.wxml-->
+<view style="width:100%;height:100%;position:relative">
+
+	<view style="width:100%;height:100%;position:absolute;z-index:-2">
+		<image src="/images/match_g.png" style="width:100%;height:100%"></image>
+	</view>
+
+	<view style="width:100%;height:100%;position:absolute;background:black;opacity:0.4;z-index:-1">
+	</view>
+
+	<view>
+		<view style="width:100%;height:110px;display:flex;">
+			<view style="width:30%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/match_sign.png" style="width:70px;height:70px;border-radius:50%;"></image>
+			</view>
+			<view style="width:30%;text-align:center;margin-top:35px">
+				<view style="font-size:14px;color:#fff;">我是小明</view>
+				<view style="font-size:12px;color:#fff;margin-top:5px;">昵称</view>
+			</view>
+
+			<view style="width:40%;text-align:center;margin-top:35px">
+				<view style="font-size:14px;color:#fff;">30</view>
+				<view style="font-size:12px;color:#fff;margin-top:5px">积分</view>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:20px auto 0;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_issue.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的发布</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/issue/issue"  bindtap="bindViewTap5"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ord.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的订单</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/order/order"  bindtap="bindViewTap7"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_card.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的卡包</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/card/card"  bindtap="bindViewTap3"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_issue.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的积分</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/bp/bp"  bindtap="bindViewTap2"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_change.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">积分兑换</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/change/change"  bindtap="bindViewTap4"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_adrs.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的地址</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/adrs/adrs"  bindtap="bindViewTap1"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;border-bottom:1px solid #4A4A52">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_news.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的消息</view>
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path="pages/mine/news/news"  bindtap="bindViewTap6"></image>
+			</view>
+		</view>
+
+		<view style="width:93.4%;height:50px;margin:0 auto;display:flex;">
+			<view style="width:20%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_phone.png" style="width:20px;height:20px"></image>
+			</view>
+			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">绑定手机号</view>	
+			<view style="width:10%;display:flex;align-items:center;justify-content:center">
+				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path="pages/mine/phone/phone"  bindtap="bindViewTap8"></image>
+			</view>
+		</view>
+
+	</view>
+
+</view>
+
+
+

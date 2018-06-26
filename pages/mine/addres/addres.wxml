@@ -1,0 +1,55 @@
+<!--pages/mine/addres.wxml-->
+<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
+	<view style="width:20%;display:flex;align-items:center;justify-content:center;">
+		<view style="width:56px;height:50px;text-align:center">
+			<image src="/images/add_address2.png" style="width:25px;height:25px;"></image>
+			<view style="font-size:14px;color:#808080;">默认地址</view>
+		</view>
+	</view>
+
+	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
+		<view style="height:40px">
+			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
+			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
+		</view>
+	</view>
+
+	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
+		<image src="/images/arrow-ic.png" style="width:25px;height:25px"></image>
+	</view>
+</view>
+
+<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
+	<view style="width:20%;display:flex;align-items:center;justify-content:center;">	
+			<image src="/images/add_address1.png" style="width:25px;height:25px;"></image>
+	</view>
+
+	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
+		<view style="height:40px">
+			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
+			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
+		</view>
+	</view>
+
+	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
+		<image src="/images/arrow-ic.png" style="width:25px;height:25px"></image>
+	</view>
+</view>
+
+<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
+	<view style="width:20%;display:flex;align-items:center;justify-content:center;">	
+			<image src="/images/add_address1.png" style="width:25px;height:25px;"></image>
+	</view>
+
+	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
+		<view style="height:40px">
+			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
+			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
+		</view>
+	</view>
+
+	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
+		<image src="/images/delete-ic.png" style="width:25px;height:25px"></image>
+	</view>
+</view>
+

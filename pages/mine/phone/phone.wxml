@@ -1,0 +1,21 @@
+<!--pages/mine/phone.wxml-->
+<view style="width:100%;height:90px;line-height:90px;text-align:center;color:#bbbbbb;font-size:16px">绑定您常用的手机号</view>
+
+<view style="width:93.4%;height:50px;display:flex;margin:0 auto;align-items:center;border:1px solid #bbbbbb;border-radius:4px">
+	<view style="width:18%;height:30px;font-size:16px;color:#808080;line-height:30px;border-right:1px solid #bbbbbb;text-align:center">+86</view>
+	<view style="width:82%;;font-size:14px;color:#bbbbbb;line-height:30px;height:30px;padding-left:12px">手机号</view>
+</view>
+
+<view style="width:93.4%;height:50px;display:flex;margin:30px auto 0;align-items:center;border:1px solid #bbbbbb;border-radius:4px">
+	<view style="width:18%;height:30px;font-size:16px;color:#808080;border-right:1px solid #bbbbbb;display:flex;align-items:center;justify-content:center">
+		<image src="/images/phone-ic.png" style="width:20px;height:20px"></image>
+	</view>
+	<view style="width:42%;;font-size:14px;color:#bbbbbb;line-height:30px;height:30px;padding-left:12px">验证码</view>
+	<view style="width:40%;display:flex;align-items:center;justify-content:center">
+		<view style="width:100px;height:35px;border:1px solid #09C585;line-height:35px;text-align:center;color:#09C585;font-size:14px;border-radius:6px">获取验证码</view>
+	</view>
+</view>
+
+<view style="width:100%;height:280px;display:flex;align-items:center;justify-content:center;">
+		<view style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;">立即绑定</view>
+</view>

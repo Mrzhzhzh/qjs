@@ -1,0 +1,169 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.94",
+	"appid": "touristappid",
+	"projectname": "%E8%B6%A3%E5%81%A5%E8%AF%86",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "健身餐",
+					"pathName": "pages/food/food",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "挑战赛",
+					"pathName": "pages/match/match",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "场馆详情",
+					"pathName": "pages/find_venue/venue_details/venue_details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评价",
+					"pathName": "pages/find_venue/venue_details/evaluate/evaluate",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员卡",
+					"pathName": "pages/find_venue/venue_details/vipcard/vipcard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "教练列表",
+					"pathName": "pages/find_venue/venue_details/coach_list/coach_list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "教练详情",
+					"pathName": "pages/find_venue/venue_details/coach_list/coach_details/coach_details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "课程详情",
+					"pathName": "pages/find_venue/venue_details/course/course",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "健身餐列表",
+					"pathName": "pages/food/food_list/food_list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "健身餐详情",
+					"pathName": "pages/food/food_list/food_details/food_details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加地址",
+					"pathName": "pages/food/add_address/add_address",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "挑战赛详情",
+					"pathName": "pages/match/match_details/match_details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "打卡",
+					"pathName": "pages/match/match_details/match_details_clockin/match_details_clockin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的发布",
+					"pathName": "pages/mine/issue/issue",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/mine/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的卡包",
+					"pathName": "pages/mine/card/card",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的积分",
+					"pathName": "pages/mine/bp/bp",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定手机号",
+					"pathName": "pages/mine/phone/phone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分兑换",
+					"pathName": "pages/mine/change/change",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "兑换详情",
+					"pathName": "pages/mine/change/change_details/change_details",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的地址",
+					"pathName": "pages/mine/addres/addres",
+					"query": ""
+				}
+			]
+		}
+	}
+}

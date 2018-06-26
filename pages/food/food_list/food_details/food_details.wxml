@@ -1,0 +1,57 @@
+<!--pages/food/food_list/food_details.wxml-->
+<view class="poster" style="width:100%;height:160px;position:relative">
+	<image src="/images/food_details_b.png" style="width:100%;height:160px"></image>
+</view>
+
+
+<view style="width:90%;height:50px;display:flex;margin:0 auto">
+	<view style="width:80%;font-size:20px;line-height:50px;font-weight:bold">沙拉嘿呦</view>
+	<span style="width:20%;font-size:20px;line-height:50px;color:red;text-align:right;">¥88</span>
+</view>
+<view style="width:90%;height:30px;line-height:30px;font-size:14px;margin:0 auto" >地址:陕西省西安市高新区科技四路旺座大厦</view>
+
+
+<view style="width:93.4%;display:flex;height:220px;margin:20px auto 0;">
+	<view style="width:40%;height:200px">
+		<image src="/images/food_details_g1.png" style="width:135px;height:70px"></image>
+		<image src="/images/food_details_g2.png" style="width:135px;height:120px;margin-top:5px"></image>
+	</view> 
+	<view style="width:60%;height:198px;border:1px solid #09C585;position:relative">
+		<view style="font-size:18px;position:absolute;top:-12px;left:19px;height:20px;width:115px;background:#fff;text-align:center">营养混合沙拉</view>
+		<view style="font-size:14px;position:absolute;left:23px;top:36px">食材：</view>
+		<view style="font-size:14px;color:#808080;position:absolute;left:62px;top:36px">蔬菜、沙拉、鸡蛋沙拉、鸡蛋、原味鸡肉</view>
+		<view style="width:80px;height:30px;border:1px solid #bbbbbb;font-size:14px;text-align:center;line-height:30px;border-radius:6px;position:absolute;left:14px;top:110px;color:#bbbbbb">分量足</view>
+		<view style="width:80px;height:30px;border:1px solid #bbbbbb;font-size:14px;text-align:center;line-height:30px;border-radius:6px;position:absolute;left:114px;top:110px;color:#bbbbbb">味道好</view>
+		<view style="font-size:12px;position:absolute;top:160px;left:21px">KKT营养健身餐，健身运动管理</view>
+	</view>
+</view>
+
+<view style="height:10px;width:100%;background:#DEE0E3"></view>
+
+<view style="font-size:18px;height:50px;line-height:50px;padding-left:15px;border-bottom:1px solid #e5e5e5">评价：</view>
+<view style="width:100%;height:70px;display:flex;align-items:center;">
+		<view style="width:20%;display:flex;justify-content:center">
+			<image src="/images/venue-details-g.png" style="width:50px;height:50px;border-radius:50%;"></image>
+		</view>
+		<view style="width:50%;font-size:14px;">用户ID</view>
+		<view style="width:30%;font-size:12px;color:#bbbbbb">2018-03-29  3:30</view>
+	</view>
+
+	<view style="width:76%;height:auto;font-size:14px;;padding-left:20%;color:#bbbbbb">学到很多，AIAA Journal发表多篇论文。很不错的一个活动</view>
+
+<view style="width:100%;height:80px;display:flex;align-items:center;margin-top:30px;border:1px solid #e5e5e5">
+    <view style="width:35%;display:flex;">	
+		<view style="width:50%;border-right:1px solid #e5e5e5;text-align:center">	
+			<navigator url="/pages/find_venue/venue_details/evaluate/evaluate">	
+				<image src="/images/pj1.png" style="width:20px;height:20px"></image>
+				<view style="font-size:14px;color:#bbbbbb">评价</view>
+			</navigator>
+		</view>
+		
+		<view style="width:50%;text-align:center">		
+			<image src="/images/gz1.png" style="width:20px;height:20px"></image>
+			<view style="font-size:14px;color:#bbbbbb">加关注</view>
+		</view>
+	</view>		
+	<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;"data-path="pages/food/add_address/add_address" bindtap="bindViewTap">购买</view>	
+</view>

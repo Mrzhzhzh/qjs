@@ -1,0 +1,60 @@
+
+<!--index.wxml-->
+<view class="poster" style="width:100%;height:200px">
+	<image src="/images/venue_b.png" style="width:100%;height:200px"></image>
+</view>
+
+<view class="nav" style="width:100%;height:45px;background:#000000;display:flex;">
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center;height:45px;">
+		<view class="nav-text" style="font-size:16px;color:#09C585;line-height:45px">运动项目</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+		</view>
+	</view>
+
+	
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center">
+		<view class="nav-text" style="font-size:16px;color:#09C585;line-height:45px">运动项目</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+		</view>
+	</view>
+
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center">
+		<view class="nav-text" style="font-size:16px;color:#09C585;line-height:45px">运动项目</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+		</view>
+	</view>
+</view>
+
+<view class="index-card" style="width:100%;height:150px;position:relative;border-bottom:10px solid #20232C">
+<navigator url="/pages/find_venue/venue_details/venue_details">
+	<image src="/images/venue_g.png" style="width:100%;height:150px"></image>
+	<view style="width:100%;height:150px;position:absolute;top:0;left:0;background:black;opacity:0.5;z-index=1"></view> 
+    
+	<view style="width:180px;height:40px;border:1px solid #AAAAAA;position:absolute;top:36%;left:26%;border-radius:5%;display:flex;align-items:center;justify-content:center">
+		<view style="width:170px;height:30px;background:#AAAAAA;opacity:0.4;"></view>
+		<span style="color:#fff;position:absolute;font-size:18px">KKT健身俱乐部</span>
+	</view>
+</navigator>   
+</view>
+
+<view class="index-card" style="width:100%;height:150px;position:relative;border-bottom:10px solid #20232C">
+	<image src="/images/venue_g.png" style="width:100%;height:150px"></image>
+	<view style="width:100%;height:150px;position:absolute;top:0;left:0;background:black;opacity:0.5;z-index=1"></view>
+	<view style="width:180px;height:40px;border:1px solid #09C585;position:absolute;top:36%;left:26%;border-radius:5%;display:flex;align-items:center;justify-content:center">
+		<view style="width:170px;height:30px;background:#09C585;opacity:0.4;"></view>
+		<span style="color:#fff;position:absolute;font-size:18px">KKT健身俱乐部</span>
+	</view>
+</view>
+
+<view class="index-card" style="width:100%;height:150px;position:relative;border-bottom:10px solid #20232C">
+	<image src="/images/venue_g.png" style="width:100%;height:150px"></image>
+	<view style="width:100%;height:150px;position:absolute;top:0;left:0;background:black;opacity:0.5;z-index=1"></view>
+	<view style="width:180px;height:40px;border:1px solid #AAAAAA;position:absolute;top:36%;left:26%;border-radius:5%;display:flex;align-items:center;justify-content:center">
+		<view style="width:170px;height:30px;background:#AAAAAA;opacity:0.4;"></view>
+		<span style="color:#fff;position:absolute;font-size:18px">KKT健身俱乐部</span>
+	</view>
+</view>
+

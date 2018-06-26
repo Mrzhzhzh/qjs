@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/find_venue/find_venue",
+    "pages/find_venue/venue_details/venue_details",
+    "pages/find_venue/venue_details/vipcard_details/vipcard_details",
+    "pages/find_venue/venue_details/class/class",
+    "pages/find_venue/venue_details/evaluate/evaluate",
+    "pages/find_venue/venue_details/vipcard_list/vipcard_list",
+    "pages/find_venue/venue_details/coach_list/coach_list",
+    "pages/find_venue/venue_details/coach_list/coach_details/coach_details",
+    "pages/food/food",
+    "pages/food/food_list/food_list",
+    "pages/food/add_address/add_address",
+    "pages/food/food_list/food_details/food_details",
+    "pages/match/match",
+    "pages/match/match_details/match_details",
+    "pages/match/match_details/match_details_clockin/match_details_clockin",
+    "pages/mine/mine",
+    "pages/mine/issue/issue",
+    "pages/mine/order/order",
+    "pages/mine/card/card",
+    "pages/mine/bp/bp",
+    "pages/mine/change/change",
+    "pages/mine/change/change_details/change_details",
+    "pages/mine/addres/addres",
+    "pages/mine/news/news",
+    "pages/mine/phone/phone"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#20212B",
+    "navigationBarTitleText": "趣健识",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "#BEC2C9",
+    "selectedColor": "#09C585",
+    "backgroundColor": "#171A21",
+    "list": [
+      {
+        "selectedIconPath": "images/tabbar1.png",
+        "iconPath": "images/tabbar1.png",
+        "pagePath": "pages/find_venue/find_venue",
+        "text": "找场馆"
+      },
+      {
+        "selectedIconPath": "images/tabbar2.png",
+        "iconPath": "images/tabbar2.png",
+        "pagePath": "pages/food/food",
+        "text": "健身餐"
+      },
+      {
+        "selectedIconPath": "images/tabbar3.png",
+        "iconPath": "images/tabbar3.png",
+        "pagePath": "pages/match/match",
+        "text": "挑战赛"
+      },
+      {
+        "selectedIconPath": "images/tabbar4.png",
+        "iconPath": "images/tabbar4.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  }
+}

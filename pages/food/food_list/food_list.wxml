@@ -1,0 +1,95 @@
+<!--pages/food/food_list.wxml-->
+<view class="poster" style="width:100%;height:200px;position:relative;">
+	<image src="/images/food_list_b.png" style="width:100%;height:200px"></image>
+	<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1"></view>
+</view>
+
+<view class="nav" style="width:100%;height:45px;display:flex;align-items:center;border-bottom:1px solid #e5e5e5">
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center;height:20px;border-right:1px solid #bbbbbb">
+		<view class="nav-text" style="font-size:16px;line-height:20px">销量</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/food_list_ic1.png" style="width:15px;height:15px;margin-left:10px"></image>
+		</view>
+	</view>
+
+	
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center;height:20px;border-right:1px solid #bbbbbb">
+		<view class="nav-text" style="font-size:16px;line-height:20px">价格</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/food_list_ic1.png" style="width:15px;height:15px;margin-left:10px"></image>
+		</view>
+	</view>
+
+	<view class="nav-a" style="width:33.3%;display:flex;justify-content:center;height:20px;">
+		<view class="nav-text" style="font-size:16px;line-height:20px">综合</view>
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/food_list_ic1.png" style="width:15px;height:15px;margin-left:10px"></image>
+		</view>
+	</view>
+</view>
+
+<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
+	<view style="width:33%;display:flex;align-items:center">
+		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
+	</view>
+	<view style="width:67%;margin-top:20px">
+	    <view style="display:flex">
+			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
+			<view style="display:flex;">
+				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
+				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
+		    </view> 
+		</view>
+		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+
+		<view style="width:100%;display:flex;align-items:center">
+			<view style="width:39%;font-size:12px;">配送:30分钟</view>
+			<view style="width:27%;font-size:16px;color:red">¥88</view>
+			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "pages/food/food_list/food_details/food_details" bindtap="bindViewTap">购买</view>
+		</view>
+	</view>
+</view>
+
+<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5">
+	<view style="width:33%;display:flex;align-items:center">
+		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
+	</view>
+	<view style="width:67%;margin-top:20px">
+	    <view style="display:flex">
+			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
+			<view style="display:flex;">
+				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
+				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
+		    </view> 
+		</view>
+		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+
+		<view style="width:100%;display:flex;align-items:center">
+			<view style="width:39%;font-size:12px;">配送:30分钟</view>
+			<view style="width:27%;font-size:16px;color:red">¥88</view>
+			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585">购买</view>
+		</view>
+	</view>
+</view>
+
+<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5">
+	<view style="width:33%;display:flex;align-items:center">
+		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
+	</view>
+	<view style="width:67%;margin-top:20px">
+	    <view style="display:flex">
+			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
+			<view style="display:flex;">
+				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
+				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
+		    </view> 
+		</view>
+		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+
+		<view style="width:100%;display:flex;align-items:center">
+			<view style="width:39%;font-size:12px;">配送:30分钟</view>
+			<view style="width:27%;font-size:16px;color:red">¥88</view>
+			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585">购买</view>
+		</view>
+	</view>
+</view>

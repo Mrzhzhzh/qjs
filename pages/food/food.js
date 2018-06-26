@@ -1,0 +1,21 @@
+//logs.js
+const util = require('../../utils/util.js')
+
+Page({
+  data: {
+    logs: []
+  },
+  onLoad: function () {
+    this.setData({
+      logs: (wx.getStorageSync('logs') || []).map(log => {
+        return util.formatTime(new Date(log))
+      })
+    })
+  },
+
+  bindViewTap:function(){
+    wx.navigateTo({
+      url:"/pages/food/food_list/food_list"  
+  })
+  },
+})

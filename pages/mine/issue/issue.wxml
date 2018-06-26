@@ -1,0 +1,30 @@
+<!--pages/mine/issue.wxml-->
+<view style="width:100%;border-bottom:1px solid #e5e5e5">
+	<view style="width:93.4%;height:70px;display:flex;align-items:center;margin:0 auto">
+			<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
+			<view style="width:68%;font-size:16px;">我的发布名称</view>
+			<view style="font-size:12px;color:#bbbbbb">2018-03-29  3:30</view>
+	</view>
+
+	<view style="width:93.4%;height:70px;font-size:14px;color:#bbbbbb;margin:0 auto;text-align:rignt">学到很多，AIAA Journal发表多篇论文。很不错的一个活动</view>
+</view>
+
+<view style="width:100%;border-bottom:1px solid #e5e5e5">
+	<view style="width:93.4%;height:70px;display:flex;align-items:center;margin:0 auto">
+			<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
+			<view style="width:68%;font-size:16px;">我的发布名称</view>
+			<view style="font-size:12px;color:#bbbbbb">2018-03-29  3:30</view>
+	</view>
+
+	<view style="width:93.4%;height:70px;font-size:14px;color:#bbbbbb;margin:0 auto;text-align:rignt">学到很多，AIAA Journal发表多篇论文。很不错的一个活动</view>
+</view>
+
+<view style="width:100%;border-bottom:1px solid #e5e5e5">
+	<view style="width:93.4%;height:70px;display:flex;align-items:center;margin:0 auto">
+			<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
+			<view style="width:68%;font-size:16px;">我的发布名称</view>
+			<view style="font-size:12px;color:#bbbbbb">2018-03-29  3:30</view>
+	</view>
+
+	<view style="width:93.4%;height:70px;font-size:14px;color:#bbbbbb;margin:0 auto;text-align:rignt">学到很多，AIAA Journal发表多篇论文。很不错的一个活动</view>
+</view>

@@ -1,0 +1,68 @@
+<!--index.wxml-->
+<view class="poster" style="width:100%;height:200px;position:relative;border-bottom:10px solid #20232C">
+	<image src="/images/match_b.png" style="width:100%;height:200px"></image>
+	<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1"></view>
+</view>
+
+<view class="index-card" style="width:100%;height:150px;" data-path="/pages/match/match_details/match_details"   bindtap="bindViewTap">
+	<image src="/images/match_g.png" style="width:100%;height:150px"></image>
+</view>
+<view class="nav" style="width:100%;height:40px;background:#000000;display:flex;">
+	<view class="nav-a" style="width:28%;display:flex;justify-content:center;height:40px;">
+		<view class="nav-text" style="font-size:14px;color:#fff;line-height:40px">健身活动123</view>	
+	</view>
+
+	
+	<view class="nav-a" style="width:50%;display:flex;justify-content:center">
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">健身活动123</view>
+	</view>
+
+	<view class="nav-a" style="width:22%;display:flex;justify-content:center">
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/match_ic.png" style="width:24px;height:24px;"></image>
+		</view>
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">分享</view>
+	</view>
+</view>
+
+<view class="index-card" style="width:100%;height:150px;">
+	<image src="/images/match_g.png" style="width:100%;height:150px"></image>
+</view>
+<view class="nav" style="width:100%;height:40px;background:#000000;display:flex;">
+	<view class="nav-a" style="width:28%;display:flex;justify-content:center;height:40px;">
+		<view class="nav-text" style="font-size:14px;color:#fff;line-height:40px">健身活动123</view>	
+	</view>
+
+	
+	<view class="nav-a" style="width:50%;display:flex;justify-content:center">
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">健身活动123</view>
+	</view>
+
+	<view class="nav-a" style="width:22%;display:flex;justify-content:center">
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/match_ic.png" style="width:24px;height:24px;"></image>
+		</view>
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">分享</view>
+	</view>
+</view>
+
+<view class="index-card" style="width:100%;height:150px;">
+	<image src="/images/match_g.png" style="width:100%;height:150px"></image>
+</view>
+<view class="nav" style="width:100%;height:40px;background:#000000;display:flex;">
+	<view class="nav-a" style="width:28%;display:flex;justify-content:center;height:40px;">
+		<view class="nav-text" style="font-size:14px;color:#fff;line-height:40px">健身活动123</view>	
+	</view>
+
+	
+	<view class="nav-a" style="width:50%;display:flex;justify-content:center">
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">健身活动123</view>
+	</view>
+
+	<view class="nav-a" style="width:22%;display:flex;justify-content:center">
+		<view class="nav-icon" style="display:flex;align-items:center">
+			<image src="/images/match_ic.png" style="width:24px;height:24px;"></image>
+		</view>
+		<view class="nav-text" style="font-size:14px;color:#09C585;line-height:40px">分享</view>
+	</view>
+</view>
