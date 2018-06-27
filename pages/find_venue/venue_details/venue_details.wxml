@@ -18,12 +18,12 @@
 
 	<view style="width:93.4%;margin:0 auto;display:flex;">
 		<view style="width:50%;disaplay:flex;align-items:center">
-			<image src="/images/vipcard_g.png" style="width:145px;height:100px;border-radius:6px"></image>
+			<image src="/images/vipcard_g.jpg" style="width:145px;height:105px;border-radius:6px"></image>
 		</view>
 		<view style="width:50%">
 			<view style="font-size:16px;color:#fff;">卡名称</view>
 			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">卡内容卡内容</view>
-			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/vipcard_list/vipcard_list" bindtap="intoPath">查看更多</view>
+			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/vipcard_list/vipcard_list?id={{web_mainData.id}}" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
 
@@ -35,7 +35,7 @@
 
 	<view style="width:93.4%;margin:0 auto;display:flex;">
 		<view style="width:50%;disaplay:flex;align-items:center">
-			<image src="/images/venue-details-g.png" style="width:145px;height:100px;border-radius:6px"></image>
+			<image src="/images/class.jpg" style="width:145px;height:105px;border-radius:6px"></image>
 		</view>
 		<view style="width:50%">
 			<view style="font-size:16px;color:#fff;">课程名称</view>

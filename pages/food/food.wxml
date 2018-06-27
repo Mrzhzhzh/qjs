@@ -10,7 +10,7 @@
 
 <view style="width:100%;display:flex;padding-top:3%">
 	<block wx:for="{{web_mainData}}" wx:key="id">
-		<view style="width:46%;height:240px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:0 2%" data-path="/pages/food/food_list/food_list?id={{item.merchant_id}}"  bindtap="intoPath">
+		<view style="width:46%;height:240px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:0 2%" data-path="/pages/food/food_list/food_list?id={{item.id}}"  bindtap="intoPath">
 			<image src="{{item.mainImg[0].url}}" style="width:160px;height:126px;display:inline-block;margin-top:5px;border-radius:6px"></image>
 			<view style="margin-top:12px">
 				<span style="font-size:18p">{{item.name}}</span>

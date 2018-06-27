@@ -13,7 +13,7 @@ Page({
       
     },
 
-   
+    art_id:'',
     
     isLoadAll:false,
     
@@ -24,6 +24,7 @@ Page({
     const self = this;
     console.log(options);
     self.data.id = options.id;
+    
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
   },
@@ -32,9 +33,11 @@ Page({
 
 
   
-  getMainData(id){
+  getMainData(isNew){
     const self = this;
-   
+    if(isNew){
+      api.clearPageIndex(self);
+    };
     const postData = {};
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.id = self.data.id;
@@ -67,10 +70,20 @@ Page({
 
   },
 
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getRemarkData();
+    };
+
+  },
+
   getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
-    postData.id = self.data.id;
+    postData.art_id = 1;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
       console.log(res);

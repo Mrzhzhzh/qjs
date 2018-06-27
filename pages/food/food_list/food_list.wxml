@@ -45,27 +45,27 @@
  </view>
 </view>
 
-
-<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5;" >
-	<view style="width:33%;display:flex;align-items:center">
-		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
-	</view>
-	<view style="width:67%;margin-top:20px">
-	    <view style="display:flex">
-			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
-			<view style="display:flex;">
-				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-		    </view> 
+<block wx:for="{{web_mainData}}" wx:key="id">
+	<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5;" >
+		<view style="width:33%;display:flex;align-items:center">
+			<image src="{{item.mainImg[0].url}}" style="width:100px;height:100px;border-radius:12px"></image>
 		</view>
-		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+		<view style="width:67%;margin-top:20px">
+		    <view style="display:flex">
+				<view style="font-size:18px;width:63%">{{item.name}}</view>
+				<view style="display:flex;">
+					<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
+					<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
+			    </view> 
+			</view>
+			<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
 
-		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:39%;font-size:12px;">配送:30分钟</view>
-			<view style="width:27%;font-size:16px;color:red">¥88</view>
-			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?id={{item.id}}" bindtap="intoPath">详情</view>
+			<view style="width:100%;display:flex;align-items:center">
+				<view style="width:33%;font-size:12px;">配送:30分钟</view>
+				<view style="width:33%;font-size:16px;color:red">¥{{item.product_model[0].price}}</view>
+				<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?id={{item.id}}" bindtap="intoPath">详情</view>
+			</view>
 		</view>
 	</view>
-</view>
-
+</block>
 

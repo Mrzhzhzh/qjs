@@ -13,10 +13,6 @@ Page({
       
     },
 
-    sort:{
-      sortby:'',
-      sort:''
-    },
     
     isLoadAll:false,
     
@@ -33,15 +29,7 @@ Page({
 
   },
 
-  onReachBottom() {
-
-    const self = this;
-    if(!self.data.isLoadAll){
-      self.data.paginate.currentPage++;
-      self.getMainData();
-    };
-
-  },
+  
 
 
   
@@ -53,17 +41,22 @@ Page({
     const postData = {};
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.id = self.data.id;
-    const callback = (res)=>{
-      console.log(res);
-      if(res.data.length>0){
-        self.data.mainData.push.apply(self.data.mainData,res.data);
+     const callback = (res)=>{
+      if(res){
+        self.data.mainData = res;
+        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
+        console.log(self.data.mainData)
+        self.setData({
+          web_mainData:self.data.mainData,
+        });
       }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','fail');
-      };
-      self.setData({
-        web_mainData:self.data.mainData,
-      });
+        wx.showToast({
+          title:'该商品已被删除',
+          icon:'fail',
+          duration:1000,
+          mask:true
+        })
+      }
 
     };
     api.productOne(postData,callback);

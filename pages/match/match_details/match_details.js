@@ -13,10 +13,7 @@ Page({
       
     },
 
-    sort:{
-      sortby:'',
-      sort:''
-    },
+   
     
     isLoadAll:false,
     

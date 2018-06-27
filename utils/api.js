@@ -128,7 +128,7 @@ class Api extends Base{
 
     productList(param,callback) {
         var allParams = {
-            url:'UserProduct/GetList',
+            url:'UserProduct/GetSortList',
             type:'post',
             data:param,
             sCallback: function(data){
