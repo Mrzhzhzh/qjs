@@ -65,6 +65,55 @@ class Api extends Base{
         this.request(allParams)
     }
 
+    merchantList(param,callback) {
+        var allParams = {
+            url:'UserMerchant/GetList',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+    this.request(allParams)
+    }
+
+    merchantOne(param,callback) {
+        var allParams = {
+            url:'UserMerchant/GetInfo',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+    this.request(allParams)
+    }
+
+
+    challengeList(param,callback) {
+        var allParams = {
+            url:'JsfUserChallenge/GetList',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+    this.request(allParams)
+    }
+
+    challengeOne(param,callback) {
+        var allParams = {
+            url:'JsfUserChallenge/GetInfo',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+    this.request(allParams)
+    }
+
     articleOne(param,callback) {
         var allParams = {
             url:'UserArticle/GetInfo',
@@ -116,6 +165,18 @@ class Api extends Base{
     menuOne(param,callback) {
         var allParams = {
             url:'UserMenu/GetInfo',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
+     menuTree(param,callback) {
+        var allParams = {
+            url:'UserMenu/GetTree',
             type:'post',
             data:param,
             sCallback: function(data){

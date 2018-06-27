@@ -1,60 +1,76 @@
 //index.js
-const app = getApp()
+import {Api} from '../../utils/api.js';
+const api = new Api();
 
 Page({
+
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+
+    mainData:[],
+    
+    searchItem:{
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      
+    },
+    isLoadAll:false,
+    
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  
+
+  onLoad(){
+
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData();
+   
+
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+
+
+  
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    };
+    const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,res.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+
+    };
+    api.challengeList(postData,callback);
   },
-  bindViewTap:function(){
-    wx.navigateTo({
-      url:"/pages/match/match_details/match_details"  
-  })
+
+
+  intoPath(e){
+
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+
   },
-})
+
+
+  
+})  
 
 

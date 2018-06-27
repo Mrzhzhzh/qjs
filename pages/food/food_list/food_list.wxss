@@ -1,1 +1,22 @@
 /* pages/food/food_list.wxss */
+.goods_menu{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+}
+.menu_text{
+  width: 33.3%;
+  float: left;
+  font-size: 32rpx;
+  color: #444;
+   position: relative; 
+}
+.menu_text.active{
+  color: #48db71;
+}
+.menu_text image{
+  width: 25rpx;
+  height: 14rpx;
+  margin-left: 20rpx;
+}

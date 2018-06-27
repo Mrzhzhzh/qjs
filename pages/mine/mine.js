@@ -1,58 +1,45 @@
 //logs.js
-const util = require('../../utils/util.js')
+import {Api} from '../../utils/api.js';
+var api = new Api();
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    logs: []
+    
+  
   },
-  onLoad: function () {
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(log => {
-        return util.formatTime(new Date(log))
-      })
-    })
+    
+
+  onLoad(){
+    const self = this;
+    self.getUserData();
   },
 
-  bindViewTap1:function(){
-    wx.navigateTo({
-      url:"/pages/mine/addres/addres"  
-  })
-  },
-  bindViewTap2:function(){
-    wx.navigateTo({
-      url:"/pages/mine/bp/bp"  
-  })
-  },
-  bindViewTap3:function(){
-    wx.navigateTo({
-      url:"/pages/mine/card/card"  
-  })
-  },
-  bindViewTap4:function(){
-    wx.navigateTo({
-      url:"/pages/mine/change/change"  
-  })
-  },
-  bindViewTap5:function(){
-    wx.navigateTo({
-      url:"/pages/mine/issue/issue"  
-  })
-  },
-  bindViewTap6:function(){
-    wx.navigateTo({
-      url:"/pages/mine/news/news"  
-  })
-  },
-  bindViewTap7:function(){
-    wx.navigateTo({
-      url:"/pages/mine/order/order"  
-  })
+
+
+  intoPath(e){
+
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+
   },
 
-  bindViewTap8:function(){
-    wx.navigateTo({
-      url:"/pages/mine/phone/phone"  
-  })
-  }
+  
+  getUserData(){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    const callback = (res)=>{
+       console.log(res);
+      self.setData({
+        web_userInfo:res,
+      });
+      wx.hideLoading();
+    };
+    api.userOne(postData,callback);
+  },
 
 })
