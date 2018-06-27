@@ -1,91 +1,94 @@
 // pages/find_venue/venue_details.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+
+    mainData:[],
+    
+    searchItem:{
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      
+    },
+
+   
+    
+    isLoadAll:false,
+    
+  },
   
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  bindViewTap1:function(){
-    wx.navigateTo({
-      url:'/pages/find_venue/venue_details/evaluate/evaluate'
-  })
-  },
-
-  bindViewTap2:function(){
-    wx.navigateTo({
-      url:'/pages/find_venue/venue_details/vipcard_list/vipcard_list'
-  })
-  },
-
-  bindViewTap3:function(){
-    wx.navigateTo({
-      url:'/pages/find_venue/venue_details/class/class'
-  })
-  },
-  bindViewTap4:function(){
-    wx.navigateTo({
-      url:'/pages/find_venue/venue_details/coach_list/coach_list'
-  })
+  onLoad(options){
+    const self = this;
+    console.log(options);
+    self.data.id = options.id;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData()
   },
 
   
+
+
+  
+  getMainData(id){
+    const self = this;
+   
+    const postData = {};
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.id = self.data.id;
+    const callback = (res)=>{
+      if(res){
+        self.data.mainData = res;
+        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
+        console.log(self.data.mainData)
+        self.setData({
+          web_mainData:self.data.mainData,
+        });
+      }else{
+        wx.showToast({
+          title:'该场馆已被删除',
+          icon:'fail',
+          duration:1000,
+          mask:true
+        })
+      }
+
+    };
+    api.merchantOne(postData,callback);
+  },
+
+
+  intoPath(e){
+
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+
+  },
+
+  getRemarkData(){
+    const self = this;
+    const postData = api.cloneForm(self.data.paginate);
+    postData.id = self.data.id;
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data&&res.data.length>0){
+        self.data.remarkData.push.apply(self.data.remarkData,res.data);
+        self.setData({
+          web_remarkData:self.data.remarkData,
+        });
+      }else{
+        self.data.isLoadAll = true;
+        self.setData({
+          web_isLoadAll:self.data.isLoadAll
+        })
+        //api.showToast('没有评论了','fail')
+      }
+    };
+    api.remarkList(postData,callback);
+
+  }
+
 })

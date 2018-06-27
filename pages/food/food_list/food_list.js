@@ -1,72 +1,104 @@
 // pages/food/food_list.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+
+    mainData:[],
+    
+    searchItem:{
+      category_id:4,
+     
+    },
+
+    sort:{
+      sortby:'',
+      sort:''
+    },
+    
+    isLoadAll:false,
+    
+  },
   
+
+  onLoad(options){
+
+    const self = this;
+    console.log(options);
+    self.data.id = options.id;
+
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData();
+   
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+
   
+  getMainData(){
+    const self = this;
+   
+    const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.searchItem = api.cloneForm(self.data.searchItem);
+    postData.passage = self.data.id
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,res.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+
+    };
+    api.productList(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+
+  intoPath(e){
+
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+   changeSort(e){
+    const self = this;
+    const sortby = api.getDataSet(e,'sortby');
+    if(self.data.sort.sortby == sortby){
+      if(self.data.sort.sort == 'asc'){
+        self.data.sort.sort = 'desc'
+      }else if(self.data.sort.sort == 'desc'){
+        self.data.sort.sort = 'normal'
+      }else if(self.data.sort.sort == 'normal'){
+        self.data.sort.sort = 'asc'
+      }
+    }else{
+      self.data.sort.sortby = sortby;
+      self.data.sort.sort = 'asc';
+    };
+    self.setData({
+      web_sort:self.data.sort
+    });
+    self.getMainData(true);
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
   
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  bindViewTap:function(){
-    wx.navigateTo({
-      url:"/pages/food/food_list/food_details/food_details"
-  })
-  },
-})
+})  

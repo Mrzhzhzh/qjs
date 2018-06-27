@@ -1,72 +1,106 @@
 // pages/food/food_list/food_details.js
+import {Api} from '../../../../utils/api.js';
+const api = new Api();
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+
+    mainData:[],
+    
+    searchItem:{
+      thirdapp_id:getApp().globalData.thirdapp_id,
+      
+    },
+
+    sort:{
+      sortby:'',
+      sort:''
+    },
+    
+    isLoadAll:false,
+    
+  },
   
+
+  onLoad(options){
+
+    const self = this;
+    self.data.id = options.id;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData();
+   
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+
   
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    };
+    const postData = {};
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.id = self.data.id;
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,res.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+
+    };
+    api.productOne(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+
+  intoPath(e){
+
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
+
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+   getRemarkData(){
+    const self = this;
+    
+    const postData = api.cloneForm(self.data.paginate);
+    postData.id = self.data.id;
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data&&res.data.length>0){
+        self.data.remarkData.push.apply(self.data.remarkData,res.data);
+        self.setData({
+          web_remarkData:self.data.remarkData,
+        });
+      }else{
+        self.data.isLoadAll = true;
+        self.setData({
+          web_isLoadAll:self.data.isLoadAll
+        })
+        //api.showToast('没有评论了','fail')
+      }
+    };
+    api.remarkList(postData,callback);
+
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
   
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  bindViewTap:function(){
-    wx.navigateTo({
-      url:"/pages/food/add_address/add_address"
-  })
-  },
-})
+})  

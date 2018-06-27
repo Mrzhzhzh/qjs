@@ -1,66 +1,171 @@
 // pages/mine/order.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    num:1,
+    mainData:[],
+    isLoadAll:false,
+    searchItem:{},
+    
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad(options){
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    if(options.num){
+      self.changeSearch(options.num)
+    }else{
+      self.getMainData();
+    }
+    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self)
+    };
+    const postData = api.cloneForm(self.data.paginate);
+    postData.token = wx.getStorageSync('token');
+    const callback = (data)=>{
+      wx.hideLoading();
+      if(data.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,data.data);
+        self.setData({
+          web_mainData:self.data.mainData,
+        });
+
+      }else{
+        self.data.isLoadAll = true;
+        wx.showToast({
+          title: '没有更多了',
+          icon: 'fail',
+          duration: 1000,
+          mask:true
+        });
+      }; 
+    };
+    api.orderList(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  payNow(e){
+    const self = this;
+    const postData  ={};
+    postData.token = wx.getStorageSync('token');
+    postData.id = api.getDataSet(e,'id');
+    const callback = (data)=>{
+      const payCallback=(payData)=>{
+        if(payData == 1){
+
+          self.autoChangeStatus(1);
+          
+        }else{
+          
+        }
+      };
+      api.realPay(data,payCallback);
+    };
+    api.payPre(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+
+
+  menuClick: function (e) {
+    const self = this;
+    const num = e.currentTarget.dataset.num;
+    self.changeSearch(num);
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  changeSearch(num){
+    const self = this;
+    this.setData({
+      num: num
+    });
+    self.data.searchItem = {};
+    if(num=='1'){
+
+    }else if(num=='2'){
+      self.data.searchItem.pay_status = '0';
+      self.data.searchItem.order_step = '0';
+    }else if(num=='3'){
+      self.data.searchItem.pay_status = '1';
+      self.data.searchItem.transport_status = '1';
+      self.data.searchItem.order_step = '0';
+      
+    }else if(num=='4'){
+      self.data.searchItem.pay_status = '1';
+      self.data.searchItem.transport_status = '2';
+      self.data.searchItem.order_step = '0';
+      self.data.searchItem.remark_status = 'false';
+    }else if(num=='5'){
+      self.data.searchItem.order_step = '1';
+    };
+
+    self.setData({
+      web_mainData:[],
+    });
+    self.getMainData(true);
+
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  deleteOrder(e){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.id = api.getDataSet(e,'id');
+    const callback  = res=>{
+      api.dealRes(res);
+      self.getMainData(true);
+    };
+    api.orderDel(postData,callback);
+    
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+  cancelOrder(e){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.id = api.getDataSet(e,'id');
+    const callback  = res=>{
+      api.dealRes(res);
+      self.getMainData(true);
+    };
+    api.orderCancel(postData,callback);
+    
+  },
+
+  receiveOrder(e){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.id = api.getDataSet(e,'id');
+    const callback  = res=>{
+      api.dealRes(res);
+      self.getMainData(true);
+    };
+    api.orderReceive(postData,callback);
+  },
+
+  intoPath(e){
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav')
+  },
 })

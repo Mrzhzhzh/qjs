@@ -1,15 +1,15 @@
 <!--pages/find_venue/venue_details.wxml-->
 <view class="poster" style="width:100%;height:160px;border-bottom:10px solid RGB(32,35,44)">
-	<image src="/images/venue_details_b.png" style="width:100%;height:160px"></image>
+	<image src="{{web_mainData.bannerImg[0].url}}" style="width:100%;height:160px"></image>
 </view>
 
 <view style="width:100%;height:auto;background:#171A21;">
-	<view style="width:90%;height:50px;display:flex;margin:0 auto">
-		<view style="width:80%;font-size:20px;line-height:50px;color:#fff;">KKT健身俱乐部会员卡</view>
-		<span style="width:20%;font-size:20px;line-height:50px;color:red;text-align:right;">¥88</span>
+	<view style="width:90%;height:50px;margin:0 auto">
+		<view style="width:80%;font-size:20px;line-height:50px;color:#fff;">{{web_mainData.name}}</view>
+		
 	</view>
-	<view style="width:90%;height:30px;line-height:30px;color:#fff;font-size:16px;margin:0 auto" >地址:陕西省西安市高新区科技四路旺座大厦</view>
-	<view style="width:90%;height:30px;line-height:30px;color:#fff;font-size:16px;margin:0 auto" >电话:245456465564</view>
+	<view style="width:90%;height:30px;line-height:30px;color:#fff;font-size:16px;margin:0 auto" >地址:{{web_mainData.description}}</view>
+	<view style="width:90%;height:30px;line-height:30px;color:#fff;font-size:16px;margin:0 auto" >电话:{{web_mainData.phone}}</view>
 	<view style="width:100%;height:45px;display:flex;align-items:center;justify-content:center">
 		<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
 		<view style="height:45px;text-align:center;color:#09C585;line-height:45px;font-size:16px">卡信息</view>
@@ -23,7 +23,7 @@
 		<view style="width:50%">
 			<view style="font-size:16px;color:#fff;">卡名称</view>
 			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">卡内容卡内容</view>
-			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/vipcard_list/vipcard_list" bindtap="bindViewTap2">查看更多</view>
+			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/vipcard_list/vipcard_list" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
 
@@ -40,16 +40,14 @@
 		<view style="width:50%">
 			<view style="font-size:16px;color:#fff;">课程名称</view>
 			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">课程内容课程内容课程内容</view>
-			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class/class" bindtap="bindViewTap3">查看更多</view>
+			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class/class" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
 
-	<view style="width:100%;height:45px;display:flex;align-items:center;justify-content:center">
+	<view style="width:100%;height:45px;display:flex;align-items:center;justify-content:center" data-path="/pages/find_venue/venue_details/coach_list/coach_list" bindtap="intoPath">
 		<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
 		<view style="height:50px;text-align:center;color:#09C585;line-height:50px;font-size:16px">
-			<navigator url="/pages/find_venue/venue_details/coach_list/coach_list">
-				<span>找教练</span>
-			</navigator>
+		找教练
 		</view>
 		<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-left:10px"></view>	
 	</view>
@@ -64,7 +62,7 @@
 			<view style="height:60px;text-align:center;color:#09C585;line-height:60px;font-size:18px">场地介绍</view>
 			<view style="width:20px;height:30px;border-bottom:3px solid #09C585"></view>
 		</view>
-		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">胡志伟博士，英国南安普顿大学空气动力学与飞行力学研究组任雷金纳德普拉特Lecturer，长期受英国物理学会（EPSCR）和湍流模拟委员会(TSB)项目资助从事湍流直接数值模拟/大涡模拟，计算气动声学，飞机发动机/机身噪声的研究，近几年在气动力学领域顶尖期刊Journal of Fluid Mechanics，Physics of Fluids, AIAA Journal发表多篇论文。</view>	
+		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>	
 	</view>
 
 	<view style="width:100%;height:40px;display:flex;align-items:center;margin-top:30px;padding-left:15px">
