@@ -1,66 +1,102 @@
 // pages/mine/addres.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+
+    mainData:[],
+    isLoadAll:false,
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad(){
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    }
+    const postData = api.cloneForm(self.data.paginate);
+    postData.token = wx.getStorageSync('token');
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data.length>0){
+        self.data.mainData = res.data;
+      }else{
+        if (res.current_page =='1'){
+          setTimeout(function(){
+            api.pathTo('./add_address/add_address','nav');
+          },300);
+        }else{
+          api.showToast('没有地址了','fail')
+        }
+        }
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+    };
+    api.addressList(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  intoPath(e){
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  setDefalut(e){
+    const self = this;
+    console.log(111)
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.id = api.getDataSet(e,'id');
+    const callback = res =>{
+      const resType = api.dealRes(res);
+      if(resType){
+        self.getMainData(true);
+      }
+    };
+    api.addressSet(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  choose(e){
+    const self = this;
+    const id = api.getDataSet(e,'id');
+    self.data.id = id;
+    getApp().globalData.address_id = id;
+    self.setData({
+      address_id:self.data.id,
+    });
+    setTimeout(function(){
+      wx.navigateBack({
+        delta: 1
+      });
+    },300);
+    
+
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+  deleteAddress(e){
+    const self = this;
+    const postData = {};
+    postData.id = api.getDataSet(e,'id');
+    postData.token = wx.getStorageSync('token');
+    const callback = res=>{
+      const resType = api.dealRes(res);
+      if(resType){
+        self.data.mainData=[];
+        self.getMainData(true);
+      }
+    };
+    api.addressDel(postData,callback)
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

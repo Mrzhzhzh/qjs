@@ -1,14 +1,15 @@
 <!--pages/mine/bp.wxml-->
 <view style="width:100%;height:85px;display:flex;">
-	<view style="width:30%;display:flex;align-items:center;justify-content:center">
-		<image src="/images/match_b.png" style="width:70px;height:70px;border-radius:50%;"></image>
-	</view>
-	<view style="width:30%;text-align:center;line-height:85px;font-size:16px;">
-		我是小明
+	<view  class='user_top_img' style="width:132rpx;height:132rpx;border-radius:50%;overflow:hidden;position:absolute;top:2%;left:5%">
+    <open-data  type="userAvatarUrl"></open-data>
+  </view>
+
+	<view class='main_top_txt' style="width:50%;margin-left:200rpx;line-height:85px">
+		<span><open-data  type="userNickName" ></open-data></span>
 	</view>
 
 	<view style="width:40%;text-align:center;line-height:85px;font-size:16px;color:red">
-		积分:58分
+		积分:{{web_userInfo.user_score}}
 	</view>
 </view>
 
@@ -17,24 +18,6 @@
 <view style="width:100%;height:70px;">
 	<view style="width:90%;height:70px;display:flex;margin:0 auto">
 		<view style="width:80%;font-size:16px;line-height:70px;">预约健身成功</view>
-		<span style="width:20%;font-size:20px;line-height:70px;color:red;text-align:right;">+20</span>
-	</view>
-</view>
-<view style="width:100%;height:70px;background:#F7F7F7">
-	<view style="width:90%;height:70px;display:flex;margin:0 auto">
-		<view style="width:80%;font-size:16px;line-height:70px;">退出活动预约项目</view>
-		<span style="width:20%;font-size:20px;line-height:70px;color:red;text-align:right;">-20</span>
-	</view>
-</view>
-<view style="width:100%;height:70px;">
-	<view style="width:90%;height:70px;display:flex;margin:0 auto">
-		<view style="width:80%;font-size:16px;line-height:70px;">已预约未到场</view>
-		<span style="width:20%;font-size:20px;line-height:70px;color:red;text-align:right;">-40</span>
-	</view>
-</view>
-<view style="width:100%;height:70px;background:#F7F7F7">
-	<view style="width:90%;height:70px;display:flex;margin:0 auto">
-		<view style="width:80%;font-size:16px;line-height:70px;">按时参加活动</view>
 		<span style="width:20%;font-size:20px;line-height:70px;color:red;text-align:right;">+20</span>
 	</view>
 </view>

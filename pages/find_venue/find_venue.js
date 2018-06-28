@@ -29,7 +29,7 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMenuData();
     self.getMainData();
-    self.getSliderData();
+    
 
   },
 
@@ -72,7 +72,7 @@ Page({
     const postData = {};
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = {
-      parentid:2
+      parentid:7
     };
     const callback = (res)=>{
       console.log(res);
@@ -89,24 +89,7 @@ Page({
 
   },
 
-  getSliderData(){
-
-        const self = this;
-        const postData = {};
-        postData.thirdapp_id = getApp().globalData.thirdapp_id;
-        postData.searchItem = {
-          parentid:1
-        };
-        const callback = (res)=>{
-          console.log(res);
-          self.setData({
-            sliderData:res,
-          });
-          wx.hideLoading();
-        };
-        api.menuTree(postData,callback);
-
-    },
+  
 
 
 

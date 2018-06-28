@@ -1,1 +1,15 @@
 /* pages/food/add_address.wxss */
+.sex_class{
+  margin: 0 10rpx;
+}
+
+.address_go{
+  width: 19rpx;
+  height: 35rpx;
+  padding: 32rpx 20rpx;
+  float: right;
+}
+.user_textarea{
+  height: 300rpx;
+  line-height: 80rpx;
+}

@@ -1,7 +1,15 @@
 <!--index.wxml-->
 <view class="poster" style="width:100%;height:200px;position:relative;border-bottom:10px solid #20232C">
-	<image src="/images/match_b.png" style="width:100%;height:200px"></image>
-	<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1"></view>
+	<swiper  indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:200px">
+	 	<block  wx:key="{{sliderData}}">
+	 		<block wx:for="{{web_mainData}}" wx:key="id">
+	    		<swiper-item  >
+					<image src="{{item.mainImg[0].url}}" style="width:100%;height:200px"></image>
+					<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1" data-path="/pages/match/match_details/match_details?id={{item.id}}" bindtap='intoPath'></view>
+				</swiper-item>
+	   		</block>
+	  	</block>
+	 </swiper>
 </view>
 
 

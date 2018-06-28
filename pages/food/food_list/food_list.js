@@ -99,7 +99,7 @@ Page({
     self.setData({
       web_sort:self.data.sort
     });
-    self.getMainData(true);
+  
   },
 
 

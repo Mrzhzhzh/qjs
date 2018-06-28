@@ -1,55 +1,27 @@
 <!--pages/mine/addres.wxml-->
-<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
-	<view style="width:20%;display:flex;align-items:center;justify-content:center;">
-		<view style="width:56px;height:50px;text-align:center">
-			<image src="/images/add_address2.png" style="width:25px;height:25px;"></image>
-			<view style="font-size:14px;color:#808080;">默认地址</view>
+<block wx:for="{{web_mainData}}" wx:key="id">
+<view style="width:100%;height:100px;display:flex;border-bottom:1px solid #e5e5e5;position:relative">
+	
+		<view style="width:20%;display:flex;align-items:center;justify-content:center;">
+			
+				<view style="border:1px solid #FF9800;height:20px;width:40px;color:#FF9800;font-size:12px;text-align:center;line-height:20px;border-radius:5px" class="{{item.isdefault=='0'?'':'smallBtn_select'}}" data-id="{{item.id}}" bindtap="{{item.isdefault=='0'?'setDefalut':''}}">{{item.isdefault=='0'?'设为默认':'默认'}}</view>
+				
+			
 		</view>
-	</view>
 
-	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
-		<view style="height:40px">
-			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
-			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
+		<view style="width:65%;display:flex;align-items:center">
+			<view style="height:40px">
+				<view style="font-size:16px;">{{item.province+item.city+item.country+item.detail}}</view>
+				<view style="font-size:14px;color:#bbbbbb;margin-top:5px">{{item.name}}<text style="font-size:14px;color:#bbbbbb;margin-left:20px">{{item.phone}}</text></view>
+			</view>
 		</view>
-	</view>
 
-	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
-		<image src="/images/arrow-ic.png" style="width:25px;height:25px"></image>
-	</view>
+		<view style="width:10%;display:flex;align-items:center;justify-content:center;" data-path="/pages/food/add_address/add_address?id={{item.id}}" bindtap="intoPath">
+			<image src="/images/arrow-ic.png" style="width:25px;height:25px" ></image>
+		</view>
+
+		<image src="/images/delete.png" style="width:20px;height:20px;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="deleteAddress"></image>
+		
 </view>
-
-<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
-	<view style="width:20%;display:flex;align-items:center;justify-content:center;">	
-			<image src="/images/add_address1.png" style="width:25px;height:25px;"></image>
-	</view>
-
-	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
-		<view style="height:40px">
-			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
-			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
-		</view>
-	</view>
-
-	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
-		<image src="/images/arrow-ic.png" style="width:25px;height:25px"></image>
-	</view>
-</view>
-
-<view style="width:100%;height:110px;display:flex;border-bottom:1px solid #e5e5e5">
-	<view style="width:20%;display:flex;align-items:center;justify-content:center;">	
-			<image src="/images/add_address1.png" style="width:25px;height:25px;"></image>
-	</view>
-
-	<view style="width:70%;display:flex;align-items:center;justify-content:center;">
-		<view style="height:40px">
-			<view style="font-size:18px;">陕西省西安市高新区科技四路</view>
-			<view style="font-size:14px;color:#bbbbbb;">林雯雯（收）13402953231</view>
-		</view>
-	</view>
-
-	<view style="width:10%;display:flex;align-items:center;justify-content:center;">
-		<image src="/images/delete-ic.png" style="width:25px;height:25px"></image>
-	</view>
-</view>
+</block>
 

@@ -1,24 +1,45 @@
 <!--pages/food/add_address.wxml-->
-<view style="width:93.4%;height:60px;line-height:60px;font-size:16px;margin:0 auto">联系方式</view>
 
-<view style="width:100%;height:100px;margin:0 auto;border:1px solid #e5e5e5;padding:0 3.3% ">
-	<view style="display:flex">
-		<view style="height:50px;line-height:50px;font-size:16px">姓名：</view>
-		<view style="font-size:14px;line-height:50px;color:#bbbbbb;margin-left:10px">请填写收货人姓名</view>
+
+	<view style="display:flex;width:100%;height:50px;border-bottom:1px solid #e5e5e5;padding:0 3.3% ">
+		<text style="line-height:50px;font-size:30rpx">姓名: </text>
+    	<input type='text' value="{{web_mainData.name}}" class='user_input' data-key="name" bindblur="inputChange" style="height:100rpx;line-height:100rpx;margin-left:10rpx;font-size:30rpx"/>
 	</view>
-	<view style="height:50px;display:flex;align-items:center">
-		<image src="/images/add_address1.png" style="width:20px;height:20px;margin-left:68px"></image>
-		<view style="font-size:14px">男</view>
-		<image src="/images/add_address2.png" style="width:20px;height:20px;margin-left:36px"></image>
-		<view style="font-size:14px">女</view>
+
+	<view style="height:50px;display:flex;align-items:center;padding:0 3.3%;border-bottom:1px solid #e5e5e5 ">
+		<view style="line-height:50px;font-size:30rpx">性别：</view>
+		<radio-group class="group_radio"  data-key="passage1" bindchange="inputChange">
+        <radio id="man" checked="{{web_mainData.passage1=='男'?true:''}}" class='sex_class' value="男" name="sex" ></radio>
+        <label style="font-size:30rpx"><text>男</text></label>
+        <radio id="woman" checked="{{web_mainData.passage1=='女'?true:''}}" class='sex_class' value="女" name="sex" style="margin-left:60rpx" ></radio>
+        <label style="font-size:30rpx"><text>女</text></label>
+   		</radio-group>
 	</view>
+
+
+	<view style="height:50px;display:flex;align-items:center;padding:0 3.3%;border-bottom:1px solid #e5e5e5 ">
+	 	<text style="line-height:50px;font-size:30rpx">联系方式: </text>
+	    <input type='text' value="{{web_mainData.phone}}" class='user_input' data-key="phone" bindblur="inputChange" style="height:100rpx;line-height:100rpx;margin-left:10rpx;font-size:30rpx" />
+	</view>
+
+
+
+<view style="width:100%;height:50px;margin:0 auto;line-height:50px;border-bottom:1px solid #e5e5e5;padding:0 3.3%;font-size:30rpx;display:flex">
+	<text style="line-height:50px;font-size:30rpx">省/市/区:</text>
+		<picker mode="region" bindchange="bindRegionChange" value="{{web_region}}" custom-item="{{customItem}}" style="width:75%;margin-left:10rpx">
+		    <view class="picker" style="font-size:14px;line-height:50px;color:#aaaaaa">
+		      {{web_region[0]}}，{{web_region[1]}}，{{web_region[2]}}
+		      <image src='/images/ic_address_1.png' class='address_go' bindtap='address'></image>
+		    </view>
+	    
+	 </picker>
+</view>
+<view style="width:100%;height:50px;margin:0 auto;line-height:50px;padding:0 3.3%;font-size:30rpx;display:flex">
+	<text style="line-height:50px;font-size:30rpx">详细地址:</text>
+	<textarea value="{{web_mainData.detail}}" style="border:1px solid #E5E5E5;height:200rpx;border-radius:15rpx;width:250px;margin:18px 10px" class='user_textarea' data-key="detail" bindinput="inputChange"></textarea>
 </view>
 
-<view style="width:93.4%;height:100px;line-height:100px;font-size:16px;margin:0 auto">收货地址</view>
-<view style="width:100%;height:50px;margin:0 auto;line-height:50px;border:1px solid #e5e5e5;padding:0 3.3%;font-size:14px ">省/市/区</view>
-<view style="width:100%;height:50px;margin:0 auto;line-height:50px;border-bottom:1px solid #e5e5e5;padding:0 3.3%;font-size:14px ">详细地址</view>
-
 <view style="width:100%;height:240px;display:flex;align-items:center;justify-content:center;">
-		<view style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;">保存</view>
+		<view style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap='submit'>保存</view>
 </view>
 	

@@ -1,57 +1,19 @@
 <!--pages/find_venue/venue_details/coach_list.wxml-->
 <view style="width:100%;height:603px;background:RGB(32,35,44)">
-	<view style="width:90%;height:250px;display:flex;margin:0 auto;justify-content:center">
-
-	<view style="width:50%;background:#171A21;border-radius:12px" data-path= "pages/find_venue/venue_details/coach_list/coach_details/coach_details" bindtap="bindViewTap">
-		<image src="/images/vipcard_1.png" style="width:100%;height:60%;border-radius:12px"></image>
-		<view style="width:90%;margin:0 auto;display:flex">	
-			<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:#FFF">张教练</view>
-			<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:red;display:flex;align-items:center">
-				<image src="/images/coach_list1.png" style="width:15px;height:15px;"></image>
-				<view style="font-size:12px;color:#bbbbbb">关注：15</view>
-			</view>
-		</view>
-		<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:50px;line-height:50px">KKT健身俱乐部</view>
-	</view>
-		
-
-		<view style="width:50%;background:#171A21;border-radius:12px;margin-left:2.5%">
-			<image src="/images/vipcard_1.png" style="width:100%;height:60%;border-radius:12px"></image>
-			<view style="width:90%;margin:0 auto;display:flex">	
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:#FFF">张教练</view>
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:red;display:flex;align-items:center">
-					<image src="/images/coach_list1.png" style="width:15px;height:15px;"></image>
-					<view style="font-size:12px;color:#bbbbbb">关注：15</view>
+	<view style="width:90%;height:250px;display:flex;margin:0 auto;">
+		<block wx:for="{{web_mainData}}" wx:key="id">
+			<view style="width:46%;background:#171A21;border-radius:12px;margin:0 2%" data-path= "/pages/find_venue/venue_details/coach_list/coach_details/coach_details?id={{item.id}}" bindtap="intoPath">
+				<image src="{{item.img[0].url}}" style="width:100%;height:60%;border-radius:12px"></image>
+				<view style="width:90%;margin:0 auto;display:flex">	
+					<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:#FFF">{{item.title}}</view>
+					<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:red;display:flex;align-items:center">
+						<image src="/images/coach_list1.png" style="width:15px;height:15px;"></image>
+						<view style="font-size:12px;color:#bbbbbb">关注：15</view>
+					</view>
 				</view>
+				<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:50px;line-height:50px">{{item.small_title}}</view>
 			</view>
-			<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:50px;line-height:50px">KKT健身俱乐部</view>
-		</view>
-	</view>
-
-	<view style="width:90%;height:250px;display:flex;margin:10px auto;justify-content:center">
-		<view style="width:50%;background:#171A21;border-radius:12px">
-			<image src="/images/vipcard_1.png" style="width:100%;height:60%;border-radius:12px"></image>
-			<view style="width:90%;margin:0 auto;display:flex">	
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:#FFF">张教练</view>
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:red;display:flex;align-items:center">
-					<image src="/images/coach_list1.png" style="width:15px;height:15px;"></image>
-					<view style="font-size:12px;color:#bbbbbb">关注：15</view>
-				</view>
-			</view>
-			<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:50px;line-height:50px">KKT健身俱乐部</view>
-		</view>
-
-		<view style="width:50%;background:#171A21;border-radius:12px;margin-left:2.5%">
-			<image src="/images/vipcard_1.png" style="width:100%;height:60%;border-radius:12px"></image>
-			<view style="width:90%;margin:0 auto;display:flex">	
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:#FFF">张教练</view>
-				<view style="width:50%;height:30px;line-height:30px;font-size:20px;color:red;display:flex;align-items:center">
-					<image src="/images/coach_list1.png" style="width:15px;height:15px;"></image>
-					<view style="font-size:12px;color:#bbbbbb">关注：15</view>
-				</view>
-			</view>
-			<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:50px;line-height:50px">KKT健身俱乐部</view>
-		</view>
+		</block>
 	</view>
 </view>
 

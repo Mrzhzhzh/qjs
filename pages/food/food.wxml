@@ -1,10 +1,15 @@
 <!--logs.wxml-->
 <view class="poster" style="width:100%;height:200px;position:relative">
-	<image src="/images/food_b.png" style="width:100%;height:200px"></image>
-	<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1"></view>
-	<span style="position:absolute;font-size:30px;color:#fff;top:17.5%;left:26%">为您提供商家</span>
-	<span style="position:absolute;font-size:20px;color:#fff;top:39.5%;left:16.8%">Provide you with business</span>
-	<span style="position:absolute;font-size:12px;color:#fff;top:58%;left:9.9%">Avoid unhealthy foods such as hamburger and chips</span>
+	<swiper  indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:200px">
+	 	<block  wx:key="{{sliderData}}">
+	 		<block wx:for="{{web_mainData}}" wx:key="id">
+	    		<swiper-item  >
+					<image src="{{item.mainImg[0].url}}" style="width:100%;height:200px"  />
+					<view style="width:100%;height:200px;position:absolute;top:0;left:0;background:black;opacity:0.3;z-index=1" data-path="/pages/food/food_list/food_list?id={{item.id}}" bindtap='intoPath'></view>
+				</swiper-item>
+	   		</block>
+	  	</block>
+	 </swiper>
 </view>
 
 

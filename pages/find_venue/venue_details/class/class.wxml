@@ -1,12 +1,12 @@
 <!--pages/find_venue/venue_details/class.wxml-->
 <view style="width:100%;height:603px;background:RGB(32,35,44)">
 	<view class="poster" style="width:100%;height:160px">
-		<image src="/images/coach_details.png" style="width:100%;height:160px"></image>
+		<image src="{{web_mainData.img[0].url}}" style="width:100%;height:160px"></image>
 	</view>
 
 	<view style="width:100%;height:70px;background:#171A21">
 		<view style="width:90%;height:70px;display:flex;margin:0 auto">
-			<view style="width:80%;font-size:20px;line-height:70px;color:#fff;">KKT健身俱乐部课程</view>	
+			<view style="width:80%;font-size:20px;line-height:70px;color:#fff;">{{web_mainData.title}}</view>	
 		</view>
 	</view>
 
@@ -16,8 +16,7 @@
 			<view style="height:60px;text-align:center;color:#09C585;line-height:60px;font-size:18px">课程介绍</view>
 			<view style="width:20px;height:30px;border-bottom:3px solid #09C585"></view>
 		</view>
-		<view style="width:93.4%;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">胡志伟博士，英国南安普顿大学空气动力学与飞行力学研究组任雷金纳德普拉特Lecturer，长期受英国物理学会（EPSCR）和湍流模拟委员会(TSB)项目资助从事湍流直接数值模拟/大涡模拟，计算气动声学，飞机发动机/机身噪声的研究，近几年在气动力学领域顶尖期刊Journal of Fluid Mechanics，Physics of Fluids, AIAA Journal发表多篇论文。</view>	
+		<view style="width:93.4%;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>
 	</view>
-
 </view>
 

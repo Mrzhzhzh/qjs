@@ -38,6 +38,10 @@ Page({
 
   },
 
+  Clock(){
+    const self = this;
+
+  },
 
   
   getMainData(isNew){
@@ -71,10 +75,8 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
   getRemarkData(){

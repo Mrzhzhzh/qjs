@@ -126,6 +126,20 @@ class Api extends Base{
         this.request(allParams)
     }
 
+
+
+    userClock(param,callback) {
+        var allParams = {
+            url:'JsfUserClock/Add',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
     productList(param,callback) {
         var allParams = {
             url:'UserProduct/GetSortList',

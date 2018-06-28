@@ -1,6 +1,12 @@
 <!--pages/find_venue/venue_details.wxml-->
-<view class="poster" style="width:100%;height:160px;border-bottom:10px solid RGB(32,35,44)">
-	<image src="{{web_mainData.bannerImg[0].url}}" style="width:100%;height:160px"></image>
+<view class="poster" style="width:100%;height:160px">
+	<swiper  indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:160px">
+	 	<block  wx:key="{{sliderData}}">
+	    	<swiper-item >
+	      		<image src="{{}}" style="width:100%;height:160px"  />
+	    	</swiper-item>
+	  	</block>
+	 </swiper>
 </view>
 
 <view style="width:100%;height:auto;background:#171A21;">
@@ -40,20 +46,21 @@
 		<view style="width:50%">
 			<view style="font-size:16px;color:#fff;">课程名称</view>
 			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">课程内容课程内容课程内容</view>
-			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class/class" bindtap="intoPath">查看更多</view>
+			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class/class?id={{web_mainData.id}}" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
 
-	<view style="width:100%;height:45px;display:flex;align-items:center;justify-content:center" data-path="/pages/find_venue/venue_details/coach_list/coach_list" bindtap="intoPath">
-		<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
-		<view style="height:50px;text-align:center;color:#09C585;line-height:50px;font-size:16px">
-		找教练
+	<view data-path="/pages/find_venue/venue_details/coach_list/coach_list?id={{web_mainData.id}}" bindtap="intoPath">
+		<view style="width:100%;height:45px;display:flex;align-items:center;justify-content:center" >
+			<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-right:10px"></view>
+			<view style="height:50px;text-align:center;color:#09C585;line-height:50px;font-size:16px">
+			找教练
+			</view>
+			<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-left:10px"></view>	
 		</view>
-		<view style="width:5px;height:5px;background:#09C585;border-radius:50%;line-height:45px;margin-left:10px"></view>	
-	</view>
-
-	<view style="width:93.4%;height:115px;margin:0 auto">
-		<image src="/images/venue_details_g1.png" style="width:100%;height:115px;border-radius:12px"></image>
+		<view style="width:93.4%;height:115px;margin:0 auto">
+			<image src="/images/venue_details_g1.png" style="width:100%;height:115px;border-radius:12px"></image>
+		</view>
 	</view>
 
 	<view style="width:100%;height:230px;border-bottom:1px solid #e5e5e5">
@@ -67,11 +74,11 @@
 
 	<view style="width:100%;height:40px;display:flex;align-items:center;margin-top:30px;padding-left:15px">
 		<view style="font-size:18px;height:30px;line-height:30px;color:#fff">评价：</view>
-		<image src="/images/star.png" style="width:20px;height:20px"></image>
+		<image src="/images/star-active.png" style="width:20px;height:20px"></image>
+		<image src="/images/star-active.png" style="width:20px;height:20px;margin-left:5px"></image>
+		<image src="/images/star-active.png" style="width:20px;height:20px;margin-left:5px"></image>
+		<image src="/images/star-active.png" style="width:20px;height:20px;margin-left:5px"></image>
 		<image src="/images/star.png" style="width:20px;height:20px;margin-left:5px"></image>
-		<image src="/images/star.png" style="width:20px;height:20px;margin-left:5px"></image>
-		<image src="/images/star.png" style="width:20px;height:20px;margin-left:5px"></image>
-		<image src="/images/star1.png" style="width:20px;height:20px;margin-left:5px"></image>
 	</view>
 
 	<view style="width:100%;height:70px;display:flex;align-items:center;">
