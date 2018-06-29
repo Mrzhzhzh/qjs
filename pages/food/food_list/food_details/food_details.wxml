@@ -53,5 +53,5 @@
 			<view style="font-size:14px;color:#bbbbbb">加关注</view>
 		</view>
 	</view>		
-	<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;"data-path="pages/food/add_address/add_address" bindtap="bindViewTap">购买</view>	
+	<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" data-path="/pages/mine/order/cat/cat?id={{item.id}}" bindtap="intoPath">购买</view>	
 </view>

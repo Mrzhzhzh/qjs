@@ -1,66 +1,72 @@
-// pages/mine/card.js
+// pages/mine/order.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    
+    mainData:[],
+    isLoadAll:false,
+    searchItem:{
+      pay_status:'1'
+    },
+    
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad(options){
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    if(options.num){
+      self.changeSearch(options.num)
+    }else{
+      self.getMainData();
+    }
+    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   
-  },
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self)
+    };
+    const postData = api.cloneForm(self.data.paginate);
+    postData.searchItem = api.cloneForm(self.data.searchItem);
+    postData.token = wx.getStorageSync('token');
+    const callback = (data)=>{
+      console.log(data)
+      wx.hideLoading();
+      if(data.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,data.data);
+        self.setData({
+          web_mainData:self.data.mainData,
+        });
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+      }else{
+        self.data.isLoadAll = true;
+        wx.showToast({
+          title: '没有更多了',
+          icon: 'fail',
+          duration: 1000,
+          mask:true
+        });
+      }; 
+    };
+    api.orderList(postData,callback);
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

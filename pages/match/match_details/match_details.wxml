@@ -9,11 +9,17 @@
 </view>
 
 <view style="width:100%;height:100px;background:#171A21;display:flex;border-bottom:10px solid #20232C">
-	<view style="width:50%;height:100px;display:flex;align-items:center;justify-content:center">
-		<image src="/images/match_details_share.png" style="width:75px;height:60px"></image>
+	<view style="width:50%;height:100px;text-align:center;">
+		<view style="margin-top:23px;height:54px">														
+			<image src="/images/share.png" style="width:30px;height:30px"></image>
+			<button style="font-size:14px;color:#09C585;background:#171a21;line-height:19px" open-type="share">分享</button>
+		</view>
 	</view>
-	<view style="width:50%;height:100px;display:flex;align-items:center;justify-content:center"   bindtap="Clock">
-		<image src="/images/match_details_sign.png" style="width:75px;height:60px"></image>
+	<view style="width:50%;height:100px;text-align:center"   bindtap="Clock">
+		<view style="margin-top:25px;height:54px">
+			<image src="/images/clock.png" style="width:25px;height:25px"></image>
+			<view style="font-size:14px;color:#FFD100;margin-top:3px">打卡</view>
+		</view>
 	</view>
 </view>
 

@@ -21,18 +21,18 @@
         	<view class="picker" style="display:flex;align-items:center;justify-content:center;">
 	          <view class="nav-text" style="font-size:16px;color:#09C585;line-height:25px">运动项目</view>
 	          {{web_menuData[0].child[passage1].name}}
-	          <image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+	          <image src="/images/venue_ic_1.png" style="width:15px;height:15px;margin-left:10px"></image>
         	</view>
       	</picker>
 	</view>
 	
 
 	<view class="nav-a" style="width:33.3%;height:25px;border-right:1px solid #bbbbbb;">
-		<picker data-type="" data-index="" bindchange="pickerChange"  range="" range-key="" >
+		<picker data-type="passage2" data-index="1" bindchange="pickerChange"  range="{{web_menuData[1].child}}" range-key="name" >
         	<view class="picker" style="display:flex;align-items:center;justify-content:center;">
 	          <view class="nav-text" style="font-size:16px;color:#09C585;line-height:25px">区域选择</view>
-	     
-	          <image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+	    	  {{web_menuData[1].child[passage1].name}}
+	          <image src="/images/venue_ic_1.png" style="width:15px;height:15px;margin-left:10px"></image>
         	</view>
       </picker>
 	</view>
@@ -42,7 +42,7 @@
         	<view class="picker" style="display:flex;align-items:center;justify-content:center;">
 	          <view class="nav-text" style="font-size:16px;color:#09C585;line-height:25px">综合排序</view>
 	          
-	          <image src="/images/venue_ic_1.png" style="width:24px;height:24px;margin-left:5px"></image>
+	          <image src="/images/venue_ic_1.png" style="width:15px;height:15px;margin-left:10px"></image>
         	</view>
      
 	</view>

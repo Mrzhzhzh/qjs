@@ -1,0 +1,168 @@
+/* pages/order_detail/order_detail.wxss */
+
+
+
+
+
+.user_container{
+  width: 90%;
+  border-bottom: 10rpx #f2f2f2 solid;
+  padding: 35rpx 5%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.user_text{
+  flex: 2;
+  margin: 0 10rpx;
+}
+.user_name{
+  font-size: 32rpx;
+  color: #444;
+}
+.user_tel{
+  margin-left: 10rpx;
+}
+.user_address{
+  font-size: 30rpx;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user_container image{
+  width: 16rpx;
+  height: 30rpx;
+}
+.shop_box{
+  width: 94%;
+  border-bottom: 1rpx #f2f2f2 solid;
+  padding: 40rpx 3%;
+  display: flex;
+  align-items: center;
+}
+
+.shop_box image{
+  width: 152rpx;
+  height: 152rpx;
+  margin: 0 30rpx;
+}
+.shop_title{
+  font-size: 30rpx;
+  color: #444;
+}
+.shop_small_title{
+  font-size: 24rpx;
+  color: #999;
+  margin: 20rpx 0;
+}
+.shop_price{
+  font-size: 28rpx;
+  color: #f3494c;
+}
+.shop_numb{
+  float: right;
+  font-size: 28rpx;
+  color: #2e2e2e;
+  display: flex;
+  align-items: center;
+}
+.shop_numb image{
+  width: 46rpx;
+  height: 46rpx;
+}
+.shop_numb text{
+  margin: 0 10rpx;
+}
+
+.give_type{
+  width: 94%;
+  height:60rpx;
+  font-size: 32rpx;
+  color: #444;
+  margin: 30rpx auto ;
+  border-bottom: 1rpx #f2f2f2 solid;
+}
+.give_type text{
+  float: left;
+}
+.radio-group{
+  float: right;
+}
+.total{
+  width: 100%;
+  max-width: 750px;
+  color: #f3494c;
+  font-size: 34rpx;
+  background: #fff;
+  text-align: center;
+  height: 100rpx;
+  display: flex; 
+  align-items: center; 
+  position: fixed;
+  bottom: 0;
+  margin: 0 auto;
+}
+.total text{
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: inline-block;
+  border-top: 1px solid #f2f2f2;
+  box-sizing: border-box;
+}
+.total button{
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #f3494c;
+  color: #fff;
+  border-radius: 0;
+}
+.quan_list{
+  background: #f2f2f2;
+  padding: 20rpx 30rpx;
+}
+.coupons_li{
+  width: 100%;
+  height: 200rpx;
+  margin: 0 auto 10rpx;
+  display: flex;
+  align-items: center;
+}
+.coupons_price{
+  font-size: 103rpx;
+  color: #fff;
+  flex: 1;
+  text-align: center;
+}
+.coupons_fuhao{
+  font-size: 43rpx;
+}
+.coupons_box{
+   flex: 2;
+   padding-left: 60rpx;
+   text-align: left;
+}
+.coupons_box_name{
+  font-size: 28rpx;
+  color: #666;
+  line-height: 2;
+  text-align: left;
+}
+.coupons_txt{
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 40rpx;
+  display: block;
+}
+.coupons_data_time{
+  font-size: 20rpx;
+  color: #ccc;
+  float: right;
+  margin-right: 20rpx;
+}
+
+.coupon_select{
+  border:1px dashed #f92222;
+}

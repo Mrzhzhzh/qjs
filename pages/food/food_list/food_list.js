@@ -5,9 +5,9 @@ const api = new Api();
 Page({
 
   data: {
-
-    mainData:[],
     
+    mainData:[],
+    num:'1',
     searchItem:{
       category_id:4,
       passage1:''
@@ -46,32 +46,47 @@ Page({
 
   },
 
+  
 
   
-  getMainData(){
-    const self = this;
-   
-    const postData = api.cloneForm(self.data.paginate);
-    postData.thirdapp_id= getApp().globalData.thirdapp_id;
-    postData.searchItem = api.cloneForm(self.data.searchItem);
-    
-    const callback = (res)=>{
-      
-      if(res.data.length>0){
-        self.data.mainData.push.apply(self.data.mainData,res.data);
-      }else{
-        self.data.isLoadAll = true;
-        api.showToast('没有更多了','fail');
-      };
-      self.setData({
-        web_mainData:self.data.mainData,
-      });
+ 
 
+
+getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    };
+    const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.searchItem = api.cloneForm(self.data.searchItem);
+    if(self.data.sort.sortby){
+      postData.sortby = self.data.sort.sortby;
+    };
+    if(self.data.sort.sort){
+      postData.sort = self.data.sort.sort;
+    };
+    console.log(postData);
+
+    const callback = (data)=>{
+        if(data.data.length>0){
+            self.data.mainData.push.apply(self.data.mainData,data.data);
+            self.setData({
+                web_mainData: self.data.mainData,
+                cssName:"origin-a"
+            });
+        }else{
+            self.data.isLoadAll = true;
+            wx.showToast({
+                title: '没有更多了',
+                icon: 'fail',
+                duration: 1000,
+                mask:true
+            });
+        };
     };
     api.productList(postData,callback);
   },
-
-
 
 
   intoPath(e){
@@ -81,7 +96,7 @@ Page({
 
   },
 
-   changeSort(e){
+  changeSort(e){
     const self = this;
     const sortby = api.getDataSet(e,'sortby');
     if(self.data.sort.sortby == sortby){
@@ -99,9 +114,8 @@ Page({
     self.setData({
       web_sort:self.data.sort
     });
-  
+    self.getMainData(true);
   },
-
 
   
 })  

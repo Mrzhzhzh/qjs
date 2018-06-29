@@ -37,8 +37,20 @@
 				
 		
 		<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap="pay">
-购买
+		购买
+			<modal 
+			     title="补全信息"
+			     hidden="{{hiddenModal}}"
+			     confirm-text="去补全"
+			     cancel-text="残忍拒绝"
+			     bindconfirm="toPersonnalInfo"
+			     bindcancel="listenerCancel" 
+			     >
+			     请您绑定手机号
+  			</modal>
 		</view>	
 	</view>
 </view>
+
+
 

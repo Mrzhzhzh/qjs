@@ -50,7 +50,7 @@
 			</view>
 			<view style="width:70%;line-height:50px;font-size:14px;color:#fff">我的卡包</view>
 			<view style="width:10%;display:flex;align-items:center;justify-content:center">
-				<image src="/images/mine_ic.png" style="width:30px;height:30px" data-path= "pages/mine/card/card"  bindtap="bindViewTap3"></image>
+				<image src="/images/mine_ic.png" style="width:30px;height:30px"  ></image>
 			</view>
 		</view>
 

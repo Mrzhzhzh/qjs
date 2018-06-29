@@ -14,8 +14,9 @@ Page({
       city:'西安市',
       country:'雁塔区',
       phone:'',
-      passage1:'',
       detail:'',
+      gender:'',
+      
     }
   },
 

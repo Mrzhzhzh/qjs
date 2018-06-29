@@ -8,10 +8,10 @@
 
 	<view style="height:50px;display:flex;align-items:center;padding:0 3.3%;border-bottom:1px solid #e5e5e5 ">
 		<view style="line-height:50px;font-size:30rpx">性别：</view>
-		<radio-group class="group_radio"  data-key="passage1" bindchange="inputChange">
-        <radio id="man" checked="{{web_mainData.passage1=='男'?true:''}}" class='sex_class' value="男" name="sex" ></radio>
+		<radio-group class="group_radio"  data-key="gender" bindchange="inputChange">
+        <radio id="man" checked="{{web_mainData.gender=='男'?true:''}}" class='sex_class' value="男" name="sex" ></radio>
         <label style="font-size:30rpx"><text>男</text></label>
-        <radio id="woman" checked="{{web_mainData.passage1=='女'?true:''}}" class='sex_class' value="女" name="sex" style="margin-left:60rpx" ></radio>
+        <radio id="woman" checked="{{web_mainData.gender=='女'?true:''}}" class='sex_class' value="女" name="sex" style="margin-left:60rpx" ></radio>
         <label style="font-size:30rpx"><text>女</text></label>
    		</radio-group>
 	</view>

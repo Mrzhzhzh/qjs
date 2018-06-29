@@ -5,8 +5,22 @@
 </view>
 
 
-<view class='goods_menu' style="border-bottom:1px solid #e5e5e5">
-  <view data-num="2" class="menu_text {{_num==1?'active':''}}" data-sortby="sales" bindtap="changeSort">
+<view class='goods_menu'>
+
+  
+  <view data-num="1" class="menu_text {{_num==1?'active':''}}" data-sortby="multi" bindtap="changeSort">
+    综合
+    <block wx:if="{{web_sort.sortby=='multi'&&web_sort.sort=='asc'}}">
+      <image style="height:25rpx;" src="/images/asc.png" />
+    </block>
+    <block wx:elif="{{web_sort.sortby=='multi'&&web_sort.sort=='desc'}}">
+      <image style="height:25rpx;" src="/images/desc.png" /> 
+    </block>
+    <block wx:else>
+      <image style="height:25rpx;" src="/images/normal.png" /> 
+    </block>
+  </view>
+  <view data-num="2" class="menu_text {{_num==2?'active':''}}" data-sortby="sales" bindtap="changeSort">
     销量
     <block wx:if="{{web_sort.sortby=='sales'&&web_sort.sort=='asc'}}">
       <image style="height:25rpx;" src="/images/asc.png" />
@@ -18,7 +32,7 @@
       <image style="height:25rpx;" src="/images/normal.png" /> 
     </block>
   </view>
-  <view data-num="3" class="menu_text {{_num==2?'active':''}}" data-sortby="price" bindtap="changeSort">
+  <view data-num="3" class="menu_text {{_num==3?'active':''}}" data-sortby="price" bindtap="changeSort">
     价格
     <block wx:if="{{web_sort.sortby=='price'&&web_sort.sort=='asc'}}">
       <image style="height:25rpx;" src="/images/asc.png" />
@@ -30,19 +44,7 @@
       <image style="height:25rpx;" src="/images/normal.png" /> 
     </block>
   </view>
-
-  <view data-num="1" class="menu_text {{_num==3?'active':''}}" data-sortby="multi" bindtap="changeSort">
-    综合
-    <block wx:if="{{web_sort.sortby=='multi'&&web_sort.sort=='asc'}}">
-      <image style="height:25rpx;" src="/images/asc.png" />
-    </block>
-    <block wx:elif="{{web_sort.sortby=='multi'&&web_sort.sort=='desc'}}">
-      <image style="height:25rpx;" src="/images/desc.png" /> 
-    </block>
-    <block wx:else>
-      <image style="height:25rpx;" src="/images/normal.png" /> 
-    </block>
- </view>
+  <view class='clear'></view>
 </view>
 
 <block wx:for="{{web_mainData}}" wx:key="id">
@@ -63,7 +65,7 @@
 			<view style="width:100%;display:flex;align-items:center">
 				<view style="width:33%;font-size:12px;">配送:30分钟</view>
 				<view style="width:33%;font-size:16px;color:red">¥{{item.product_model[0].price}}</view>
-				<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?id={{item.id}}" bindtap="intoPath">详情</view>
+				<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?product_id={{item.product_id}}&id={{item.id}}" bindtap="intoPath">详情</view>
 			</view>
 		</view>
 	</view>

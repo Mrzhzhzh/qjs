@@ -10,12 +10,17 @@ Page({
     
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
-      
+      merchant_id:''
     },
 
-    art_id:'',
+  
     
     isLoadAll:false,
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000,
+    
     
   },
   
@@ -23,7 +28,7 @@ Page({
   onLoad(options){
     const self = this;
     console.log(options);
-    self.data.id = options.id;
+    self.data.merchant_id = options.id;
     
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
@@ -83,7 +88,7 @@ Page({
   getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
-    postData.art_id = 1;
+    postData.searchItem.merchant_id = self.data.merchant_id;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
       console.log(res);

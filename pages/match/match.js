@@ -13,7 +13,10 @@ Page({
       
     },
     isLoadAll:false,
-    
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000,
   },
   
 

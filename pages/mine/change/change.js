@@ -1,72 +1,74 @@
 // pages/mine/change.js
+import {Api} from '../../../utils/api.js';
+const api = new Api();
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+
+    mainData:[],
+    
+    searchItem:{
+      menu_id:19,
+      
+    },
+
+    
+    isLoadAll:false,
+    
+  },
   
+
+  onLoad(options){
+    const self = this;
+    self.data.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData();
+   
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onReachBottom() {
+
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+
   
+  getMainData(){
+    const self = this;
+    const postData = api.cloneForm(self.data.paginate);
+    postData.searchItem = api.cloneForm(self.data.searchItem);
+    const callback = (res)=>{ 
+      console.log(res)
+      if(res){
+        self.data.mainData.push.apply(self.data.mainData,res.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+
+    };
+    api.articleList(postData,callback);
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+  intoPath(e){
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+    const self = this;
+    api.pathTo(api.getDataSet(e,'path'),'nav');
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
+  }
 
-   bindViewTap:function(){
-    wx.navigateTo({
-      url:"/pages/mine/change/change_details/change_details"  
-  })
-  },
+
 })

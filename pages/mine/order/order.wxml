@@ -6,31 +6,49 @@
 	<view data-num="4" class="int_menu{{num==4?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">待评论</view>
 	<view data-num="5" class="int_menu{{num==5?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">已完成</view>
 </view>
+
 <block wx:for="{{web_mainData}}" wx:key="id">
 	<view style="width:93.4%;margin:20px auto 0;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
 		<view style="width:33%;display:flex;align-items:center">
 			<image src="{{item.item[0].snap_product.product.mainImg[0].url}}" style="width:100px;height:100px;border-radius:12px"></image>
 		</view>
 		<view style="width:67%;margin-top:20px">
-		    <view style="display:flex">
+		    <view style="display:flex;align-items:center">
 				<view style="font-size:18px;width:63%">{{item.item[0]['snap_product']['product']['name']}}</view>
-				<view style="display:flex;">
-					<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-					<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-			    </view> 
+				
+				<view style="font-size:14px;width:80px;height:15px;line-height:15px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'}}">删除订单</view>
+			    
 			</view>
 			<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
 
-			<view style="width:100%;display:flex;align-items:center">
-				<view style="width:15%;font-size:16px;color:red">¥{{item.actual_price}}</view>
-				<view style="width:85%;float:right">
-					<view 
-						style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right"
-						data-id="{{item.id}}" 
-						bindtap='payNow'
-					>
-					购买
+					<view style="width:100%;display:flex;align-items:center">
+					<view style="width:15%;font-size:16px;color:red">¥{{item.actual_price}}</view>
+					<view style="width:85%;float:right">
+				    <view class='now_state' wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">
+						<view 
+							 style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-path="/pages/mine/order/cat/cat?id={{item.id}}" bindtap='intoPath'>
+							  购买
+						</view>
 					</view>
+					<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">
+	      				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-id="{{item.id}}" bindtap='receiveOrder'>
+	          			  确认收货
+	        			</view>
+	     			</view>
+     			
+	      			<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-id="{{item.id}}" bindtap='cancelOrder' wx:if="{{item.pay_status == '1'&&item.order_step=='0'}}">
+	          			退换货
+	        		</view>
+
+	        		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&pItem.isremark!='1'}}">
+	         			 <view class='leaseit'  data-path="./evaluate/evaluate?order_id={{item.id}}&model_id={{Item.model_id}}" bindtap='intoPath'>
+	           			 去评价
+	          			</view>
+	        		</view>
+
+			        <view wx:if="{{pItem.isremark=='1'}}" class='now_state do_or_not'>
+			          已评价
+			        </view>
 				</view>
 			</view>
 		</view>
@@ -38,73 +56,3 @@
 </block>
 
 
-<view style="width:93.4%;margin:0 auto ;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
-	<view style="width:33%;display:flex;align-items:center">
-		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
-	</view>
-	<view style="width:67%;margin-top:20px">
-	    <view style="display:flex">
-			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
-			<view style="display:flex;">
-				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-		    </view> 
-		</view>
-		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
-
-		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:15%;font-size:16px;color:red">¥88</view>
-			<view style="width:85%;">
-				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;">待收货</view>
-				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:5px">退货</view>
-			</view>
-		</view>
-	</view>
-</view>
-
-<view style="width:93.4%;margin:0 auto ;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
-	<view style="width:33%;display:flex;align-items:center">
-		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
-	</view>
-	<view style="width:67%;margin-top:20px">
-	    <view style="display:flex">
-			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
-			<view style="display:flex;">
-				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-		    </view> 
-		</view>
-		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
-
-		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:15%;font-size:16px;color:red">¥88</view>
-			<view style="width:85%;">
-				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;">待发货</view>
-				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:5px">退货</view>
-			</view>
-		</view>
-	</view>
-</view>
-
-<view style="width:93.4%;margin:0 auto ;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
-	<view style="width:33%;display:flex;align-items:center">
-		<image src="/images/food_list_g.png" style="width:100px;height:100px;border-radius:12px"></image>
-	</view>
-	<view style="width:67%;margin-top:20px">
-	    <view style="display:flex">
-			<view style="font-size:18px;width:63%">沙拉嘿呦</view>
-			<view style="display:flex;">
-				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-		    </view> 
-		</view>
-		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
-
-		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:15%;font-size:16px;color:red">¥88</view>
-			<view style="width:85%;">
-				<view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;">待评价</view>
-			</view>
-		</view>
-	</view>
-</view>

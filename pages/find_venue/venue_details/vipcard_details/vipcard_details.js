@@ -13,8 +13,7 @@ Page({
       thirdapp_id:getApp().globalData.thirdapp_id,
       
     },
-
-    
+    hiddenModal: true,
     isLoadAll:false,
     placeOrder:{
       token:'',
@@ -40,7 +39,6 @@ Page({
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
-   
 
   },
 
@@ -131,6 +129,37 @@ Page({
     api.orderAdd(self.data.placeOrder,callback);
     
   },
+
+  // checkPhone(){
+  //   const self = this;
+  //   const postData = {};
+  //   postData.token = wx.getStorageSync('token');
+  //   const callback=(data)=>{
+  //     if(data){
+  //       //self.intoInfo();
+  //       self.Pay();
+
+  //     }else{
+  //       self.setData({
+  //         hiddenModal: false
+  //       }) 
+  //     }
+  //   }
+  //   api.checkPhone(postData,callback);
+  // },
+
+  // toPersonnalInfo(){
+  //     wx.navigateTo({
+  //       url:'/pages/mine/phone/phone'
+  //     })
+  // },
+
+
+  // listenerCancel(){
+  //   this.setData({
+  //     hiddenModal: true
+  //   })
+  // },
 
   
 })  

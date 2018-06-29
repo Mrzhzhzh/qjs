@@ -54,13 +54,10 @@ Page({
       thirdapp_id:getApp().globalData.thirdapp_id,
 
     };
-    self.setData({
-      area_id:'',
-      menu_id:''
-    });
+   
     self.data.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
-      type:1
+      parentid:7
      
     },
     self.getMainData(true);
@@ -143,10 +140,7 @@ Page({
 
 
   pickerChange(e){
-
     const self = this;
-    console.log(e.detail.value);
-    
     self.data.searchItem[api.getDataSet(e,'type')] = self.data.menuData[api.getDataSet(e,'index')].child[e.detail.value].id;
     self.getMainData(true);
     self.setData({

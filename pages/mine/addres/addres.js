@@ -99,4 +99,11 @@ Page({
     api.addressDel(postData,callback)
 
   },
+
+  add_address:function(){
+    wx.navigateTo({
+      url: '/pages/food/add_address/add_address',
+    })
+  }
+
 })

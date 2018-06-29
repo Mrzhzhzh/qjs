@@ -18,13 +18,14 @@
     "pages/mine/mine",
     "pages/mine/issue/issue",
     "pages/mine/order/order",
+    "pages/mine/order/cat/cat",
     "pages/mine/card/card",
     "pages/mine/bp/bp",
     "pages/mine/change/change",
     "pages/mine/change/change_details/change_details",
     "pages/mine/addres/addres",
     "pages/mine/news/news",
-    "pages/mine/phone/phone"
+    "pages/mine/phone/phone"  
   ],
   "window": {
     "backgroundTextStyle": "light",

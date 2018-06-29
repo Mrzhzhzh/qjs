@@ -1,0 +1,72 @@
+<!--pages/mine/order/cat.wxml-->
+<!--pages/order_detail/order_detail.wxml-->
+<wxs src="../../../../utils/func.wxs" module="func" />
+<view class='user_container'>
+  <!--<radio checked='checked'></radio>-->
+  <view class='user_text'>
+    <rich-text wx:if="{{web_addressData.name}}" class='user_name'>{{web_addressData.name}}
+      <text class='user_tel'>{{web_addressData.phone}}</text>
+    </rich-text>
+    <rich-text wx:else class='user_name'>
+      请选择地址
+    </rich-text>
+    <view wx:if="{{web_addressData.name}}" style="font-size:30rpx;color:#666;width:100%;flex-wrap:wrap;line-height:25px;">{{web_addressData.province+web_addressData.city+web_addressData.country+web_addressData.detail}}</view>
+  </view>
+  <image src='/images/ic_address_1.png' bindtap='address'></image>
+</view>
+
+<block wx:for="{{web_products}}" wx:key="id">
+  <view class='shop_box'>
+    <image src='{{item.info.product.mainImg[0].url}}'></image>
+    <view class='shop_text'>
+      <view class='shop_title'>{{item.info.product.name}}   {{item.info.category.name}}  {{web_type=='group'?'-- 团购':''}}</view>
+      <text class='shop_small_title'>产品规格：{{func.arrayByItem(item.model_id,'id',item.info.relationmodel).name}}
+      {{item.passage1}}</text>
+      <view class='shop_price'>
+        <text>{{web_products[0].info.category_id=='46'?'积分':'普通单价¥'}}{{item.price}}</text>
+        <view class='shop_numb'>
+          <image src='/images/ic_order_3.png' data-type="-" data-index="{{index}}" bindtap="counter"></image>
+          <text>{{item.count}}</text>
+          <image src='/images/ic_order_4.png' data-type="+" data-index="{{index}}" bindtap="counter"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+<view class='give_type' >
+  <text>配送方式</text>
+  <radio-group class="radio-group">
+    <label class="radio" style='margin-right:30rpx;'>
+      <radio class='inradio' color='#f3494c' data-name="自提" bindtap="choose" value="自提"   />自提
+    </label>
+    <label class="radio">
+      <radio class='inradio' color='#f3494c' data-name="送货上门" bindtap="choose" name="give" value="送货上门"/>送货上门
+    </label>
+  </radio-group>
+</view>
+<view style="display:flex;flex-wrap：nowrap;margin-bottom:30rpx;" wx:if="{{web_products[0].info.category.parentid=='48'}}">
+  <view style="margin-left:30rpx;width:150rpx;" class="smallBtn" data-path="../../my_coupons/my_coupons" bindtap="intoPath">使用优惠券</view>
+  <view wx:if="{{web_couponData}}" style="margin-left:30rpx;" class="smallBtn" data-path="../../my_coupons/my_coupons" bindtap="cancelCoupon">取消优惠券</view>
+</view>
+
+<view wx:if="{{web_couponData}}" class='quan_list'>
+  
+    <view class="coupons_li" style='background:url("http://qiniu.solelynet.com/012c6201806011645019171.png") no-repeat 0 0/100% 100%'  >
+      <rich-text class='coupons_price'>
+      <text class='coupons_fuhao'>{{web_couponData.passage1=='deduction'?'￥':'%'}}</text>{{web_couponData.passage1=='deduction'?web_couponData.deduction:web_couponData.discount}}
+      </rich-text>
+      <view class='coupons_box'>
+        <rich-text class='coupons_box_name'>
+        
+        {{web_couponData.passage1=='deduction'?web_couponData.deduction+'元优惠抵用券':web_couponData.discount+'%优惠折扣券'}}
+        </rich-text>
+        <rich-text class='coupons_txt'>限时领取 惊喜不断<text class='coupons_data_time'>过期日：  {{func.timestampToTime(web_couponData.deadline*1000)}}</text></rich-text>
+      </view>
+    </view>
+</view>
+<view class='total'>
+  <text style="font-size:12px;">合计：{{web_products[0].info.category_id=='46'?'积分':'￥'}}{{web_totalPrice}}</text>
+  <button bindtap="pay">结算</button>
+</view>
