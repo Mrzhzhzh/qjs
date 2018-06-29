@@ -12,7 +12,7 @@
 	<view style="width:50%;height:100px;display:flex;align-items:center;justify-content:center">
 		<image src="/images/match_details_share.png" style="width:75px;height:60px"></image>
 	</view>
-	<view style="width:50%;height:100px;display:flex;align-items:center;justify-content:center" data-path= "pages/match/match_details/match_details_clockin/match_details_clockin"  bindtap="bindViewTap">
+	<view style="width:50%;height:100px;display:flex;align-items:center;justify-content:center"   bindtap="Clock">
 		<image src="/images/match_details_sign.png" style="width:75px;height:60px"></image>
 	</view>
 </view>

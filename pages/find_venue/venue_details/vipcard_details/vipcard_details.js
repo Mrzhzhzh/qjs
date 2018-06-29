@@ -7,6 +7,7 @@ Page({
   data: {
 
     mainData:[],
+
     
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
@@ -15,6 +16,17 @@ Page({
 
     
     isLoadAll:false,
+    placeOrder:{
+      token:'',
+      address_id:'0',
+      pay_type:'1',
+      pay_method:'1',
+      product_type:'product',
+      products:[],
+      solely_paytype:"true",
+      passage2:'2'
+
+    },
     
   },
   
@@ -24,6 +36,10 @@ Page({
     self.data.id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+
+    self.data.placeOrder.products[0] = {};
+    self.data.placeOrder.products[0]['model_id'] = options.id;
+    self.data.placeOrder.products[0]['count'] = 1;
    
 
   },
@@ -92,6 +108,28 @@ Page({
     };
     api.remarkList(postData,callback);
 
+  },
+
+
+  pay(){
+    const self = this;
+    const callback = (res)=>{
+      console.log(res);
+      if(res&&!res.solely_code){
+        const payCallback=(payData)=>{
+          if(payData == 1){
+            
+            api.pathTo('/pages/mine/order/order','nav')
+          }else{
+            
+          }
+        };
+        api.realPay(res,payCallback);
+      }
+      
+    };
+    api.orderAdd(self.data.placeOrder,callback);
+    
   },
 
   

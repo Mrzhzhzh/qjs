@@ -40,6 +40,13 @@ Page({
 
   Clock(){
     const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.id = self.data.id;
+    const callback = (res)=>{
+      api.dealRes(res);      
+    };
+    api.userClock(postData,callback);
 
   },
 

@@ -168,6 +168,12 @@
 					"name": "找场馆",
 					"pathName": "pages/find_venue/find_venue",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员卡详情",
+					"pathName": "pages/find_venue/venue_details/vipcard_details/vipcard_details",
+					"query": "id=1"
 				}
 			]
 		}

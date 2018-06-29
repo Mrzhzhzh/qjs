@@ -19,7 +19,8 @@ Page({
     indicatorDots: true,
     autoplay: true,
     interval: 3000,
-    duration: 1000
+    duration: 1000,
+    
   },
   
 
@@ -29,6 +30,9 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMenuData();
     self.getMainData();
+    self.setData({
+      passage1:''
+    });
     
 
   },
@@ -98,6 +102,7 @@ Page({
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
+      console.log(self.data.mainData  )
     };
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -106,11 +111,14 @@ Page({
     const callback = (res)=>{
       console.log(res)
       if(res.data.length>0){
+        console.log(self.data.mainData)
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','fail');
       };
+
+      console.log(self.data.mainData)
       self.setData({
         web_mainData:self.data.mainData,
       });
@@ -137,11 +145,12 @@ Page({
   pickerChange(e){
 
     const self = this;
-    delete self.data.searchItem;
-    self.data.searchItem[api.getDataSet(e,'type')] = self.data.menuData[api.getDataSet(e,'index')][e.detail.value].id;
+    console.log(e.detail.value);
+    
+    self.data.searchItem[api.getDataSet(e,'type')] = self.data.menuData[api.getDataSet(e,'index')].child[e.detail.value].id;
     self.getMainData(true);
     self.setData({
-      [api.getDataSet(e,'type')]:e.detail.value
+      [api.getDataSet(e,'type')]:e.detail.value,
     });
 
   },

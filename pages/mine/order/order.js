@@ -44,6 +44,7 @@ Page({
       api.clearPageIndex(self)
     };
     const postData = api.cloneForm(self.data.paginate);
+    postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.token = wx.getStorageSync('token');
     const callback = (data)=>{
       wx.hideLoading();
@@ -90,7 +91,7 @@ Page({
 
   menuClick: function (e) {
     const self = this;
-    const num = e.currentTarget.dataset.num;
+    const num = api.getDataSet(e,'num');
     self.changeSearch(num);
   },
 
