@@ -27,7 +27,9 @@ Page({
     coupon:{},
     totalPrice:0,
     product_id:'',
-    id:''
+    id:'',
+    dFee:0,
+    isAddress:true
     
   },
 
@@ -35,94 +37,43 @@ Page({
     const self = this;
     console.log(options)
     self.data.id = options.id;
-    self.data.product_id = options.product_id;
-    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    
+    
     
 
-    if(options.type){
-      console.log(options.type)
-      self.data.type = options.type;
-      if(self.data.type == 'group'){
-        self.data.placeOrder.isgroup="true";
-
-      };
-      if(self.data.type == 'score'){
-        self.data.placeOrder.isscore="true"; 
-      };
-      
-    }
-    self.data.placeOrder.products = wx.getStorageSync('payPro');
+    
+    self.data.placeOrder.products[0] = {
+      model_id:self.data.id,
+      count:1
+    };
     console.log(self.data.placeOrder);
     
-    self.setData({
-      web_products:self.data.placeOrder.products,
- 
-      web_type:self.data.type
-    });
+    
     getApp().globalData.address_id = '';
-    getApp().globalData.coupon = {};
-    self.getMainData()
+    
+    self.getMainData();
   
   },
 
   onShow(){
     const self = this;
     self.data.searchItem = {};
+    console.log(getApp().globalData.address_id);
     if(getApp().globalData.address_id){
       self.data.searchItem.id = getApp().globalData.address_id;
+      self.setData({
+        isAddress:false
+      })
+
     }else{
       self.data.searchItem.isdefault = '1';
     };
     self.getDefaultAddress();
 
-    if(JSON.stringify(getApp().globalData.coupon) != "{}"&&getApp().globalData.coupon.deduction<self.data.totalPrice){
-      self.data.coupon = getApp().globalData.coupon;
-      self.data.placeOrder.couponList = [];
-      self.data.placeOrder.couponList.push(getApp().globalData.coupon.id);
-      console.log(self.data.placeOrder.couponList);
-      self.setData({
-        web_couponData:getApp().globalData.coupon
-      });
-      console.log(getApp().globalData.coupon);
-      self.countTprice();
-    }else{
-      getApp().globalData.coupon = {};
-    }
-
     
   },
 
-  getMainData(isNew){
-    const self = this;
-    if(isNew){
-      api.clearPageIndex(self);
-    };
-    const postData = {};
-    postData.token = wx.getStorageSync('token'),
-    postData.thirdapp_id= getApp().globalData.thirdapp_id;
-    postData.id = self.data.id;
-    postData.paginate = api.cloneForm(self.data.paginate);
-     const callback = (res)=>{
-      console.log(res)
-      if(res){
-        self.data.mainData = res;
-        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
-        console.log(self.data.mainData)
-        self.setData({
-          web_mainData:self.data.mainData,
-        });
-      }else{
-        wx.showToast({
-          title:'该商品已被删除',
-          icon:'fail',
-          duration:1000,
-          mask:true
-        })
-      }
-
-    };
-    api.orderList(postData,callback);
-  },
+  
 
   getMainData(isNew){
     const self = this;
@@ -136,9 +87,11 @@ Page({
       if(res){
         self.data.mainData = res;
         self.data.mainData.content = api.wxParseReturn(res.content).nodes;
+        self.data.totalPrice = res.price;
         console.log(self.data.mainData)
         self.setData({
           web_mainData:self.data.mainData,
+          web_totalPrice:self.data.totalPrice
         });
       }else{
         wx.showToast({
@@ -212,6 +165,73 @@ Page({
 
   choose(e){
     const self = this;
-    self.data.placeOrder.passage1 = api.getDataSet(e,'name')
+    self.data.placeOrder.passage1 = api.getDataSet(e,'name');
+    if(self.data.placeOrder.passage1=='送货上门'){
+      if(self.data.placeOrder.address_id=='0'){
+        api.showToast('请选择地址');
+        self.setData({
+          name:'自提'
+        });
+      }else{
+        if(self.data.dFee>0){
+          self.data.placeOrder.order_no = self.data.order_no;
+          self.count(self.data.dFee);
+        }else{
+          self.deliverFee();
+        };
+      };
+      
+      
+    }else{
+      self.count(0);
+      delete self.data.placeOrder.order_no;
+    }
   },
+
+
+  deliverFee(e){
+    const self = this;
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.city_code = '029';
+    postData.cargo_price = self.data.mainData.price;
+    postData.is_prepay = 0;
+    postData.address_id = self.data.placeOrder.address_id;
+    postData.id = self.data.id;
+    console.log(postData);
+    const callback = (res)=>{
+      console.log(res);
+      self.data.dFee = 1;
+      self.data.order_no = 111111111;
+      self.data.placeOrder.order_no = 111111111;
+      self.setData({
+        web_fee:self.data.dFee
+      });
+      self.count(self.data.dFee);
+      if(!res.solely_code){
+        self.data.dFee = res.fee;
+        self.data.order_no = res.order_no;
+        self.data.placeOrder.order_no = res.order_no;
+        self.setData({
+          web_fee:self.data.dFee
+        });
+        self.count(self.data.dFee);
+      }else{
+        api.showToast(res.msg,'fail');
+      }
+    };
+    api.orderDeliverFee(postData,callback);
+  },
+
+
+  count($fee){
+    const self = this;
+    console.log($fee);
+    self.data.totalPrice = parseFloat(self.data.mainData.price) + $fee;
+    self.setData({
+      web_totalPrice:self.data.totalPrice
+    });
+  }
+
+
 })

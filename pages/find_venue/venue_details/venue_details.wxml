@@ -23,7 +23,7 @@
 			<view style="height:30px;line-height:30px;color:#fff;font-size:16px;margin:0 auto" >电话:{{web_mainData.phone}}</view>
 		</view>
 		<view class='guanzhu' bindtap='collect'>
-	      <image src='/images/favor_ic.png' class='guanzhu_img'></image>
+	      <image src="{{url?url:'/images/favor_ic.png'}}" class='guanzhu_img'></image>
 	      <text class='guanzhu_txt'>关注</text>
       </view>		
 	</view>

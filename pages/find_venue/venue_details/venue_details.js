@@ -37,13 +37,13 @@ Page({
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('collectData')[id]){
+    if(wx.getStorageSync('collectData')&&wx.getStorageSync('collectData')[id]){
       api.deleteFootOne(id,'collectData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.id,100,'collectData');
+      api.footOne(self.data.mainData,'id',100,'collectData');
       self.setData({
         url: '/images/favor_ic_1.png',
       });

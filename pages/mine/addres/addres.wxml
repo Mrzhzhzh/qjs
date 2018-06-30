@@ -8,6 +8,9 @@
 		<view style="width:20%;display:flex;align-items:center;justify-content:center;">
 			
 				<view style="border:1px solid #09C585;height:20px;width:50px;color:#09C585;font-size:12px;text-align:center;line-height:20px;border-radius:5px" class="{{item.isdefault=='0'?'':'smallBtn_select'}}" data-id="{{item.id}}" bindtap="{{item.isdefault=='0'?'setDefalut':''}}">{{item.isdefault=='0'?'设为默认':'默认'}}</view>
+				<label class="radio">
+			      <radio class='inradio' color='#f3494c' data-name="送货上门" data-id="{{item.id}}" bindtap="choose" name="give" value="送货上门"/>送货上门
+			    </label>
 				
 			
 		</view>

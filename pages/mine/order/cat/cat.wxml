@@ -31,9 +31,9 @@
 		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
 
 		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:33%;font-size:12px;">配送:30分钟</view>
+			<view style="width:33%;font-size:12px;">配送费:{{web_fee}}元</view>
 			<view style="width:33%;font-size:16px;color:red">¥{{web_mainData.price}}</view>
-			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?product_id={{item.product_id}}&id={{item.id}}" bindtap="intoPath">详情</view>
+			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?product_id={{web_mainData.product_id}}&id={{web_mainData.id}}" bindtap="intoPath">详情</view>
 		</view>
 	</view>
 </view>
@@ -46,8 +46,8 @@
     <label class="radio" style='margin-right:30rpx;'>
       <radio class='inradio' color='#f3494c' data-name="自提" bindtap="choose" value="自提"   />自提
     </label>
-    <label class="radio">
-      <radio class='inradio' color='#f3494c' data-name="送货上门" bindtap="choose" name="give" value="送货上门"/>送货上门
+    <label class="radio" data-name="送货上门" bindtap="choose">
+      <radio data-name="送货上门" bindtap="choose" class='inradio' color='#f3494c'  name="give" value="送货上门"  disabled="{{isAddress}}" />送货上门
     </label>
   </radio-group>
 </view>
@@ -55,6 +55,6 @@
 
 
 <view class='total'>
-  <text style="font-size:12px;">合计：{{web_mainData.price}}</text>
+  <text style="font-size:12px;">合计：{{web_totalPrice}}</text>
   <button bindtap="pay">结算</button>
 </view>

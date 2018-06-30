@@ -676,6 +676,21 @@ class Api extends Base{
         api.request(allParams)
     }
 
+    
+
+
+    orderDeliverFee(param,callback) {
+        var allParams = {
+            url:'Order/DeliverFee',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
 
 
 
