@@ -9,5 +9,5 @@
 
 
 <view style="width:100%;height:200px;display:flex;align-items:center;justify-content:center;">
-		<view style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" open-type="getUserInfo" bindtap="submit"  >立即绑定</view>
+		<button style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" open-type="getUserInfo" bindgetuserinfo="submit"  >立即绑定</button>
 </view>

@@ -13,7 +13,7 @@ Page({
 
   },
 
-  onLoad(){
+  onShow(){
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();

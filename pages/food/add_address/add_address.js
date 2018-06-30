@@ -7,12 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    region: ['陕西省', '西安市', '雁塔区'],
+    
     sForm:{
       name:'',
-      province:'陕西省',
-      city:'西安市',
-      country:'雁塔区',
+      
       phone:'',
       detail:'',
       gender:'',
