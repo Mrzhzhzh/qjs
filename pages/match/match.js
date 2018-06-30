@@ -5,7 +5,7 @@ const api = new Api();
 Page({
 
   data: {
-
+    sliderData:[],
     mainData:[],
     
     searchItem:{
@@ -25,6 +25,7 @@ Page({
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+    self.getSliderData()
    
 
   },
@@ -36,6 +37,22 @@ Page({
       self.data.paginate.currentPage++;
       self.getMainData();
     };
+
+  },
+
+  getSliderData(){
+    const self = this;
+    const postData = {};
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.menu_id = 24;
+    const callback = (res)=>{
+      console.log(res);
+      self.data.sliderData = res.banner;
+      self.setData({
+          web_sliderData:self.data.sliderData,
+        });
+    };
+    api.menuOne(postData,callback);
 
   },
 

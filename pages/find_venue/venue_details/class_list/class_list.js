@@ -1,5 +1,5 @@
-// pages/mine/news.js
-import {Api} from '../../../utils/api.js';
+// pages/find_venue/class_list.js
+import {Api} from '../../../../utils/api.js';
 const api = new Api();
 
 Page({
@@ -9,7 +9,7 @@ Page({
     mainData:[],
     
     searchItem:{
-      menu_id:25,
+      menu_id:9,
       thirdapp_id:'',
       passage1:''
     },

@@ -1,5 +1,5 @@
 // pages/find_venue/venue_details/class.js
-import {Api} from '../../../../utils/api.js';
+import {Api} from '../../../../../utils/api.js';
 const api = new Api();
 
 Page({

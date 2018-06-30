@@ -5,7 +5,7 @@ const api = new Api();
 Page({
 
   data: {
-
+    sliderData:[],
     mainData:[],
     menuData:[],
     searchItem:{
@@ -30,6 +30,7 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMenuData();
     self.getMainData();
+    self.getSliderData();
   },
 
   onReachBottom() {
@@ -63,7 +64,6 @@ Page({
 
 
   getMenuData(){
-
     const self = this;
     const postData = {};
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -85,6 +85,22 @@ Page({
 
   },
 
+  getSliderData(){
+    const self = this;
+    const postData = {};
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.menu_id = 22;
+    const callback = (res)=>{
+      console.log(res);
+      self.data.sliderData = res.banner;
+      self.setData({
+          web_sliderData:self.data.sliderData,
+        });
+    };
+    api.menuOne(postData,callback);
+
+  },
+
   
 
 
@@ -94,7 +110,7 @@ Page({
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
-      console.log(self.data.mainData  )
+      
     };
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -103,14 +119,11 @@ Page({
     const callback = (res)=>{
       console.log(res)
       if(res.data.length>0){
-        console.log(self.data.mainData)
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','fail');
       };
-
-      console.log(self.data.mainData)
       self.setData({
         web_mainData:self.data.mainData,
       });
