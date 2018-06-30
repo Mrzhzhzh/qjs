@@ -9,8 +9,8 @@ Page({
     mainData:[],
     
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
       
+      product_id:''
     },
 
     
@@ -22,9 +22,12 @@ Page({
   onLoad(options){
 
     const self = this;
-    self.data.id = options.id;
+    console.log(options)
+    self.data.id = options.id,
+    self.data.searchItem.product_id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+    self.getRemarkData()
    
 
   },
@@ -74,8 +77,8 @@ Page({
     const self = this;
     
     const postData = api.cloneForm(self.data.paginate);
-    postData.id = self.data.id;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.searchItem = self.data.searchItem;
     const callback = (res)=>{
       console.log(res);
       if(res.data&&res.data.length>0){
@@ -88,7 +91,7 @@ Page({
         self.setData({
           web_isLoadAll:self.data.isLoadAll
         })
-        //api.showToast('没有评论了','fail')
+        api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);

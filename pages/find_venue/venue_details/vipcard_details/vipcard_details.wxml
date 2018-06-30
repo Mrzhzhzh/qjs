@@ -21,22 +21,15 @@
 	</view>
 
 	<view style="width:100%;height:80px;display:flex;align-items:center;margin-top:10px;background:#171A21">
-		<view style="width:35%;display:flex;">	
-			<view style="width:50%;border-right:1px solid #fff;text-align:center">	
-				<navigator url="/pages/find_venue/venue_details/evaluate/evaluate">	
-					<image src="/images/pj.png" style="width:20px;height:20px"></image>
-					<view style="font-size:14px;color:#fff">评价</view>
-				</navigator>
-			</view>
-			
-			<view style="width:50%;text-align:center">		
+		<view style="width:20%;display:flex;justify-content:center">	
+			<view style="text-align:center">		
 				<image src="/images/gz.png" style="width:20px;height:20px"></image>
 				<view style="font-size:14px;color:#fff">加关注</view>
 			</view>
 		</view>
 				
 		
-		<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap="pay">
+		<view style="width:76%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap="pay">
 		购买
 			<modal 
 			     title="补全信息"

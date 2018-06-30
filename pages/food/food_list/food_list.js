@@ -9,7 +9,7 @@ Page({
     mainData:[],
     num:'1',
     searchItem:{
-      category_id:4,
+      
       passage1:''
     },
 

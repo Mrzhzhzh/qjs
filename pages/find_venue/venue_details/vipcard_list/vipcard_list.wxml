@@ -7,7 +7,7 @@
 				<image src="{{item.mainImg[0].url}}" style="width:100%;height:60%" data-path="/pages/find_venue/venue_details/vipcard_details/vipcard_details?id={{item.id}}" bindtap="intoPath"></image>
 				<view style="width:90%;margin:0 auto;">	
 					<view style="height:30px;line-height:30px;font-size:14px;color:#FFF;text-align:center">{{item.name}}</view>
-					<view style="height:30px;line-height:30px;font-size:14px;color:red;text-align:center">¥{{item.product_model[0].price}}</view>
+					<view style="height:30px;line-height:30px;font-size:14px;color:red;text-align:center">¥{{item.price}}</view>
 					<view style="width:90%;margin:0 auto;color:#FFF;font-size:14px;height:30px;line-height:30px;text-align:center">{{item.merchant.name}}</view>
 				</view>
 			</view>
