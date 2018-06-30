@@ -31,8 +31,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#20212B",
     "navigationBarTitleText": "趣健识",
-    "navigationBarTextStyle": "#fff",
-    "enablePullDownRefresh":true
+    "navigationBarTextStyle": "#fff"
+    
   },
   "tabBar": {
     "color": "#BEC2C9",

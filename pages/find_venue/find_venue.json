@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "趣健识"
+	"navigationBarTitleText": "趣健识",
+	"enablePullDownRefresh": true,
+	"backgroundColor":"#20212B"
 }

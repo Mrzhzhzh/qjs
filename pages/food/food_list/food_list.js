@@ -55,6 +55,9 @@ getMainData(isNew){
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
+      self.setData({
+        web_mainData:self.data.mainData
+      });
     };
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -113,6 +116,9 @@ getMainData(isNew){
     self.setData({
       web_sort:self.data.sort
     });
+    if(self.data.sort.sort == 'normal'){
+      self.data.sort = {}
+    };
     self.getMainData(true);
   },
 

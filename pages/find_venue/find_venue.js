@@ -52,6 +52,10 @@ Page({
       type:1,
       
     });
+    self.setData({
+      passage1:'',
+      passage2:'',
+    })
     self.getMainData(true);
   },
 
