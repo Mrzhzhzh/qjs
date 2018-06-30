@@ -13,7 +13,7 @@ Page({
       thirdapp_id:'',
       passage1:''
     },
-    
+    products:[],
     isLoadAll:false,
     
   },

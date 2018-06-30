@@ -92,7 +92,7 @@
 .total{
   width: 100%;
   max-width: 750px;
-  color: #f3494c;
+  color:  #09C585;
   font-size: 34rpx;
   background: #fff;
   text-align: center;
@@ -115,7 +115,7 @@
   width: 50%;
   height: 100rpx;
   line-height: 100rpx;
-  background: #f3494c;
+  background:  #09C585;
   color: #fff;
   border-radius: 0;
 }

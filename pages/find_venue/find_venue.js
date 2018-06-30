@@ -21,6 +21,7 @@ Page({
     interval: 3000,
     duration: 1000,
     
+    
   },
   
 

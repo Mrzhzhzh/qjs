@@ -15,24 +15,29 @@
   <image src='/images/ic_address_1.png' bindtap='address'></image>
 </view>
 
-<block wx:for="{{web_products}}" wx:key="id">
-  <view class='shop_box'>
-    <image src='{{item.info.product.mainImg[0].url}}'></image>
-    <view class='shop_text'>
-      <view class='shop_title'>{{item.info.product.name}}   {{item.info.category.name}}  {{web_type=='group'?'-- 团购':''}}</view>
-      <text class='shop_small_title'>产品规格：{{func.arrayByItem(item.model_id,'id',item.info.relationmodel).name}}
-      {{item.passage1}}</text>
-      <view class='shop_price'>
-        <text>{{web_products[0].info.category_id=='46'?'积分':'普通单价¥'}}{{item.price}}</text>
-        <view class='shop_numb'>
-          <image src='/images/ic_order_3.png' data-type="-" data-index="{{index}}" bindtap="counter"></image>
-          <text>{{item.count}}</text>
-          <image src='/images/ic_order_4.png' data-type="+" data-index="{{index}}" bindtap="counter"></image>
-        </view>
-      </view>
-    </view>
-  </view>
-</block>
+
+<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5;" >
+	<view style="width:33%;display:flex;align-items:center">
+		<image src="{{web_mainData.mainImg[0].url}}" style="width:100px;height:100px;border-radius:12px"></image>
+	</view>
+	<view style="width:67%;margin-top:20px">
+	    <view style="display:flex">
+			<view style="font-size:18px;width:63%">{{web_mainData.name}}</view>
+			<view style="display:flex;">
+				<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
+				<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
+		    </view> 
+		</view>
+		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+
+		<view style="width:100%;display:flex;align-items:center">
+			<view style="width:33%;font-size:12px;">配送:30分钟</view>
+			<view style="width:33%;font-size:16px;color:red">¥{{web_mainData.price}}</view>
+			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?product_id={{item.product_id}}&id={{item.id}}" bindtap="intoPath">详情</view>
+		</view>
+	</view>
+</view>
+
 
 
 <view class='give_type' >
@@ -46,27 +51,10 @@
     </label>
   </radio-group>
 </view>
-<view style="display:flex;flex-wrap：nowrap;margin-bottom:30rpx;" wx:if="{{web_products[0].info.category.parentid=='48'}}">
-  <view style="margin-left:30rpx;width:150rpx;" class="smallBtn" data-path="../../my_coupons/my_coupons" bindtap="intoPath">使用优惠券</view>
-  <view wx:if="{{web_couponData}}" style="margin-left:30rpx;" class="smallBtn" data-path="../../my_coupons/my_coupons" bindtap="cancelCoupon">取消优惠券</view>
-</view>
 
-<view wx:if="{{web_couponData}}" class='quan_list'>
-  
-    <view class="coupons_li" style='background:url("http://qiniu.solelynet.com/012c6201806011645019171.png") no-repeat 0 0/100% 100%'  >
-      <rich-text class='coupons_price'>
-      <text class='coupons_fuhao'>{{web_couponData.passage1=='deduction'?'￥':'%'}}</text>{{web_couponData.passage1=='deduction'?web_couponData.deduction:web_couponData.discount}}
-      </rich-text>
-      <view class='coupons_box'>
-        <rich-text class='coupons_box_name'>
-        
-        {{web_couponData.passage1=='deduction'?web_couponData.deduction+'元优惠抵用券':web_couponData.discount+'%优惠折扣券'}}
-        </rich-text>
-        <rich-text class='coupons_txt'>限时领取 惊喜不断<text class='coupons_data_time'>过期日：  {{func.timestampToTime(web_couponData.deadline*1000)}}</text></rich-text>
-      </view>
-    </view>
-</view>
+
+
 <view class='total'>
-  <text style="font-size:12px;">合计：{{web_products[0].info.category_id=='46'?'积分':'￥'}}{{web_totalPrice}}</text>
+  <text style="font-size:12px;">合计：{{web_mainData.price}}</text>
   <button bindtap="pay">结算</button>
 </view>

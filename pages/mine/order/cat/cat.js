@@ -17,19 +17,28 @@ Page({
       product_type:'product',
       products:[],
       solely_paytype:"true",
-      passage2:''
+      passage2:'1'
+      
 
     },
     searchItem:{},
     sForm:{},
     type:'',
     coupon:{},
-    totalPrice:0
+    totalPrice:0,
+    product_id:'',
+    id:''
     
   },
+
   onLoad(options){
     const self = this;
-    self.data.id = options.id
+    console.log(options)
+    self.data.id = options.id;
+    self.data.product_id = options.product_id;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    
+
     if(options.type){
       console.log(options.type)
       self.data.type = options.type;
@@ -52,6 +61,7 @@ Page({
     });
     getApp().globalData.address_id = '';
     getApp().globalData.coupon = {};
+    self.getMainData()
   
   },
 
@@ -91,6 +101,7 @@ Page({
     postData.token = wx.getStorageSync('token'),
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.id = self.data.id;
+    postData.paginate = api.cloneForm(self.data.paginate);
      const callback = (res)=>{
       console.log(res)
       if(res){
@@ -111,6 +122,35 @@ Page({
 
     };
     api.orderList(postData,callback);
+  },
+
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    };
+    const postData = {};
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.id = self.data.id;
+     const callback = (res)=>{
+      if(res){
+        self.data.mainData = res;
+        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
+        console.log(self.data.mainData)
+        self.setData({
+          web_mainData:self.data.mainData,
+        });
+      }else{
+        wx.showToast({
+          title:'该商品已被删除',
+          icon:'fail',
+          duration:1000,
+          mask:true
+        })
+      }
+
+    };
+    api.productOne(postData,callback);
   },
   
 

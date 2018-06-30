@@ -5,7 +5,7 @@ const api = new Api();
 Page({
 
   data: {
-
+    products:[],
     mainData:[],
     
     searchItem:{
@@ -32,6 +32,22 @@ Page({
     
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
+  },
+
+  collect(){
+    const self = this;
+    const id = self.data.id;
+    if(wx.getStorageSync('collectData')[id]){
+      api.deleteFootOne(id,'collectData');
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    }else{
+      api.footOne(self.data.id,100,'collectData');
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    };
   },
 
   

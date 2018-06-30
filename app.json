@@ -26,7 +26,8 @@
     "pages/mine/change/change_details/change_details",
     "pages/mine/addres/addres",
     "pages/mine/news/news",
-    "pages/mine/phone/phone"
+    "pages/mine/phone/phone",
+    "pages/mine/attention/attention"
   ],
   "window": {
     "backgroundTextStyle": "light",

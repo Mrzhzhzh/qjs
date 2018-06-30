@@ -1,0 +1,19 @@
+<!--pages/mine/attention.wxml-->
+<view class='goods_list'>
+  <block wx:for="{{web_mainData}}" wx:key="id" >
+    <view class='goods_box' data-path="/pages/mall/cat/cat?id={{item.model_id}}" bindtap='intoPath'>
+      <image src='{{item.info.product.mainImg[0].url}}' class='goods_img'></image>
+      <view class='goods_text'>
+        <text class='goods_text_title'>{{item.info.product.name}}</text>
+        <rich-text class='goods_text_fonts'>{{item.info.name}}</rich-text>
+        <view class='goods_text_class'>普通VIP：¥{{item.price}}<rich-text class='goods_text_super'>超级VIP： <text class='goods_text_super_price'>¥{{func.countPrice(item.price,user_discount)}}</text></rich-text></view>
+      </view>
+      <view style="height:200rpx;">
+        <image style="width:20rpx;height:20rpx;" src='/images/ic_c.png' data-id="{{item.model_id}}" catchtap='cancel'></image>
+      </view>
+          
+    </view>
+  </block>
+  
+
+</view>

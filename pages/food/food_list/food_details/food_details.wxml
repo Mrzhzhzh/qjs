@@ -40,18 +40,6 @@
 	<view style="width:76%;height:auto;font-size:14px;;padding-left:20%;color:#bbbbbb">学到很多，AIAA Journal发表多篇论文。很不错的一个活动</view>
 
 <view style="width:100%;height:80px;display:flex;align-items:center;margin-top:30px;border:1px solid #e5e5e5">
-    <view style="width:35%;display:flex;">	
-		<view style="width:50%;border-right:1px solid #e5e5e5;text-align:center">	
-			<navigator url="/pages/find_venue/venue_details/evaluate/evaluate?id={{web_mainData.product_id}}">	
-				<image src="/images/pj1.png" style="width:20px;height:20px"></image>
-				<view style="font-size:14px;color:#bbbbbb">评价</view>
-			</navigator>
-		</view>
-		
-		<view style="width:50%;text-align:center">		
-			<image src="/images/gz1.png" style="width:20px;height:20px"></image>
-			<view style="font-size:14px;color:#bbbbbb">加关注</view>
-		</view>
-	</view>		
-	<view style="width:62%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" data-path="/pages/mine/order/cat/cat?id={{item.id}}" bindtap="intoPath">购买</view>	
+    
+	<view style="width:90%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;margin:0 auto" data-path="/pages/mine/order/cat/cat?product_id={{web_mainData.product_id}}&id={{web_mainData.id}}" bindtap="intoPath">购买</view>	
 </view>

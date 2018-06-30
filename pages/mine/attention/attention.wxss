@@ -1,4 +1,4 @@
-/* pages/find_venue/venue_details.wxss */
+/* pages/mine/attention.wxss */
 .guanzhu{
   float: right;
   text-align: center;
