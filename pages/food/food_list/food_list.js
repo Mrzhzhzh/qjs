@@ -29,7 +29,6 @@ Page({
     console.log(options);
     self.data.id = options.id;
     self.data.searchItem.passage1 = options.id;
-
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
    

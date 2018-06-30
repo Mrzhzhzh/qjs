@@ -30,11 +30,6 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMenuData();
     self.getMainData();
-    self.setData({
-      passage1:''
-    });
-    
-
   },
 
   onReachBottom() {
@@ -50,18 +45,14 @@ Page({
   onPullDownRefresh:function(){
     const self = this;
     wx.showNavigationBarLoading(); //在标题栏中显示加载
-    self.data.searchItem = {
+    delete self.data.searchItem.passage1;
+    delete self.data.searchItem.passage2;
+    self.data.searchItem = ({
       thirdapp_id:getApp().globalData.thirdapp_id,
-
-    };
-   
-    self.data.searchItem = {
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      parentid:7
-     
-    },
+      type:1,
+      
+    });
     self.getMainData(true);
-
   },
 
   
@@ -125,7 +116,12 @@ Page({
         wx.hideNavigationBarLoading();
         wx.stopPullDownRefresh();
       },500);
-      
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+      wx.hideNavigationBarLoading();
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
     };
     api.merchantList(postData,callback);
   },

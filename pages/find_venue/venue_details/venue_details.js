@@ -10,7 +10,7 @@ Page({
     
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
-      merchant_id:''
+     id:''
     },
 
   
@@ -28,7 +28,7 @@ Page({
   onLoad(options){
     const self = this;
     console.log(options);
-    self.data.merchant_id = options.id;
+    self.data.id = options.id;
     
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
@@ -88,7 +88,7 @@ Page({
   getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
-    postData.searchItem.merchant_id = self.data.merchant_id;
+
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
       console.log(res);
