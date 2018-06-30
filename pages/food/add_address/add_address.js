@@ -16,6 +16,8 @@ Page({
       phone:'',
       detail:'',
       gender:'',
+      passage1:'',
+      passage2:'',
       
     }
   },
@@ -97,4 +99,36 @@ Page({
     }
     
   },
+
+
+
+  chooseLocation:function(e){
+    console.log(e)
+    var self = this;
+    wx.chooseLocation({
+          success: function(res){
+            // success
+            console.log(res);
+            
+            self.data.sForm.detail = res.address,
+            self.data.sForm.passage1 = res.longitude,
+            self.data.sForm.passage2 = res.latitude,
+            self .setData({
+              hasLocation:true,
+              location:{
+                longitude:res.longitude,
+                latitude:res.latitude
+              },
+              web_mainData:self.data.sForm,
+              web_name:res.name,
+            })
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
+        })
+  }
 })

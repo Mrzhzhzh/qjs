@@ -24,15 +24,11 @@
 
 
 
-<view style="width:100%;height:50px;margin:0 auto;line-height:50px;border-bottom:1px solid #e5e5e5;padding:0 3.3%;font-size:30rpx;display:flex">
-	<text style="line-height:50px;font-size:30rpx">省/市/区:</text>
-		<picker mode="region" bindchange="bindRegionChange" value="{{web_region}}" custom-item="{{customItem}}" style="width:75%;margin-left:10rpx">
-		    <view class="picker" style="font-size:14px;line-height:50px;color:#aaaaaa">
-		      {{web_region[0]}}，{{web_region[1]}}，{{web_region[2]}}
-		      <image src='/images/ic_address_1.png' class='address_go' bindtap='address'></image>
-		    </view>
-	    
-	 </picker>
+<view style="width:100%;height:50px;margin:0 auto;line-height:50px;border-bottom:1px solid #e5e5e5;padding:0 3.3%;font-size:30rpx;display:flex" bindtap="chooseLocation">
+	<text style="line-height:50px;font-size:30rpx">点击选取地图位置:</text>
+	<text style="line-height:50px;font-size:30rpx">{{web_name}}</text>
+		
+	<image src='/images/ic_address_1.png' class='address_go' bindtap='address'></image>
 </view>
 <view style="width:100%;height:50px;margin:0 auto;line-height:50px;padding:0 3.3%;font-size:30rpx;display:flex">
 	<text style="line-height:50px;font-size:30rpx">详细地址:</text>
