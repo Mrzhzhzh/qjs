@@ -50,10 +50,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "评价",
 					"pathName": "pages/find_venue/venue_details/evaluate/evaluate",
-					"query": ""
+					"query": "id=1"
 				},
 				{
 					"id": -1,
@@ -176,10 +176,10 @@
 					"query": "id=1"
 				},
 				{
-					"id": -1,
+					"id": 24,
 					"name": "支付页面",
 					"pathName": "pages/mine/order/cat/cat",
-					"query": ""
+					"query": "id=1"
 				},
 				{
 					"id": -1,

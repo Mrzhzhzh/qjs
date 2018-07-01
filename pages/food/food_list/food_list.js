@@ -5,7 +5,7 @@ const api = new Api();
 Page({
 
   data: {
-    
+    merchantData:[],
     mainData:[],
     num:'1',
     searchItem:{
@@ -19,6 +19,10 @@ Page({
     },
     
     isLoadAll:false,
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000,
     
   },
   
@@ -31,6 +35,7 @@ Page({
     self.data.searchItem.passage1 = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+    self.getmerchantData();
    
 
   },
@@ -45,6 +50,35 @@ Page({
 
   },
 
+
+getmerchantData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    };
+    const postData = {};
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.id = self.data.id;
+    const callback = (res)=>{
+      if(res){
+        self.data.merchantData = res;
+        self.data.merchantData.content = api.wxParseReturn(res.content).nodes;
+        console.log(self.data.merchantData)
+        self.setData({
+          web_merchantData:self.data.merchantData,
+        });
+      }else{
+        wx.showToast({
+          title:'该商家已被删除',
+          icon:'fail',
+          duration:1000,
+          mask:true
+        })
+      }
+
+    };
+    api.merchantOne(postData,callback);
+  },
   
 
   

@@ -41,26 +41,26 @@
     "backgroundColor": "#171A21",
     "list": [
       {
-        "selectedIconPath": "images/tabbar1.png",
-        "iconPath": "images/tabbar1.png",
+        "selectedIconPath": "images/tabar1-active.png",
+        "iconPath": "images/tabar1.png",
         "pagePath": "pages/find_venue/find_venue",
         "text": "找场馆"
       },
       {
-        "selectedIconPath": "images/tabbar2.png",
-        "iconPath": "images/tabbar2.png",
+        "selectedIconPath": "images/tabar2-active.png",
+        "iconPath": "images/tabar2.png",
         "pagePath": "pages/food/food",
         "text": "健身餐"
       },
       {
-        "selectedIconPath": "images/tabbar3.png",
-        "iconPath": "images/tabbar3.png",
+        "selectedIconPath": "images/tabar3-active.png",
+        "iconPath": "images/tabar3.png",
         "pagePath": "pages/match/match",
         "text": "挑战赛"
       },
       {
-        "selectedIconPath": "images/tabbar4.png",
-        "iconPath": "images/tabbar4.png",
+        "selectedIconPath": "images/tabar4-active.png",
+        "iconPath": "images/tabar4.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }

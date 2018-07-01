@@ -1,7 +1,13 @@
 <!--pages/match/match_details.wxml-->
-<view class="poster" style="width:100%;height:160px">
-	<image src="{{web_mainData.mainImg[0].url}}" style="width:100%;height:160px"></image>
-</view>
+
+<swiper  indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width:100%;height:160px">
+  <block wx:for="{{web_mainData.bannerImg}}" wx:key="id">
+    <swiper-item class="poster" style="width:100%;height:160px">
+      <image src="{{item.url}}" style="width:100%;height:160px"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
 
 <view style="width:100%;height:75px;background:#171A21;text-align:center;border-bottom:10px solid #20232C">
 	<view style="font-size:14px;color:red;padding-top:15px">{{web_mainData.description}}</view>

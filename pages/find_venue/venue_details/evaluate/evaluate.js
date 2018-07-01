@@ -11,25 +11,32 @@ Page({
     mainData:{},
     sForm:{
       content:''
-    }
+    },
+    starArray:[1,2,3,4,5],
+    score:1
   },
 
   onLoad(options){
     const self = this;
     wx.showLoading();
-    self.getMainData(options.art_id);
-    if(options.art_id){
-      self.data.art_id = options.art_id;
+    self.getMainData(options.id);
+    if(options.id){
+      self.data.art_id = options.id;
+      self.data.model_id = options.id; 
+      self.data.order_id =options.id
+      self.setData({
+          web_mainData:self.data.mainData,
+          web_starArray:self.data.starArray,
+          web_score:self.data.score
+        });
     };
-    if(options.model_id){
-      self.data.model_id = options.model_id; 
-    };
+    
   },
   
   getMainData(id){
     const self = this;
     const postData = {};
-    postData.id = id;
+    postData.id = self.data.order_id;
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
       if(res.solely_code){
@@ -44,6 +51,8 @@ Page({
         self.data.mainData.content = api.wxParseReturn(res.content);
         self.setData({
           web_mainData:self.data.mainData,
+          web_starArray:self.data.starArray,
+          web_score:self.data.score
         });
         wx.hideLoading();
       }
@@ -78,6 +87,14 @@ Page({
       }
     };
     api.remarkAdd(postData,callback);
+  },
+
+  chooseStar(e){
+    const self = this;
+    self.data.score = api.getDataSet(e,'key');
+    self.setData({
+      web_score:self.data.score
+    });
   },
 
 

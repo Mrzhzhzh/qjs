@@ -12,13 +12,12 @@
 	</view>
 
 	<view style="width:100%;height:65px;display:flex;align-items:center;padding-left:15px;border-bottom:10px solid #20232C">
-		<view style="font-size:20px;height:30px;line-height:30px;color:#fff">评价：</view>
-		<image src="/images/star-active.png" style="width:25px;height:25px"></image>
-		<image src="/images/star-active.png" style="width:25px;height:25px;margin-left:5px"></image>
-		<image src="/images/star-active.png" style="width:25px;height:25px;margin-left:5px"></image>
-		<image src="/images/star-active.png" style="width:25px;height:25px;margin-left:5px"></image>
-		<image src="/images/star.png" style="width:25px;height:25px;margin-left:5px"></image>
+		<view style="font-size:16px;height:30px;line-height:30px;color:#fff">评价：</view>
+		<block wx:for="{{web_starArray}}" wx:key="id">
+			<image data-key="{{item}}" bindtap="chooseStar" style="width:40rpx;height:40rpx;margin-right:20rpx;" src="/images/{{item <= web_score?'star-active':'star'}}.png"></image>
+		</block>
 	</view>
+
 
 
 

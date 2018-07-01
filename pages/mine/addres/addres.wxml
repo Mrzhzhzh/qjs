@@ -5,12 +5,15 @@
 <block wx:for="{{web_mainData}}" wx:key="id">
 <view style="width:100%;height:100px;display:flex;border-bottom:1px solid #e5e5e5;position:relative">
 	
-		<view style="width:20%;display:flex;align-items:center;justify-content:center;">
-			
+		<view style="width:20%;height:100px">
+			<view style="display:flex;align-items:center;justify-content:center;height:30px;">
 				<view style="border:1px solid #09C585;height:20px;width:50px;color:#09C585;font-size:12px;text-align:center;line-height:20px;border-radius:5px" class="{{item.isdefault=='0'?'':'smallBtn_select'}}" data-id="{{item.id}}" bindtap="{{item.isdefault=='0'?'setDefalut':''}}">{{item.isdefault=='0'?'设为默认':'默认'}}</view>
-				<label class="radio">
-			      <radio class='inradio' color='#f3494c' data-name="送货上门" data-id="{{item.id}}" bindtap="choose" name="give" value="送货上门"/>送货上门
+			</view>
+		 	<view style="display:flex;align-items:center;justify-content:center;height:50px">
+				<label class="radio" style="text-align:center" style="font-size:14px;color:#09C585">
+			      <radio class='inradio' color='#09C585' data-name="确认" data-id="{{item.id}}" bindtap="choose" name="give" value="确认"/>确认
 			    </label>
+			</view>
 				
 			
 		</view>

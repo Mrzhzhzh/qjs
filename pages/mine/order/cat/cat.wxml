@@ -55,6 +55,6 @@
 
 
 <view class='total'>
-  <text style="font-size:12px;">合计：{{web_totalPrice}}</text>
+  <text style="font-size:12px;">合计：{{web_totalPrice}}元</text>
   <button bindtap="pay">结算</button>
 </view>

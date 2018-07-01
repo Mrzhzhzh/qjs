@@ -9,8 +9,9 @@ Page({
     mainData:[],
     
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
-     id:''
+      
+     id:'',
+     merchant_id:''
     },
 
   
@@ -29,9 +30,18 @@ Page({
     const self = this;
     console.log(options);
     self.data.id = options.id;
-    
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
-    self.getMainData()
+    self.getMainData();
+
+    if(wx.getStorageSync('collectData')[self.data.id]){
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    }else{
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    };
   },
 
   collect(){
@@ -104,7 +114,7 @@ Page({
   getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
-
+    postData.searchItem = self.data.searchItem;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
       console.log(res);
@@ -118,7 +128,7 @@ Page({
         self.setData({
           web_isLoadAll:self.data.isLoadAll
         })
-        //api.showToast('没有评论了','fail')
+       api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
