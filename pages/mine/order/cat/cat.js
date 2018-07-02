@@ -17,6 +17,7 @@ Page({
       product_type:'product',
       products:[],
       solely_paytype:"true",
+      passage1:'自提',
       passage2:'1'
       
 
@@ -29,7 +30,8 @@ Page({
     product_id:'',
     id:'',
     dFee:0,
-    isAddress:true
+    isAddress:true,
+    order_no:''
     
   },
 
@@ -60,15 +62,21 @@ Page({
     self.data.searchItem = {};
     console.log(getApp().globalData.address_id);
     if(getApp().globalData.address_id){
-      self.data.searchItem.id = getApp().globalData.address_id;
-      self.setData({
-        isAddress:false
-      })
-
+      if(self.data.searchItem.id != getApp().globalData.address_id){
+        self.data.searchItem.id = getApp().globalData.address_id;
+        
+        self.deliverFee();
+        self.data.placeOrder.passage1 = '送货上门';
+      }
+      
     }else{
       self.data.searchItem.isdefault = '1';
     };
     self.getDefaultAddress();
+    self.setData({
+      web_fee:self.data.dFee,
+      deliverType:self.data.placeOrder.passage1,
+    })
 
     
   },
@@ -164,28 +172,51 @@ Page({
   },
 
   choose(e){
+
     const self = this;
-    self.data.placeOrder.passage1 = api.getDataSet(e,'name');
-    if(self.data.placeOrder.passage1=='送货上门'){
+    const name = api.getDataSet(e,'name');
+
+    if(name == '送货上门'&&self.data.placeOrder.address_id=='0'){
+        
+    }else if(name == '送货上门'&&self.data.placeOrder.address_id!='0'){
+      
+    }else{
+      self.data.placeOrder.passage1 = name;
+    }
+
+    if(name == '送货上门'){
+
       if(self.data.placeOrder.address_id=='0'){
+
         api.showToast('请选择地址');
-        self.setData({
-          name:'自提'
-        });
+
       }else{
+
+        self.data.placeOrder.passage1 = name;
+
         if(self.data.dFee>0){
           self.data.placeOrder.order_no = self.data.order_no;
           self.count(self.data.dFee);
         }else{
           self.deliverFee();
         };
+
       };
-      
-      
+
+
     }else{
+      self.data.placeOrder.passage1 = name;
       self.count(0);
       delete self.data.placeOrder.order_no;
-    }
+
+    };
+
+
+    self.setData({
+      deliverType:self.data.placeOrder.passage1
+    });
+
+
   },
 
 

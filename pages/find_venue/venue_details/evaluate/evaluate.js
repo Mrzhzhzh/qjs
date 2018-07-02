@@ -19,16 +19,24 @@ Page({
   onLoad(options){
     const self = this;
     wx.showLoading();
-    self.getMainData(options.id);
-    if(options.id){
-      self.data.art_id = options.id;
-      self.data.model_id = options.id; 
-      self.data.order_id =options.id
+    console.log(options);
+    self.getMainData(options.order_id);
+    if(options.model_id&&options.order_id){
+      
+      self.data.model_id = options.model_id; 
+      self.data.order_id =options.order_id
       self.setData({
           web_mainData:self.data.mainData,
           web_starArray:self.data.starArray,
           web_score:self.data.score
         });
+    }else{
+      api.showToast('缺少关键ID','fail');
+      setTimeout(function(){
+        wx.navigateBack({
+          delta: 2
+        });
+      },500)
     };
     
   },
@@ -36,7 +44,7 @@ Page({
   getMainData(id){
     const self = this;
     const postData = {};
-    postData.id = self.data.order_id;
+    postData.id = id;
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
       if(res.solely_code){

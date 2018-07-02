@@ -43,11 +43,16 @@
 <view class='give_type' >
   <text>配送方式</text>
   <radio-group class="radio-group">
-    <label class="radio" style='margin-right:30rpx;'>
-      <radio class='inradio' color='#f3494c' data-name="自提" bindtap="choose" value="自提"   />自提
+    <label class="radio" style='margin-right:30rpx;' data-name="自提" bindtap="choose" >
+      
+      <image src="{{deliverType&&deliverType=='自提'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;" ></image>自提
+
     </label>
-    <label class="radio" data-name="送货上门" bindtap="choose">
-      <radio data-name="送货上门" bindtap="choose" class='inradio' color='#f3494c'  name="give" value="送货上门"  disabled="{{isAddress}}" />送货上门
+
+    <label class="radio" data-name="送货上门" bindtap="choose" >
+      
+      <image src="{{deliverType&&deliverType=='送货上门'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;" ></image>送货上门
+
     </label>
   </radio-group>
 </view>

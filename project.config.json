@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
@@ -86,10 +86,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "健身餐详情",
 					"pathName": "pages/food/food_list/food_details/food_details",
-					"query": ""
+					"query": "id=6"
 				},
 				{
 					"id": -1,
