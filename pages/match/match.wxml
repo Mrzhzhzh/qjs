@@ -21,8 +21,7 @@
 			<view class="nav-icon" style="display:flex;align-items:center">
 				<image src="/images/share1.png" style="width:20px;height:20px;margin-right:1px"></image>
 			</view>
-			<button class="nav
-			-text" style="font-size:14px;color:#09C585;line-height:40px;background:#171A21;padding:0;margin:0" open-type='share'>分享</button>
+			<button class="nav-text" style="font-size:14px;color:#09C585;line-height:40px;background:#171A21;padding:0;margin:0" open-type='share'>分享</button>
 		</view>
 	</view>
 </block>
