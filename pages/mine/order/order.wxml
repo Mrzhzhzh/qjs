@@ -8,7 +8,7 @@
 </view>
 
 <block wx:for="{{web_mainData}}" wx:key="id">
-	<view style="width:93.4%;margin:20px auto 0;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
+	<view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5" data-path>
 		<view style="width:33%;display:flex;align-items:center">
 			<image src="{{item.item[0].snap_product.product.mainImg[0].url}}" style="width:100px;height:100px;border-radius:12px"></image>
 		</view>
@@ -42,7 +42,7 @@
 	        		</view>
 
 	        		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&pItem.isremark!='1'}}">
-	         			 <view class='leaseit'  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{Item.model_id}}" bindtap='intoPath'>
+	         			 <view style="font-size:14px;width:60px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right"  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{item.item[0].model_id}}" bindtap='intoPath'>
 	           			 去评价
 	          			</view>
 	        		</view>

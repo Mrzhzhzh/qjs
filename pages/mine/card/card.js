@@ -13,7 +13,8 @@ Page({
     mainData:[],
     isLoadAll:false,
     searchItem:{
-      pay_status:'1'
+      pay_status:'1',
+      passage2:'2'
     },
     
   },

@@ -11,7 +11,7 @@
 			</view>
 		 	<view style="display:flex;align-items:center;justify-content:center;height:50px">
 				<label class="radio" style="text-align:center" style="font-size:14px;color:#09C585">
-			      <radio class='inradio' color='#09C585' data-name="确认" data-id="{{item.id}}" bindtap="choose" name="give" value="确认"/>确认
+			      <radio class='inradio' color='#09C585' data-name="确认" data-id="{{item.id}}" bindtap="choose" name="give" value="确认"/>
 			    </label>
 			</view>
 				

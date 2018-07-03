@@ -1,13 +1,13 @@
 <!--pages/find_venue/venue_details/course.wxml-->
 <view style="width:100%;height:603px;background:RGB(32,35,44)">
 	<view class="poster" style="width:100%;height:160px">
-		<image src="{{web_mainData.mainImg[0].url}}" style="width:100%;height:160px"></image>
+		<image src="{{web_mainData.product.bannerImg[0].url}}" style="width:100%;height:160px"></image>
 	</view>
 
 	<view style="width:100%;height:70px;background:#171A21">
 		<view style="width:90%;height:70px;display:flex;margin:0 auto">
-			<view style="width:80%;font-size:20px;line-height:70px;color:#fff;">{{web_mainData.name}}</view>
-			<span style="width:20%;font-size:20px;line-height:70px;color:red;text-align:right;">¥{{web_mainData.price}}</span>
+			<view style="width:70%;font-size:20px;line-height:70px;color:#fff;">{{web_mainData.name}}</view>
+			<span style="width:30%;font-size:20px;line-height:70px;color:red;text-align:right;">¥{{web_mainData.price}}</span>
 		</view>
 	</view>
 
@@ -22,10 +22,11 @@
 
 	<view style="width:100%;height:80px;display:flex;align-items:center;margin-top:10px;background:#171A21">
 		<view style="width:20%;display:flex;justify-content:center">	
-			<view style="text-align:center">		
-				<image src="/images/gz.png" style="width:20px;height:20px"></image>
+			<view style="text-align:center"  bindtap='collect'>		
+				<image src="{{url?url:'/images/favor_ic.png'}}" style="width:20px;height:20px"></image>
 				<view style="font-size:14px;color:#fff">加关注</view>
 			</view>
+			
 		</view>
 				
 		

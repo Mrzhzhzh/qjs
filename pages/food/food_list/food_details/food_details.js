@@ -7,13 +7,14 @@ Page({
   data: {
 
     mainData:[],
-    
+    remarkData:[],
     searchItem:{
       
       product_id:''
     },
 
-    
+    starArray:[1,2,3,4,5],
+    score:1,
     isLoadAll:false,
     
   },
@@ -27,7 +28,20 @@ Page({
     self.data.searchItem.product_id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-    self.getRemarkData()
+    self.getRemarkData();
+     if(wx.getStorageSync('collectProductData')[self.data.id]){
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    }else{
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    };
+
+    self.setData({
+      web_starArray:self.data.starArray,
+    })
    
 
   },
@@ -73,9 +87,16 @@ Page({
 
   },
 
-   getRemarkData(){
+  onReachBottom: function () {
     const self = this;
-    
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getRemarkData();
+    };
+  },
+
+  getRemarkData(){
+    const self = this;
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = self.data.searchItem;
@@ -85,17 +106,36 @@ Page({
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
           web_remarkData:self.data.remarkData,
+          web_remarkData_total:res.total,
         });
+        
       }else{
         self.data.isLoadAll = true;
         self.setData({
           web_isLoadAll:self.data.isLoadAll
+
         })
         api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
 
+  },
+
+  collect(){
+    const self = this;
+    const id = self.data.id;
+    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
+      api.deleteFootOne(id,'collectProductData');
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    }else{
+      api.footOne(self.data.mainData,'id',100,'collectProductData');
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    };
   },
 
   

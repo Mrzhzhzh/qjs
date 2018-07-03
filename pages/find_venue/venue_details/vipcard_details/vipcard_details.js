@@ -39,6 +39,15 @@ Page({
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
+     if(wx.getStorageSync('collectProductData')[self.data.id]){
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    }else{
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    };
 
   },
 
@@ -128,6 +137,22 @@ Page({
     };
     api.orderAdd(self.data.placeOrder,callback);
     
+  },
+
+  collect(){
+    const self = this;
+    const id = self.data.id;
+    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
+      api.deleteFootOne(id,'collectProductData');
+      self.setData({
+        url: '/images/favor_ic.png',
+      });
+    }else{
+      api.footOne(self.data.mainData,'id',100,'collectProductData');
+      self.setData({
+        url: '/images/favor_ic_1.png',
+      });
+    };
   },
 
   // checkPhone(){

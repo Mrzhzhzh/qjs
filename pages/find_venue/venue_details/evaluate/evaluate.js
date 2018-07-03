@@ -22,7 +22,6 @@ Page({
     console.log(options);
     self.getMainData(options.order_id);
     if(options.model_id&&options.order_id){
-      
       self.data.model_id = options.model_id; 
       self.data.order_id =options.order_id
       self.setData({
@@ -30,14 +29,7 @@ Page({
           web_starArray:self.data.starArray,
           web_score:self.data.score
         });
-    }else{
-      api.showToast('缺少关键ID','fail');
-      setTimeout(function(){
-        wx.navigateBack({
-          delta: 2
-        });
-      },500)
-    };
+    }
     
   },
   
@@ -47,6 +39,7 @@ Page({
     postData.id = id;
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
+      console.log(res);
       if(res.solely_code){
         wx.showToast({
           title:'评价的商品无',

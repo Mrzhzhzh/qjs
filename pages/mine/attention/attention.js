@@ -9,7 +9,8 @@ Page({
    */
   data: {
     mainData:[],
-
+    productData:[],
+    num:1
 
   },
 
@@ -22,13 +23,21 @@ Page({
     self.getMainData();
   },
 
+
+
   getMainData(){
     const self = this;
-    
+    self.data.productData = api.jsonToArray(wx.getStorageSync('collectProductData'),'unshift');
     self.data.mainData = api.jsonToArray(wx.getStorageSync('collectData'),'unshift');
     console.log(self.data.mainData);
+    console.log(self.data.productData);
     self.setData({
       web_mainData:self.data.mainData,
+    });
+
+    self.setData({
+      
+      web_productData:self.data.productData,
     });
   },
 
@@ -42,6 +51,32 @@ Page({
     console.log(api.getDataSet(e,'id'))
     api.deleteFootOne(api.getDataSet(e,'id'),'collectData');
     self.getMainData();
+  },
+
+  menuClick: function (e) {
+    const self = this;
+    const num = api.getDataSet(e,'num');
+    self.changeSearch(num);
+  },
+
+  changeSearch(num){
+    const self = this;
+    this.setData({
+      num: num
+    });
+    
+    if(num=='1'){
+      
+      self.setData({
+        web_mainData:self.data.mainData
+      })
+    }else{
+      self.setData({
+        web_productData:self.data.productData
+      })    
+
+    };
+
   },
 
 

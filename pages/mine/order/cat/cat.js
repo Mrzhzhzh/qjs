@@ -40,10 +40,6 @@ Page({
     console.log(options)
     self.data.id = options.id;
     
-    
-    
-
-    
     self.data.placeOrder.products[0] = {
       model_id:self.data.id,
       count:1

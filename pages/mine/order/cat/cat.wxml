@@ -1,9 +1,9 @@
 <!--pages/mine/order/cat.wxml-->
 <!--pages/order_detail/order_detail.wxml-->
 <wxs src="../../../../utils/func.wxs" module="func" />
-<view class='user_container'>
+<view class='user_container' bindtap='address'>
   <!--<radio checked='checked'></radio>-->
-  <view class='user_text'>
+  <view class='user_text' >
     <rich-text wx:if="{{web_addressData.name}}" class='user_name'>{{web_addressData.name}}
       <text class='user_tel'>{{web_addressData.phone}}</text>
     </rich-text>
@@ -12,7 +12,7 @@
     </rich-text>
     <view wx:if="{{web_addressData.name}}" style="font-size:30rpx;color:#666;width:100%;flex-wrap:wrap;line-height:25px;">{{web_addressData.province+web_addressData.city+web_addressData.country+web_addressData.detail}}</view>
   </view>
-  <image src='/images/ic_address_1.png' bindtap='address'></image>
+  <image src='/images/ic_address_1.png' ></image>
 </view>
 
 
@@ -42,16 +42,18 @@
 
 <view class='give_type' >
   <text>配送方式</text>
-  <radio-group class="radio-group">
-    <label class="radio" style='margin-right:30rpx;' data-name="自提" bindtap="choose" >
+  <radio-group class="radio-group" style="display:flex">
+    <label class="radio" style='margin-right:30rpx;display:flex' data-name="自提" bindtap="choose" >
       
-      <image src="{{deliverType&&deliverType=='自提'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;" ></image>自提
+      <image src="{{deliverType&&deliverType=='自提'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;margin-right:20rpx" ></image>
+      <view style="font-size:15px">自提</view>
 
     </label>
 
-    <label class="radio" data-name="送货上门" bindtap="choose" >
+    <label class="radio" data-name="送货上门" bindtap="choose" style="display:flex">
       
-      <image src="{{deliverType&&deliverType=='送货上门'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;" ></image>送货上门
+      <image src="{{deliverType&&deliverType=='送货上门'?'/images/radio-active.png':'/images/radio.png'}}" style="width:40rpx;height:40rpx;align-items:center;margin-right:20rpx" ></image>
+      <view style="font-size:15px">送货上门</view>
 
     </label>
   </radio-group>

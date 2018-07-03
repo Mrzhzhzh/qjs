@@ -77,6 +77,19 @@ class Api extends Base{
     this.request(allParams)
     }
 
+
+    getMyRemark(param,callback) {
+        var allParams = {
+            url:'UserRemark/getMy',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+    this.request(allParams)
+    }
+
     merchantOne(param,callback) {
         var allParams = {
             url:'UserMerchant/GetInfo',

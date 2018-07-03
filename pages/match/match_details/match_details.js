@@ -32,15 +32,7 @@ Page({
     self.getMainData()
   },
 
-  onReachBottom() {
-
-    const self = this;
-    if(!self.data.isLoadAll){
-      self.data.paginate.currentPage++;
-      self.getMainData();
-    };
-
-  },
+  
 
   Clock(){
     const self = this;
@@ -90,28 +82,6 @@ Page({
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
-  getRemarkData(){
-    const self = this;
-    const postData = api.cloneForm(self.data.paginate);
-    postData.id = self.data.id;
-    postData.thirdapp_id = getApp().globalData.thirdapp_id;
-    const callback = (res)=>{
-      console.log(res);
-      if(res.data&&res.data.length>0){
-        self.data.remarkData.push.apply(self.data.remarkData,res.data);
-        self.setData({
-          web_remarkData:self.data.remarkData,
-        });
-      }else{
-        self.data.isLoadAll = true;
-        self.setData({
-          web_isLoadAll:self.data.isLoadAll
-        })
-        //api.showToast('没有评论了','fail')
-      }
-    };
-    api.remarkList(postData,callback);
-
-  }
-
+  
+  
 })
