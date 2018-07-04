@@ -10,7 +10,17 @@ Page({
    */
   data: {
     id:'',
-    mainData:[]
+    mainData:[],
+    markers: [{
+      iconPath: "/images/coach_list1.png",
+      id: 0,
+      latitude: '',
+      longitude: '',
+      width: 50,
+      height: 50
+    }],
+    
+    supply:{}
     
   },
 
@@ -33,9 +43,16 @@ Page({
      const callback = (res)=>{
       self.data.mainData = res;
       if(res){
-        console.log(self.data.mainData)
+        console.log(self.data.mainData);
+        self.data.supply.latitude = res.supplierLat;
+        self.data.supply.longitude = res.supplierLng;
+        self.data.markers[0].latitude = res.transporterLat;
+        self.data.markers[0].longitude = res.transporterLng;
+        console.log(self.data.supply);
         self.setData({
           web_mainData:self.data.mainData, 
+          web_supply:self.data.supply, 
+          web_markers:self.data.markers
         });
       }else{
         wx.showToast({

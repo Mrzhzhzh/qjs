@@ -66,7 +66,6 @@ Page({
       if(self.data.searchItem.id != getApp().globalData.address_id){
         self.data.searchItem.id = getApp().globalData.address_id;
         
-        self.deliverFee();
         self.data.placeOrder.passage1 = '送货上门';
       }
       
@@ -151,6 +150,7 @@ Page({
       console.log(res[0]);
       if(res.length>0){
         self.data.placeOrder.address_id = res[0].id;
+        self.deliverFee();
         self.setData({
           web_addressData:res[0],
         });
