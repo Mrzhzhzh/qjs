@@ -20,6 +20,7 @@
     "pages/mine/issue/issue",
     "pages/mine/order/order",
     "pages/mine/order/cat/cat",
+    "pages/mine/order/logistics/logistics",
     "pages/mine/card/card",
     "pages/mine/bp/bp",
     "pages/mine/change/change",

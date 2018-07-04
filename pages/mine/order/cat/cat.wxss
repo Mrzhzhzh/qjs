@@ -166,3 +166,42 @@
 .coupon_select{
   border:1px dashed #f92222;
 }
+
+.styles{
+  width: 90%;
+  padding: 0 5%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+.sty_name{
+  font-size: 30rpx;
+  color: #444;
+  margin-right: 30rpx;
+  padding: 20rpx 0;
+}
+.sty_text{
+  font-size: 28rpx;
+  color: #666;
+  flex: 2;
+}
+.sty_text text{
+  display: inline-block;
+  padding: 20rpx 15rpx;
+  margin: 0 2% 20rpx;
+  background: #f7f7f7;
+}
+.sty_text text.active{
+  border: 1px #f3494c solid;
+  box-sizing: border-box;
+}
+  
+.sty_text1{
+  width: 80%;
+  text-align: right;
+  margin-top: 20rpx;
+}
+.sty_text1 image{
+  width: 46rpx;
+  height: 46rpx;
+}

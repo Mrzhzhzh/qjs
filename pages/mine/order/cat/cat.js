@@ -18,7 +18,8 @@ Page({
       products:[],
       solely_paytype:"true",
       passage1:'自提',
-      passage2:'1'
+      passage2:'1',
+   
       
 
     },
@@ -48,8 +49,12 @@ Page({
     
     
     getApp().globalData.address_id = '';
+
+    
     
     self.getMainData();
+
+    
   
   },
 
@@ -228,12 +233,7 @@ Page({
     console.log(postData);
     const callback = (res)=>{
       console.log(res);
-      self.data.dFee = 1;
-      self.data.order_no = 111111111;
-      self.data.placeOrder.order_no = 111111111;
-      self.setData({
-        web_fee:self.data.dFee
-      });
+     
       self.count(self.data.dFee);
       if(!res.solely_code){
         self.data.dFee = res.fee;
@@ -258,7 +258,8 @@ Page({
     self.setData({
       web_totalPrice:self.data.totalPrice
     });
-  }
+  },
+
 
 
 })

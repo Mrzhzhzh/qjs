@@ -666,6 +666,18 @@ class Api extends Base{
         this.request(allParams)
     }
 
+    orderLogistics(param,callback) {
+        var allParams = {
+            url:'Order/GetLogistics',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
 
     checkPhoneCallback(callback) {
         const api = this;

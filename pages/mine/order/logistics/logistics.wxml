@@ -1,0 +1,30 @@
+<!--pages/mine/order/logistics.wxml-->
+<view style="display:flex;align-items:center">
+	<view style="width:310rpx;height:60rpx;background:#e5e5e5;border-radius:10rpx;margin:15rpx 24.75rpx;display:flex;align-items:center">
+		<image src="/images/logistics_ic.jpg" style="width:40rpx;height:40rpx;border-radius:50%;margin-left:10rpx" />
+		<view style="font-size:12px;color:#aaaaaa;line-height:60rpx;margin-left:10rpx">本数据由达达配送提供</view>
+	</view>
+
+	<view style="margin-left:160rpx;font-size:12px;width:210rpx;height:60rpx;background:#e5e5e5;border-radius:10rpx;;display:flex;align-items:center">
+		<text style="font-size:12px;margin-left:10rpx">订单状态：</text>
+		<text style="color:blue;fot-size:12px">{{web_mainData.statusMsg}}</text>
+	</view>
+</view>
+
+<view style="width:93.4%;height:300rpx;background:#e5e5e5;border-radius:10rpx;margin:0 auto;">
+	<view style="height:50rpx;line-height:50rpx;border-bottom:1px solid #aaaaaa">
+		<text style="font-size:14px;color:#aaaaaa;margin-left:10rpx;">骑手信息</text>
+	</view>
+	<view style="height:200rpx;display:flex;align-items:center;border-bottom:1px solid #aaaaaa">
+		<image src="/images/logistics_ic.jpg" style="width:120rpx;height:120rpx;border-radius:50%;margin-left:20rpx;" />
+		<view style="font-size:12px;color:#aaaaaa;margin-left:20rpx;line-height:150rpx">{{web_mainData.transporterName}}</view>
+		<view style="font-size:12px;color:blue;margin-left:20rpx;line-height:150rpx">{{web_mainData.transporterPhone}}</view>
+	</view>
+	<view style="height:50rpx;">
+		<view style="font-size:14px;line-height:50rpx;margin-left:10rpx;color:#aaaaaa">达达配送：{{web_mainData.orderId}}</view>
+	</view>
+</view>
+
+<view style="width:93.4%;margin:50rpx auto">
+	<image src="/images/map.png" style="width:100%;height:300rpx;border-radius:10rpx" />
+</view>

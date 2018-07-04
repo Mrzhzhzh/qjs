@@ -33,6 +33,7 @@
 		<view style="width:100%;display:flex;align-items:center">
 			<view style="width:33%;font-size:12px;">配送费:{{web_fee}}元</view>
 			<view style="width:33%;font-size:16px;color:red">¥{{web_mainData.price}}</view>
+      
 			<view style="width:33%;font-size:14px;width:80px;height:30px;line-height:30px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585" data-path= "/pages/food/food_list/food_details/food_details?product_id={{web_mainData.product_id}}&id={{web_mainData.id}}" bindtap="intoPath">详情</view>
 		</view>
 	</view>

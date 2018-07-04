@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 27,
 			"list": [
 				{
 					"id": -1,
@@ -83,7 +83,7 @@
 					"id": 8,
 					"name": "健身餐列表",
 					"pathName": "pages/food/food_list/food_list",
-					"query": "id=2"
+					"query": "id=30"
 				},
 				{
 					"id": 9,
@@ -192,6 +192,12 @@
 					"name": "我的关注",
 					"pathName": "pages/mine/order/cat/cat",
 					"query": "id=3"
+				},
+				{
+					"id": 27,
+					"name": "物流",
+					"pathName": "pages/mine/order/logistics/logistics",
+					"query": "id=30"
 				}
 			]
 		}
