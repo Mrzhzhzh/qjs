@@ -5,8 +5,7 @@
 </view>
 <view style="width:100%;" wx:if="{{num == '1'}}">
 	<block wx:for="{{web_mainData}}" wx:key="id">
-		
-		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex" data-path="/pages/find_venue/venue_details/venue_details?id={{item.id}}"  bindtap="intoPath">
+		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative">
 			<view style="width:50%;">
 				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
 			</view>
@@ -17,16 +16,16 @@
 				<view style="margin-top:10px">
 					<span style="font-size:14px;color:red" >{{item.description}}</span>
 				</view>
-				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px">查看</view>
+				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px;" data-path="/pages/find_venue/venue_details/venue_details?id={{item.id}}"  bindtap="intoPath">查看</view>
 			</view>
+			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
 		</view>
-		
 	</block>
 </view>
 
 <view style="width:100%;" wx:if="{{num == '2'}}">
 	<block wx:for="{{web_productData}}" wx:key="id">
-		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex" data-path="/pages/food/food_list/food_details/food_details?id={{item.id}}"  bindtap="intoPath">
+		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative" >
 			<view style="width:50%;">
 				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
 			</view>
@@ -37,8 +36,9 @@
 				<view style="margin-top:10px">
 					<span style="font-size:14px;color:red">{{item.price}}元</span>
 				</view>
-				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px">查看</view>
+				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px" data-path="/pages/food/food_list/food_details/food_details?id={{item.id}}"  bindtap="intoPath">查看</view>
 			</view>
+			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
 		</view>
 	</block>
 </view>

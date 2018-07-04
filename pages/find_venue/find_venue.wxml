@@ -37,16 +37,13 @@
       </picker>
 	</view>
 
-	<view class="nav-a" style="width:33.3%;height:25px;">
-		
+	<view class="nav-a" style="width:33.3%;height:25px;" bindtap="onPullDownRefresh">
         	<view class="picker" style="display:flex;align-items:center;justify-content:center;">
 	          <view class="nav-text" style="font-size:16px;color:#09C585;line-height:25px">
 	          综合排序
-	          </view>
-	    	  
+	          </view> 
 	          <image src="/images/venue_ic_1.png" style="width:15px;height:15px;margin-left:10px"></image>
         	</view>
-      
 	</view>
 
 	

@@ -145,9 +145,11 @@ Page({
       }else{
         self.data.isLoadAll = true;
         self.setData({
-          web_isLoadAll:self.data.isLoadAll
+          web_isLoadAll:self.data.isLoadAll,
+          web_remarkData_total:res.total,
+
         })
-        api.showToast('没有评论了','fail')
+        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);

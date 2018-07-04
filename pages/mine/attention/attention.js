@@ -50,6 +50,8 @@ Page({
     const self = this;
     console.log(api.getDataSet(e,'id'))
     api.deleteFootOne(api.getDataSet(e,'id'),'collectData');
+    api.deleteFootOne(api.getDataSet(e,'id'),'collectProductData');
+    
     self.getMainData();
   },
 
