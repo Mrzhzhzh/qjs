@@ -91,15 +91,19 @@
 </view>
 
 <view  class="{{open ? 'c-state1' : ''}}" style="width:100%;height:auto;background:#2e2e2e;position:absolute;bottom:100rpx;opacity:0.5;transition: all .2s ease-in .1s;">
-  <view style="width:93.4%;height:100rpx;display:flex;margin:0 auto;" >
-    <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">健身餐商品2</view>
-    <view style="width:30%;fot-size:28rpx;line-height:100rpx;color:red">¥0.01</view>
-    <view style="width:25%;text-align:center;line-height:100rpx;display:flex">
-    <view class='shop_numb'>
-            <image    src='/images/ic_order_3.png'  data-id="{{item.id}}"  data-index="{{index}}" data-type="-" bindtap="counter" ></image>
-            <input    type="number" bindchange="bindManual" value="{{web_products[item.id].count}}" />
-            <image src='/images/ic_order_4.png' data-id="{{item.id}}"  data-index="{{index}}" data-type="+" bindtap="counter"></image>
-          </view>
+  <block wx:for="{{web_products_one}}" >
+    <view style="width:93.4%;height:100rpx;display:flex;margin:0 auto;" >
+      <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.id}}</view>
+      <view style="width:30%;fot-size:28rpx;line-height:100rpx;color:red">¥{{item.info.price}}</view>
+      <view style="width:25%;text-align:center;line-height:100rpx;display:flex">
+      <view class='shop_numb'>
+              <image    src='/images/ic_order_3.png'  data-id="{{item.id}}"  data-index="{{index}}" data-type="-" bindtap="counter" ></image>
+              <input    type="number" bindchange="bindManual" value="{{web_products[item.id].count}}" />
+              <image src='/images/ic_order_4.png' data-id="{{item.id}}"  data-index="{{index}}" data-type="+" bindtap="counter"></image>
+            </view>
+      </view>
     </view>
-  </view>
+  </block>
+
+
 </view>

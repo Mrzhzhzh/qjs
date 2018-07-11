@@ -217,10 +217,11 @@ getMainData(isNew){
     };
 
     self.setData({
-        web_products:self.data.products
+        web_products:self.data.products,
+        web_products_one:api.jsonToArray(self.data.products,'unshift'),
     });
 
-    console.log(self.data.products);
+    console.log(api.jsonToArray(self.data.products,'unshift'));
 
 
     /*if(api.getDataSet(e,'type')=='+'){
@@ -258,8 +259,21 @@ getMainData(isNew){
 
   countTotalPrice(){  
     const self = this;
-    
-    var products = self.data.products;
+
+
+
+    var totalPrice = 0;
+    const obj = self.data.products;
+    for(var key in obj){
+      console.log(obj[key]);
+      totalPrice += obj[key].count*obj[key].info.price;
+    };
+    console.log(totalPrice);
+    self.setData({
+      web_totalPrice:totalPrice.toFixed(2)
+    });
+
+    /*var products = self.data.products;
     var totalPrice =0;
     var obj = products;
     var arr = Object.keys(obj);
@@ -272,7 +286,9 @@ getMainData(isNew){
         
     self.setData({
       web_totalPrice:totalPrice.toFixed(2)
-    })
+    });*/
+
+    
   },
 
 
