@@ -23,7 +23,7 @@ Page({
       sortby:'',
       sort:''
     },
-    
+    open:true,
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -42,7 +42,7 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getmerchantData();
-   
+    
   /*  self.data.products[0] = {};
     self.data.products[0].product_id = options.id;
    self.data.products[0].isSelect = false;
@@ -284,7 +284,21 @@ getMainData(isNew){
       count:count
     });
 
-  }   
+  },
+
+  tap_ch: function(e){
+    const self = this;
+    if(self.data.open){
+      self.setData({
+        open : false
+      });
+    }else{
+      self.setData({
+        open : true
+      });
+    }
+  }
+ 
 
   
 })  
