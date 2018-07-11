@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    challenge_id:'',
+    challengeData:{},
     mainData:{},
     sForm:{
       content:''
@@ -20,18 +22,29 @@ Page({
     const self = this;
     wx.showLoading();
     console.log(options);
+   
     self.getMainData(options.order_id);
+    self.getChallengeData(options.challenge_id);
     if(options.model_id&&options.order_id){
       self.data.model_id = options.model_id; 
       self.data.order_id =options.order_id
       self.setData({
           web_mainData:self.data.mainData,
           web_starArray:self.data.starArray,
-          web_score:self.data.score
-        });
-    }
+          web_score:self.data.score,
+        
+        })
+      }else{
+        self.data.challenge_id = options.challenge_id
+      }
+      self.setData({
+       web_challengeData:self.data.challengeData,
+       web_starArray:self.data.starArray,
+       web_score:self.data.score,
+      })
+    },
     
-  },
+  
   
   getMainData(id){
     const self = this;
@@ -76,6 +89,7 @@ Page({
     const postData = api.cloneForm(self.data.sForm);
     postData.model_id = self.data.model_id;
     postData.order_id = self.data.order_id;
+    postData.challenge_id=self.data.challenge_id;
     postData.token = wx.getStorageSync('token');
     postData.remarkScore = self.data.score;
     const callback = (res)=>{
@@ -111,6 +125,37 @@ Page({
     },300);
     
   },
+
+  getChallengeData(){
+    const self = this;
+    
+    const postData = {};
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.id = id;
+       const callback = (res)=>{
+     console.log(res);
+      if(res.solely_code){
+        wx.showToast({
+          title:'评价的商品无',
+          icon:'fail',
+          duration:1000,
+          mask:true
+        })
+      }else{
+        self.data.challenge = res;
+        self.data.challenge.content = api.wxParseReturn(res.content);
+        self.setData({
+          web_challenge:self.data.challenge,
+          web_starArray:self.data.starArray,
+          web_score:self.data.score
+        });
+        wx.hideLoading();
+      }
+    };
+    api.challengeOne(postData,callback);
+  },
+
+  
 
 
 })

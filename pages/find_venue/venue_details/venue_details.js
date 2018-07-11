@@ -5,6 +5,7 @@ const api = new Api();
 Page({
 
   data: {
+    num:'1',
     classData:[],
     cardData:[],
     remarkData:[],
@@ -21,13 +22,11 @@ Page({
     },
 
     searchItem2:{
-      menu_id:9,
-      thirdapp_id:'',
+      category_id:6,
       passage1:''
     },
     searchItem3:{
-      menu_id:8,
-      thirdapp_id:'',
+      category_id:5,
       passage1:''
     },
 
@@ -53,9 +52,9 @@ Page({
     self.data.searchItem1.passage1 = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.data.searchItem2.passage1 = options.id;
-    self.data.searchItem2.thirdapp_id = api.cloneForm(getApp().globalData.thirdapp_id);
+    
     self.data.searchItem3.passage1 = options.id;
-    self.data.searchItem3.thirdapp_id = api.cloneForm(getApp().globalData.thirdapp_id);
+  
     self.getMainData();
     self.getCardData();
     self.getRemarkData();
@@ -177,7 +176,8 @@ Page({
   getClassData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
-    postData.searchItem = api.cloneForm(self.data.searchItem2);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.searchItem = api.cloneForm(self.data.searchItem2); 
     const callback = (res)=>{ 
       self.data.classData = res;
       console.log(res)
@@ -186,14 +186,14 @@ Page({
       });
 
     };
-    api.articleList(postData,callback);
+    api.productList(postData,callback);
   },
 
   getcoachData(){
     const self = this;
-    const postData = api.cloneForm(self.data.paginate);
-    
-    postData.searchItem = api.cloneForm(self.data.searchItem3);
+     const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.searchItem = api.cloneForm(self.data.searchItem3); 
     const callback = (res)=>{ 
       self.data.coachData = res;
       console.log(res)
@@ -203,7 +203,7 @@ Page({
       });
 
     };
-    api.articleList(postData,callback);
+    api.productList(postData,callback);
   },
 
 
@@ -221,6 +221,44 @@ Page({
       self.data.paginate.currentPage++;
       self.getRemarkData();
     };
+
+  },
+
+  menuClick: function (e) {
+    const self = this;
+    const num = api.getDataSet(e,'num');
+    self.changeSearch(num);
+  },
+
+  changeSearch(num){
+    const self = this;
+    this.setData({
+      num: num
+    });
+    self.data.searchItem = {};
+    if(num=='1'){
+
+    }else if(num=='2'){
+      self.data.searchItem.pay_status = '0';
+      self.data.searchItem.order_step = '0';
+    }else if(num=='3'){
+      self.data.searchItem.pay_status = '1';
+      self.data.searchItem.transport_status = '1';
+      self.data.searchItem.order_step = '0';
+      
+    }else if(num=='4'){
+      self.data.searchItem.pay_status = '1';
+      self.data.searchItem.transport_status = '2';
+      self.data.searchItem.order_step = '0';
+      self.data.searchItem.remark_status = 'false';
+    }else if(num=='5'){
+      self.data.searchItem.order_step = '1';
+    };
+
+    self.setData({
+      web_mainData:[],
+    });
+    self.getMainData(true);
 
   },
 

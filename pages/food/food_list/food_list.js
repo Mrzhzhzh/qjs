@@ -5,9 +5,15 @@ const api = new Api();
 Page({
 
   data: {
+  
+    minusStatus: 'disabled',
+    
     merchantData:[],
     mainData:[],
-    num:'1',
+  
+    num:'0',
+    count:0,
+    products:{},
     searchItem:{
       
       passage1:''
@@ -23,7 +29,7 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    
+    isSelect: false,
   },
   
 
@@ -37,8 +43,28 @@ Page({
     self.getMainData();
     self.getmerchantData();
    
+  /*  self.data.products[0] = {};
+    self.data.products[0].product_id = options.id;
+   self.data.products[0].isSelect = false;
+    self.data.products[0].count =1;*/
+    
+    /*
+    self.setData({
+      currentStatus:0,
+      web_productCounts:self.data.products[0].count,
+      web_modelIndex:0,
+      web_passageIndex:0,
+      web_payType:'price',
+    });
 
+
+    
+    api.footOne(self.data.products[0],'product_id',100,'cartData');*/
+  
   },
+   
+
+
 
   onReachBottom() {
 
@@ -79,6 +105,17 @@ getmerchantData(isNew){
     };
     api.merchantOne(postData,callback);
   },
+
+  /*onShow: function () {
+    const self = this;
+    self.data.products= api.jsonToArray(wx.getStorageSync('products'),'unshift');
+    self.setData({
+      web_products:self.data.products
+    });
+    self.countTotalPrice();
+  },*/
+
+  
   
 
   
@@ -155,6 +192,99 @@ getMainData(isNew){
     };
     self.getMainData(true);
   },
+
+  counter(e){
+    const self = this;
+    const id = api.getDataSet(e,'id');
+    
+    if(self.data.products[id]){
+
+      if(api.getDataSet(e,'type')=='+'){
+        self.data.products[id].count++;
+      }else{
+        if(self.data.products[id].count > '1'){
+          self.data.products[id].count--;
+        }else{
+          delete self.data.products[id];
+        }
+      };
+
+    }else{
+      self.data.products[id] = {};
+      self.data.products[id].count = 1;
+      self.data.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
+      
+    };
+
+    self.setData({
+        web_products:self.data.products
+    });
+
+    console.log(self.data.products);
+
+
+    /*if(api.getDataSet(e,'type')=='+'){
+      self.data.mainData[index].count++;
+    }else{
+      if(self.data.mainData[index].count > '1'){
+        
+        self.data.mainData[index].count--;
+      }
+    };
+    api.updateFootOne(self.data.mainData[index].product_id,'cartData','count',self.data.mainData[index].count);*/
+    
+    self.countTotalPrice();
+  },
+
+  /*choose(e){
+    const self = this;
+    const id = api.getDataSet(e,'id');
+    if(self.data.products[id].isSelect == 'true'){
+      self.data.products[id].isSelect = 'false';
+    }else{
+      self.data.products[id].isSelect = 'true';
+    }
+   
+    api.updateFootOne(self.data.products[id].info.id,'products','isSelect',self.data.products[id].isSelect)
+    self.setData({                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+      web_products:self.data.products
+    });
+     
+    self.countTotalPrice();
+  },
+*/
+  
+
+
+  countTotalPrice(){  
+    const self = this;
+    
+    var products = self.data.products;
+    var totalPrice =0;
+    var obj = products;
+    var arr = Object.keys(obj);
+    for(var i=0;i<arr;i++){ 
+     
+      totalPrice += products[i].info.price * products[i].count;
+    
+    };
+    
+        
+    self.setData({
+      web_totalPrice:totalPrice.toFixed(2)
+    })
+  },
+
+
+
+  bindManual: function (e) {
+    const self = this;
+    var count = e.detail.value;
+    self.setData({
+      count:count
+    });
+
+  }   
 
   
 })  

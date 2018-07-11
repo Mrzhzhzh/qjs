@@ -52,11 +52,11 @@
 
 	<view style="width:93.4%;margin:0 auto;display:flex;">
 		<view style="width:50%;disaplay:flex;align-items:center">
-			<image src="{{web_classData.data[0].img[0].url}}" style="width:145px;height:105px;border-radius:6px"></image>
+			<image src="{{web_classData.data[0].mainImg[0].url}}" style="width:145px;height:105px;border-radius:6px"></image>
 		</view>
 		<view style="width:50%">
-			<view style="font-size:16px;color:#fff;">{{web_classData.data[0].title}}</view>
-			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">{{web_classData.data[0].small_title}}</view>
+			<view style="font-size:16px;color:#fff;">{{web_classData.data[0].name}}</view>
+			<view style="font-size:14px;color:red;height:50px;line-height:50px;">{{web_classData.data[0].price}}元</view>
 			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class_list/class_list?id={{web_mainData.id}}" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
@@ -69,12 +69,12 @@
 
 	<view style="width:93.4%;margin:0 auto;display:flex;">
 		<view style="width:50%;disaplay:flex;align-items:center">
-			<image src="{{web_coachData.data[0].img[0].url}}" style="width:145px;height:105px;border-radius:6px"></image>
+			<image src="{{web_coachData.data[0].mainImg[0].url}}" style="width:145px;height:105px;border-radius:6px"></image>
 		</view>
 		<view style="width:50%">
-			<view style="font-size:16px;color:#fff;">{{web_coachData.data[0].title}}</view>
-			<view style="font-size:14px;color:#fff;height:50px;line-height:50px;">{{web_coachData.data[0].small_title}}</view>
-			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/class_list/class_list?id={{web_mainData.id}}" bindtap="intoPath">查看更多</view>
+			<view style="font-size:16px;color:#fff;">{{web_coachData.data[0].name}}</view>
+			<view style="font-size:14px;color:red;height:50px;line-height:50px;">{{web_coachData.data[0].price}}元</view>
+			<view style="width:90px;height:30px;border:1px solid #09C585;line-height:30px;text-align:center;color:#09C585;border-radius:6px;font-size:16px" data-path="/pages/find_venue/venue_details/coach_list/coach_list?id={{web_mainData.id}}" bindtap="intoPath">查看更多</view>
 		</view>
 	</view>
 
@@ -87,10 +87,18 @@
 		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>	
 	</view>
 
+	<view style="width:100%;height:60rpx;display:flex;align-items:center;border-bottom:2rpx solid #E5E5E5;color:#09C585" >
+	    <view  data-num="1" class="int_menu{{num==1?'active':''}}" bindtap="menuClick" style="width:49%;border-right:1px solid #E5E5E5;text-align:center;font-size:15px;" >商品评价
+	    </view>
+	    <view data-num="2" class="int_menu{{num==2?'active':''}}" bindtap="menuClick" style="width:50%;text-align:center;font-size:15px;">
+	    打卡榜
+	    </view>
+  </view>
 
 
-<view style="font-size:14px;height:50px;line-height:50px;padding-left:15px;color:#fff">商品评价({{web_remarkData_total}}条)</view>
-<block wx:for="{{web_remarkData}}" wx:for-item="pitem">
+
+<view style="font-size:14px;height:50px;line-height:50px;padding-left:15px;color:#fff"  wx:if="{{num=='1'}}">商品评价({{web_remarkData_total}}条)</view>
+<block wx:for="{{web_remarkData}}" wx:for-item="pitem" wx:if="{{num=='1'}}">
 	<view style="border-bottom:1px solid #e5e5e5;height:120px">
 		<view style="width:100%;height:70px;display:flex;align-items:center;">
 				<view style="width:20%;display:flex;justify-content:center">
@@ -110,6 +118,22 @@
 
 	
 
-	
+	<view wx:if="{{num=='2'}}">
+		<view style="width:100%;height:80rpx;display:flex;text-align:center">
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">头像</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">昵称</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">打卡次数</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">排名</view>	
+		</view>
+
+		<view style="width:100%;height:140rpx;display:flex;border-bottom:2rpx solid #e5e5e5;text-align:center">
+			<view  style="width:25%;display:flex;align-items:center;justify-content:center">
+				<view style="width:100rpx;height:100rpx;border-radius:50%;overflow:hidden"><open-data  type="userAvatarUrl"></open-data></view>
+			</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">Mr</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">1次</view>
+			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">1</view>	
+		</view>
+	</view>
 </view>
 

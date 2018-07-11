@@ -7,14 +7,15 @@ Page({
   data: {
 
     mainData:[],
-    
+    remarkData:[],
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
       
+     challenge_id:''
     },
 
-   
-    
+
+    starArray:[1,2,3,4,5],
+    score:1,
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -28,8 +29,14 @@ Page({
     console.log(options);
     const self = this;
     self.data.id = options.id;
+    self.data.searchItem.challenge_id = options.id; 
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
-    self.getMainData()
+    self.getMainData();
+    self.getRemarkData()
+
+     self.setData({
+      web_starArray:self.data.starArray,
+    })
   },
 
   
@@ -81,6 +88,46 @@ Page({
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
+
+
+
+  
+  getRemarkData(){
+    const self = this;
+    const postData =api.cloneForm(self.data.paginate);
+    postData.thirdapp_id = getApp().globalData.thirdapp_id;
+    postData.searchItem = self.data.searchItem;
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data&&res.data.length>0){
+        self.data.remarkData.push.apply(self.data.remarkData,res.data);
+        self.setData({
+          web_remarkData:self.data.remarkData,
+          web_remarkData_total:res.total,
+        });
+        
+      }else{
+        self.data.isLoadAll = true;
+        self.setData({
+          web_isLoadAll:self.data.isLoadAll,
+          web_remarkData_total:res.total,
+
+        });
+        //api.showToast('没有评论了','fail')
+      }
+    };
+    api.remarkList(postData,callback);
+
+  },
+
+  onReachBottom: function () {
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getRemarkData();
+    };
+  },
+
 
   
   

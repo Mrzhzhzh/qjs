@@ -20,3 +20,21 @@
   height: 14rpx;
   margin-left: 20rpx;
 }
+.shop_numb{
+  float: right;
+  display: flex;
+  align-items: center;
+}
+.shop_numb image{
+  width: 46rpx;
+  height: 46rpx;
+}
+.shop_numb input{
+  width: 50rpx;
+  margin: 0 10rpx;
+  font-size: 28rpx;
+  color: #2e2e2e;
+  background: 0;
+  border: 0;
+  text-align: center;
+}

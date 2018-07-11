@@ -9,10 +9,11 @@ Page({
     mainData:[],
     
     searchItem:{
-      menu_id:9,
-      thirdapp_id:'',
+      category_id:6,
       passage1:''
     },
+
+      
     
     isLoadAll:false,
     
@@ -20,10 +21,13 @@ Page({
   
 
   onLoad(options){
+
     const self = this;
-    self.data.searchItem.thirdapp_id = getApp().globalData.thirdapp_id;
-    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    console.log(options);
+    self.data.id = options.id;
     self.data.searchItem.passage1 = options.id;
+
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
    
 
@@ -43,11 +47,14 @@ Page({
   
   getMainData(){
     const self = this;
+   
     const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.searchItem = api.cloneForm(self.data.searchItem);
-    const callback = (res)=>{ 
-      console.log(res)
-      if(res){
+    
+    const callback = (res)=>{
+      console.log(res);
+      if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
         self.data.isLoadAll = true;
@@ -58,7 +65,7 @@ Page({
       });
 
     };
-    api.articleList(postData,callback);
+    api.productList(postData,callback);
   },
 
 
@@ -69,7 +76,5 @@ Page({
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
 
-  }
-
-
+  },
 })
