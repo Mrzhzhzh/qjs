@@ -39,6 +39,18 @@
   text-align: center;
 }
 .c-state1{
- transform: rotate(0deg) scale(1) translateY(100% );
- transition: all .2s ease-in .1s;
+ transform: translateY(100px);
+ transition: all 1s ease-in .1s;
+ 
+ width:100%;height:auto;background:#2e2e2e;position:fixed; bottom:100rpx;opacity:0.5;
+ display:none;
+ }  
+
+ .c-state2{
+ display:block;
+ transform: translateY(100px);
+ transition: all 1s ease-in .1s;
+
+ width:100%;height:auto;background:#2e2e2e;position:fixed; bottom:300rpx;opacity:0.5;
+
  }

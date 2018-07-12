@@ -23,7 +23,8 @@ Page({
       sortby:'',
       sort:''
     },
-    open:true,
+    open:true
+    ,
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -42,6 +43,7 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getmerchantData();
+    
     
   /*  self.data.products[0] = {};
     self.data.products[0].product_id = options.id;
@@ -289,6 +291,19 @@ getMainData(isNew){
     });*/
 
     
+  },
+
+  check(){
+    const self = this;
+    const callback = res =>{
+    const obj = self.data.products;
+    for(var key in obj){
+      console.log(obj)
+    }
+      wx.setStorageSync('payPro',obj);
+      api.pathTo('/pages/mine/order/cat/cat','nav')
+    };
+    api.checkPhoneCallback(callback);
   },
 
 

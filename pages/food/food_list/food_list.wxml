@@ -85,21 +85,24 @@
     <view style="width:100rpx;height:100rpx;background:#09C585;border-radius:50%;justify-content:center;display:flex;align-items:center;position:absolute;top:-30rpx;left:30rpx" bindtap="tap_ch">
       <image src="/images/ic-food1.png" style="width:80rpx;height:80rpx;" />
     </view>
-    <view style="font-size:28rpx;line-height:100rpx;color:#09C585;margin-left:150rpx">合计：￥{{web_totalPrice}}</view>
+
+    <view style="font-size:28rpx;line-height:100rpx;color:#09C585;margin-left:150rpx">合计:￥{{web_totalPrice}}(不含配送费)</view>
   </view>
-  <view style="width:30%;background:#09C585;text-align:center;line-height:100rpx;font-size:30rpx;color:#fff">去结算</view>
+  <view style="width:30%;background:#09C585;text-align:center;line-height:100rpx;font-size:30rpx;color:#fff" bindtap="check">去结算</view>
+ 
 </view>
 
-<view  class="{{open ? 'c-state1' : ''}}" style="width:100%;height:auto;background:#2e2e2e;position:absolute;bottom:100rpx;opacity:0.5;transition: all .2s ease-in .1s;">
-  <block wx:for="{{web_products_one}}" >
+
+<view  class="{{open ? 'c-state1' : 'c-state2'}}" >
+  <block wx:for="{{web_products_one}}" wx:key="id">
     <view style="width:93.4%;height:100rpx;display:flex;margin:0 auto;" >
-      <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.id}}</view>
+      <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.name}}*{{item.count}}</view>
       <view style="width:30%;fot-size:28rpx;line-height:100rpx;color:red">¥{{item.info.price}}</view>
       <view style="width:25%;text-align:center;line-height:100rpx;display:flex">
       <view class='shop_numb'>
-              <image    src='/images/ic_order_3.png'  data-id="{{item.id}}"  data-index="{{index}}" data-type="-" bindtap="counter" ></image>
-              <input    type="number" bindchange="bindManual" value="{{web_products[item.id].count}}" />
-              <image src='/images/ic_order_4.png' data-id="{{item.id}}"  data-index="{{index}}" data-type="+" bindtap="counter"></image>
+              <image    src='/images/ic_order_3.png'  data-id="{{item.info.id}}"  data-index="{{index}}" data-type="-" bindtap="counter" ></image>
+              <input    type="number" bindchange="bindManual" value="{{item.count}}" style="color:#fff" />
+              <image src='/images/ic_order_4.png' data-id="{{item.info.id}}"  data-index="{{index}}" data-type="+" bindtap="counter"></image>
             </view>
       </view>
     </view>

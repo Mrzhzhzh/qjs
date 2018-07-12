@@ -32,27 +32,30 @@ Page({
     id:'',
     dFee:0,
     isAddress:true,
-    order_no:''
+    order_no:'',
+    
     
   },
 
   onLoad(options){
     const self = this;
-    console.log(options)
-    self.data.id = options.id;
-    
-    self.data.placeOrder.products[0] = {
-      model_id:self.data.id,
-      count:1
-    };
-    console.log(self.data.placeOrder);
+    self.data.token = wx.getStorageSync('token');
     
     
+    
+    self.data.placeOrder.products = wx.getStorageSync('payPro');
+    console.log(self.data.placeOrder.products);
+    
+    self.setData({
+      web_products:self.data.placeOrder.products
+  
+    });
+    console.log();
     getApp().globalData.address_id = '';
 
+     
     
-    
-    self.getMainData();
+  
 
     
   
@@ -81,9 +84,31 @@ Page({
     
   },
 
+   counter(e){
+    const self = this;
+    const index = api.getDataSet(e,'index');
+    if(api.getDataSet(e,'type')=='+'){
+      self.data.placeOrder.products[index].count++;
+    }else{
+      if(self.data.placeOrder.products[index].count > '1'){
+        self.data.placeOrder.products[index].count--;
+      } 
+        
+    };
+
+    self.setData({
+      web_products:self.data.placeOrder.products
+    });
+
+    self.countTotalPrice(0);
+    
+  },
+
+   
+
   
 
-  getMainData(isNew){
+  /*getMainData(isNew){
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
@@ -112,7 +137,7 @@ Page({
 
     };
     api.productOne(postData,callback);
-  },
+  },*/
   
 
 
@@ -197,7 +222,7 @@ Page({
 
         if(self.data.dFee>0){
           self.data.placeOrder.order_no = self.data.order_no;
-          self.count(self.data.dFee);
+          self.countTotalPrice(self.data.dFee);
         }else{
           self.deliverFee();
         };
@@ -207,7 +232,7 @@ Page({
 
     }else{
       self.data.placeOrder.passage1 = name;
-      self.count(0);
+      self.countTotalPrice(0);
       delete self.data.placeOrder.order_no;
 
     };
@@ -218,23 +243,72 @@ Page({
     });
 
 
+
   },
+   /* counter(e){
+    const self = this;
+    const id = api.getDataSet(e,'id');
+    
+    if(self.data.placeOrder.products[id]){
+
+      if(api.getDataSet(e,'type')=='+'){
+        self.data.placeOrder.products[id].count++;
+      }else{
+        if(self.data.placeOrder.products[id].count > '1'){
+          self.data.placeOrder.products[id].count--;
+        }else{
+          delete self.data.placeOrder.products[id];
+        }
+      };
+
+    }else{
+      self.data.placeOrder.products[id] = {};
+      self.data.placeOrder.products[id].count = 1;
+      self.data.placeOrder.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
+      
+    };
+
+    self.setData({
+        web_products:self.data.placeOrder.products,
+        
+        
+    });
+
+    console.log(api.jsonToArray(self.data.products,'unshift'));
+
+ 
+
+
+    if(api.getDataSet(e,'type')=='+'){
+      self.data.mainData[index].count++;
+    }else{
+      if(self.data.mainData[index].count > '1'){
+        
+        self.data.mainData[index].count--;
+      }
+    };
+    api.updateFootOne(self.data.mainData[index].product_id,'cartData','count',self.data.mainData[index].count);
+    
+    self.countTotalPrice();
+  },*/
 
 
   deliverFee(e){
     const self = this;
+    const obj = self.data.placeOrder.products;
+    for(var key in obj);
     const postData = {};
     postData.token = wx.getStorageSync('token');
     postData.city_code = '029';
-    postData.cargo_price = self.data.mainData.price;
+    postData.cargo_price = obj[key].info.price;
     postData.is_prepay = 0;
     postData.address_id = self.data.placeOrder.address_id;
-    postData.id = self.data.id;
+    postData.id = obj[key].info.id;
     console.log(postData);
     const callback = (res)=>{
       console.log(res);
      
-      self.count(self.data.dFee);
+      self.countTotalPrice(self.data.dFee);
       if(!res.solely_code){
         self.data.dFee = res.fee;
         self.data.order_no = res.order_no;
@@ -242,7 +316,7 @@ Page({
         self.setData({
           web_fee:self.data.dFee
         });
-        self.count(self.data.dFee);
+        self.countTotalPrice(self.data.dFee);
       }else{
         api.showToast(res.msg,'fail');
       }
@@ -250,16 +324,32 @@ Page({
     api.orderDeliverFee(postData,callback);
   },
 
-
+/*
   count($fee){
     const self = this;
     console.log($fee);
-    self.data.totalPrice = parseFloat(self.data.mainData.price) + $fee;
+    self.data.totalPrice = parseFloat(Price) + $fee;
     self.setData({
       web_totalPrice:self.data.totalPrice
     });
+  },*/
+
+   countTotalPrice($fee){  
+    const self = this;
+
+    var Price = 0;
+    const obj = self.data.placeOrder.products;
+    for(var key in obj){
+      
+      Price += obj[key].count*obj[key].info.price + $fee ;
+
+    };
+   console.log(Price)
+    self.setData({
+      web_Price:Price.toFixed(2)
+    });
   },
 
-
+  
 
 })
