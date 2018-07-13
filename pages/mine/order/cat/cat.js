@@ -10,6 +10,7 @@ Page({
    */
   data: {
     placeOrder:{
+
       token:'',
       address_id:'0',
       pay_type:'1',
@@ -34,53 +35,33 @@ Page({
     isAddress:true,
     order_no:'',
     
-    
   },
 
   onLoad(options){
+
     const self = this;
     self.data.token = wx.getStorageSync('token');
-    
-    
-    
-    self.data.placeOrder.products = wx.getStorageSync('payPro');
-    console.log(self.data.placeOrder.products);
-    
+    self.data.placeOrder.products = api.jsonToArray(wx.getStorageSync('payPro'),'push');
     self.setData({
       web_products:self.data.placeOrder.products
-  
     });
-    console.log();
     getApp().globalData.address_id = '';
 
-     
-    
-  
-
-    
-  
   },
 
   onShow(){
+
     const self = this;
-    self.data.searchItem = {};
-    console.log(getApp().globalData.address_id);
-    if(getApp().globalData.address_id){
-      if(self.data.searchItem.id != getApp().globalData.address_id){
-        self.data.searchItem.id = getApp().globalData.address_id;
-        
-        self.data.placeOrder.passage1 = '送货上门';
-      }
-      
-    }else{
+    if(getApp().globalData.address_id&&self.data.searchItem.id != getApp().globalData.address_id){
+      self.data.searchItem = {};
+      self.data.searchItem.id = getApp().globalData.address_id;
+    }else if(!self.data.searchItem.isdefault&&!self.data.searchItem.id){
+      self.data.searchItem = {};
       self.data.searchItem.isdefault = '1';
+    }else{
+      return;
     };
     self.getDefaultAddress();
-    self.setData({
-      web_fee:self.data.dFee,
-      deliverType:self.data.placeOrder.passage1,
-    })
-
     
   },
 
@@ -100,49 +81,17 @@ Page({
       web_products:self.data.placeOrder.products
     });
 
-    self.countTotalPrice(0);
+    self.countTotalPrice();
     
   },
 
    
 
-  
-
-  /*getMainData(isNew){
-    const self = this;
-    if(isNew){
-      api.clearPageIndex(self);
-    };
-    const postData = {};
-    postData.thirdapp_id= getApp().globalData.thirdapp_id;
-    postData.id = self.data.id;
-     const callback = (res)=>{
-      if(res){
-        self.data.mainData = res;
-        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
-        self.data.totalPrice = res.price;
-        console.log(self.data.mainData)
-        self.setData({
-          web_mainData:self.data.mainData,
-          web_totalPrice:self.data.totalPrice
-        });
-      }else{
-        wx.showToast({
-          title:'该商品已被删除',
-          icon:'fail',
-          duration:1000,
-          mask:true
-        })
-      }
-
-    };
-    api.productOne(postData,callback);
-  },*/
-  
 
 
   pay(){
     const self = this;
+    console.log(self.data.placeOrder);
     const callback = (res)=>{
       console.log(res);
       if(res&&!res.solely_code){
@@ -172,12 +121,14 @@ Page({
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
       wx.hideLoading();
-      console.log(res[0]);
+      
       if(res.length>0){
         self.data.placeOrder.address_id = res[0].id;
         self.deliverFee();
+        self.data.placeOrder.passage1 = '送货上门';
         self.setData({
           web_addressData:res[0],
+          deliverType:self.data.placeOrder.passage1
         });
       }
       
@@ -185,17 +136,13 @@ Page({
     api.addressList(postData,callback);
   },
 
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
   
-  address:function(){
-    wx.navigateTo({
-      url: '/pages/mine/addres/addres',
-    })
-  },
 
   choose(e){
 
@@ -222,7 +169,7 @@ Page({
 
         if(self.data.dFee>0){
           self.data.placeOrder.order_no = self.data.order_no;
-          self.countTotalPrice(self.data.dFee);
+          self.countTotalPrice();
         }else{
           self.deliverFee();
         };
@@ -232,7 +179,7 @@ Page({
 
     }else{
       self.data.placeOrder.passage1 = name;
-      self.countTotalPrice(0);
+      self.countTotalPrice();
       delete self.data.placeOrder.order_no;
 
     };
@@ -245,52 +192,7 @@ Page({
 
 
   },
-   /* counter(e){
-    const self = this;
-    const id = api.getDataSet(e,'id');
-    
-    if(self.data.placeOrder.products[id]){
 
-      if(api.getDataSet(e,'type')=='+'){
-        self.data.placeOrder.products[id].count++;
-      }else{
-        if(self.data.placeOrder.products[id].count > '1'){
-          self.data.placeOrder.products[id].count--;
-        }else{
-          delete self.data.placeOrder.products[id];
-        }
-      };
-
-    }else{
-      self.data.placeOrder.products[id] = {};
-      self.data.placeOrder.products[id].count = 1;
-      self.data.placeOrder.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
-      
-    };
-
-    self.setData({
-        web_products:self.data.placeOrder.products,
-        
-        
-    });
-
-    console.log(api.jsonToArray(self.data.products,'unshift'));
-
- 
-
-
-    if(api.getDataSet(e,'type')=='+'){
-      self.data.mainData[index].count++;
-    }else{
-      if(self.data.mainData[index].count > '1'){
-        
-        self.data.mainData[index].count--;
-      }
-    };
-    api.updateFootOne(self.data.mainData[index].product_id,'cartData','count',self.data.mainData[index].count);
-    
-    self.countTotalPrice();
-  },*/
 
 
   deliverFee(e){
@@ -304,11 +206,9 @@ Page({
     postData.is_prepay = 0;
     postData.address_id = self.data.placeOrder.address_id;
     postData.id = obj[key].info.id;
-    console.log(postData);
+    
     const callback = (res)=>{
-      console.log(res);
-     
-      self.countTotalPrice(self.data.dFee);
+
       if(!res.solely_code){
         self.data.dFee = res.fee;
         self.data.order_no = res.order_no;
@@ -316,7 +216,7 @@ Page({
         self.setData({
           web_fee:self.data.dFee
         });
-        self.countTotalPrice(self.data.dFee);
+        self.countTotalPrice();
       }else{
         api.showToast(res.msg,'fail');
       }
@@ -324,30 +224,23 @@ Page({
     api.orderDeliverFee(postData,callback);
   },
 
-/*
-  count($fee){
-    const self = this;
-    console.log($fee);
-    self.data.totalPrice = parseFloat(Price) + $fee;
-    self.setData({
-      web_totalPrice:self.data.totalPrice
-    });
-  },*/
 
-   countTotalPrice($fee){  
-    const self = this;
 
+  countTotalPrice(){  
+
+    const self = this;
     var Price = 0;
-    const obj = self.data.placeOrder.products;
+    var obj = self.data.placeOrder.products;
     for(var key in obj){
-      
-      Price += obj[key].count*obj[key].info.price + $fee ;
-
+      Price += obj[key].count*obj[key].info.price ;
     };
-   console.log(Price)
+    if(self.data.placeOrder.passage1=='送货上门'){
+      Price += self.data.dFee;
+    };
     self.setData({
       web_Price:Price.toFixed(2)
     });
+
   },
 
   

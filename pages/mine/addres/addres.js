@@ -28,7 +28,7 @@ Page({
     const postData = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
-      console.log(res);
+      
       if(res.data.length>0){
         self.data.mainData = res.data;
       }else{

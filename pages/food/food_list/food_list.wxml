@@ -93,7 +93,7 @@
 </view>
 
 
-<view  class="{{open ? 'c-state1' : 'c-state2'}}" >
+<view  class="c-state1 {{open ? 'c-state2' : ''}}" >
   <block wx:for="{{web_products_one}}" wx:key="id">
     <view style="width:93.4%;height:100rpx;display:flex;margin:0 auto;" >
       <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.name}}*{{item.count}}</view>

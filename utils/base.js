@@ -161,19 +161,19 @@ class Base extends Token{
         return result;
     };
 
-    footOne(res,name,limit,objName){
+    footOne(res,name,limit,objName,salt){
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
           var limitSum = self.getJsonLength(history);
           console.log(limitSum);
           
-          if(history[res[name]]){
-            history[res[name]] = res;
+          if(history[res[name]+salt]){
+            history[res[name]+salt] = res;
             wx.setStorageSync(objName,history);
           }else{
             if(limitSum < limit){
-              history[res[name]] = res;
+              history[res[name]+salt] = res;
             }else{
               const historyArray = self.jsonToArray(history,'push');
               historyArray.splice(0,1);
@@ -181,7 +181,6 @@ class Base extends Token{
               var history = {};
               for(var i=0;i<historyArray.length;i++){
                 history[historyArray[i][name]] = historyArray[i];
-                
               };
             }
             wx.setStorageSync(objName,history);
@@ -189,7 +188,7 @@ class Base extends Token{
           
         }else{
           var history = {};
-          history[res[name]] = res;
+          history[res[name]+salt] = res;
           wx.setStorageSync(objName,history);
         }
 

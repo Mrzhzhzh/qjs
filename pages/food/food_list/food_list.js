@@ -23,8 +23,7 @@ Page({
       sortby:'',
       sort:''
     },
-    open:true
-    ,
+    open:false,
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -43,6 +42,7 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getmerchantData();
+    wx.removeStorageSync('payPro');
     
     
   /*  self.data.products[0] = {};
@@ -212,18 +212,22 @@ getMainData(isNew){
       };
 
     }else{
+
       self.data.products[id] = {};
       self.data.products[id].count = 1;
       self.data.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
+      self.data.products[id].model_id = id;
       
     };
 
+    api.footOne(self.data.products[id],'model_id',100,'payPro','salt');
+
     self.setData({
         web_products:self.data.products,
-        web_products_one:api.jsonToArray(self.data.products,'unshift'),
+        web_products_one:api.jsonToArray(wx.getStorageSync('payPro'),'push'),
     });
 
-    console.log(api.jsonToArray(self.data.products,'unshift'));
+
 
 
     /*if(api.getDataSet(e,'type')=='+'){
@@ -300,7 +304,7 @@ getMainData(isNew){
     for(var key in obj){
       console.log(obj)
     }
-      wx.setStorageSync('payPro',obj);
+      //wx.setStorageSync('payPro',obj);
       api.pathTo('/pages/mine/order/cat/cat','nav')
     };
     api.checkPhoneCallback(callback);
@@ -319,13 +323,13 @@ getMainData(isNew){
 
   tap_ch: function(e){
     const self = this;
-    if(self.data.open){
+    if(!self.data.open){
       self.setData({
-        open : false
+        open : true
       });
     }else{
       self.setData({
-        open : true
+        open : false
       });
     }
   }

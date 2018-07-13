@@ -1,7 +1,7 @@
 <!--pages/mine/order/cat.wxml-->
 <!--pages/order_detail/order_detail.wxml-->
 <wxs src="../../../../utils/func.wxs" module="func" />
-<view class='user_container' bindtap='address'>
+<view class='user_container' data-path="/pages/mine/addres/addres" bindtap='intoPath' >
   <!--<radio checked='checked'></radio>-->
   <view class='user_text' >
     <rich-text wx:if="{{web_addressData.name}}" class='user_name'>{{web_addressData.name}}
@@ -16,6 +16,7 @@
 </view>
 
 <block wx:for="{{web_products}}" wx:key="id">
+
 <view style="width:93.4%;margin:0 auto;display:flex;height:140px;border-bottom:1px solid #e5e5e5;" >
 	<view style="width:33%;display:flex;align-items:center" data-path= "/pages/food/food_list/food_details/food_details?product_id={{web_mainData.product_id}}&id={{item.info.id}}" bindtap="intoPath">
 		<image src="{{item.info.mainImg[0].url}}" style="width:100px;height:100px;border-radius:12px"></image>
@@ -31,7 +32,7 @@
 		<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
 
 		<view style="width:100%;display:flex;align-items:center">
-			<view style="width:33%;font-size:12px;">配送费:{{web_fee}}元</view>
+			
 			<view style="width:33%;font-size:16px;color:red">¥{{item.info.price}}</view>
       
 			<view class='shop_numb'>
@@ -48,6 +49,7 @@
 
 <view class='give_type' >
   <text>配送方式</text>
+  配送费:{{web_fee}}元
   <radio-group class="radio-group" style="display:flex">
     <label class="radio" style='margin-right:30rpx;display:flex' data-name="自提" bindtap="choose" >
       
