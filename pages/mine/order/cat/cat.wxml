@@ -33,7 +33,7 @@
 
 		<view style="width:100%;display:flex;align-items:center">
 			
-			<view style="width:33%;font-size:16px;color:red">¥{{item.info.price}}</view>
+			<view style="width:70%;font-size:16px;color:red">¥{{item.info.price}}</view>
       
 			<view class='shop_numb'>
           <image src='/images/ic_order_3.png' data-type="-" data-index="{{index}}" bindtap="counter"></image>
@@ -49,7 +49,7 @@
 
 <view class='give_type' >
   <text>配送方式</text>
-  配送费:{{web_fee}}元
+  <text style="font-size:26rpx;color:#09C585;line-height:50rpx;margin-left:10rpx">(配送费:{{web_fee}}元)</text>
   <radio-group class="radio-group" style="display:flex">
     <label class="radio" style='margin-right:30rpx;display:flex' data-name="自提" bindtap="choose" >
       

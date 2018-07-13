@@ -1,4 +1,7 @@
 /* pages/find_venue/venue_details/evaluate.wxss */
+page{
+  height:100%
+}
 .suggestion_title{
   font-size: 30rpx;
   color: #2e2e2e;

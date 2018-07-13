@@ -1,6 +1,6 @@
 <!--pages/find_venue/venue_details/evaluate.wxml-->
-<view style="width:100%;height:auto;background:#171A21;">
-	<view style="width:93.4%;height:100px;margin:0 auto;display:flex;align-items:center;border-bottom:10px solid #20232C">
+<view style="width:100%;height:100%;background:#171A21;">
+	<view style="width:93.4%;height:100px;margin:0 auto;display:flex;align-items:center;border-bottom:10px solid #20232C" wx:if="{{web_mainData.item[0].snap_product.mainImg[0].url}}">
 		<view style="width:30%">
 			<image src="{{web_mainData.item[0].snap_product.mainImg[0].url}}" style="width:80px;height:80px;border-radius:6px;"></image>
 		</view>
@@ -9,7 +9,19 @@
 			<view style="font-size:14px;color:red;height:40px;line-height:40px;">{{web_mainData.actual_price}}元</view>
 			<view style="font-size:14px;color:#fff;">{{web_mainData.create_time}}</view>			
 		</view>
+	</view>	
+
+	<view style="width:93.4%;height:100px;margin:0 auto;display:flex;align-items:center;border-bottom:10px solid #20232C" >
+		<view style="width:30%">
+			<image src="{{web_challenge.mainImg[0].url}}" style="width:80px;height:80px;border-radius:6px;"></image>
+		</view>
+		<view style="width:70%">
+			<view style="font-size:18px;color:#fff;height:40px;line-height:40px;">{{web_challenge.name}}</view>
+			
+			<view style="font-size:14px;color:red;height:40px;line-height:40px;	">{{web_challenge.description}}</view>			
+		</view>
 	</view>
+
 
 	<view style="width:100%;height:65px;display:flex;align-items:center;padding-left:15px;border-bottom:10px solid #20232C">
 		<view style="font-size:16px;height:30px;line-height:30px;color:#fff">评价：</view>

@@ -194,13 +194,13 @@ class Base extends Token{
 
     };
 
-    updateFootOne(name,objName,fieldName,field){
+    updateFootOne(name,objName,fieldName,field,salt){
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
           console.log(history);
-          if(history[name]){
-            history[name][fieldName] = field;
+          if(history[[name]+salt]){
+           history[[name]+salt][fieldName] = field;
             wx.setStorageSync(objName,history);
           }
         }else{
@@ -209,13 +209,13 @@ class Base extends Token{
 
     };
 
-    deleteFootOne(name,objName){
+    deleteFootOne(name,objName,salt){
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
           console.log(history);
-          if(history[name]){
-            delete history[name];
+          if(history[[name]+salt]){
+            delete history[[name]+salt];
             wx.setStorageSync(objName,history);
           }
         }else{

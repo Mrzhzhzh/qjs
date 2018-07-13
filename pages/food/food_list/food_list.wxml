@@ -71,7 +71,7 @@
 				<view style="width:100%;float:left;font-size:16px;color:red">¥{{item.price}}</view>
 				 <view class='shop_numb'>
             <image   wx:if="{{web_products[item.id]}}" src='/images/ic_order_3.png'  data-id="{{item.id}}"  data-index="{{index}}" data-type="-" bindtap="counter" ></image>
-            <input   wx:if="{{web_products[item.id]}}" type="number" bindchange="bindManual" value="{{web_products[item.id]?web_products[item.id].count:'0'}}" />
+            <input   wx:if="{{web_products[item.id]}}" type="number" bindchange="bindManual" value="{{web_products[item.id].count}}" />
             <image src='/images/ic_order_4.png' data-id="{{item.id}}"  data-index="{{index}}" data-type="+" bindtap="counter"></image>
           </view>
 			</view>
@@ -96,7 +96,7 @@
 <view  class="c-state1 {{open ? 'c-state2' : ''}}" >
   <block wx:for="{{web_products_one}}" wx:key="id">
     <view style="width:93.4%;height:100rpx;display:flex;margin:0 auto;" >
-      <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.name}}*{{item.count}}</view>
+      <view style="width:45%;fot-size:28rpx;line-height:100rpx;color:#fff">{{item.info.name}}</view>
       <view style="width:30%;fot-size:28rpx;line-height:100rpx;color:red">¥{{item.info.price}}</view>
       <view style="width:25%;text-align:center;line-height:100rpx;display:flex">
       <view class='shop_numb'>

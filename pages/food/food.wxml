@@ -8,9 +8,10 @@
  </swiper>
 
 
-<view style="width:100%;display:flex;padding-top:3%">
+<view style="width:100%;display:flex;padding-top:3%;flex-wrap:wrap">
 	<block wx:for="{{web_mainData}}" wx:key="id">
-		<view style="width:46%;height:240px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:0 2%" data-path="/pages/food/food_list/food_list?id={{item.id}}"  bindtap="intoPath">
+	<view style="width:50%;display:flex;align-item:center;justify-content:center;margin-top:2%;margin-bottom:2%">
+		<view style="width:90%;height:240px;border:1px solid #dddddd;text-align:center;border-radius:6px;" data-path="/pages/food/food_list/food_list?id={{item.id}}"  bindtap="intoPath">
 			<image src="{{item.mainImg[0].url}}" style="width:160px;height:126px;display:inline-block;margin-top:5px;border-radius:6px"></image>
 			<view style="margin-top:12px">
 				<span style="font-size:18p">{{item.name}}</span>
@@ -20,6 +21,7 @@
 			</view>
 			<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:3px">查看</view>
 		</view>
+	</view>
 	</block>
 </view>
 

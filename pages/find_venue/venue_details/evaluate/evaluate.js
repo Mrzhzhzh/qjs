@@ -22,27 +22,28 @@ Page({
     const self = this;
     wx.showLoading();
     console.log(options);
-   
-    self.getMainData(options.order_id);
-    self.getChallengeData(options.challenge_id);
     if(options.model_id&&options.order_id){
       self.data.model_id = options.model_id; 
-      self.data.order_id =options.order_id
+      self.data.order_id =options.order_id;
       self.setData({
           web_mainData:self.data.mainData,
           web_starArray:self.data.starArray,
           web_score:self.data.score,
         
-        })
+        });
+      self.getMainData(options.order_id);
       }else{
-        self.data.challenge_id = options.challenge_id
-      }
+      self.data.challenge_id = options.challenge_id
       self.setData({
        web_challengeData:self.data.challengeData,
        web_starArray:self.data.starArray,
        web_score:self.data.score,
       })
-    },
+      self.getChallengeData(options.challenge_id);
+      
+    }
+  },
+    
     
   
   
@@ -84,10 +85,10 @@ Page({
     console.log(self.data.isALL);
   },
 
-  sendRemark(model_id,order_id){
+  sendRemark(){
     const self = this;
     const postData = api.cloneForm(self.data.sForm);
-    postData.model_id = self.data.model_id;
+    postData.model_id =self.data.model_id;
     postData.order_id = self.data.order_id;
     postData.challenge_id=self.data.challenge_id;
     postData.token = wx.getStorageSync('token');
@@ -131,7 +132,7 @@ Page({
     
     const postData = {};
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
-    postData.id = id;
+    postData.id = self.data.challenge_id;
        const callback = (res)=>{
      console.log(res);
       if(res.solely_code){
