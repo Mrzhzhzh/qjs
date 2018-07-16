@@ -33,7 +33,6 @@ Page({
   
 
   onLoad(options){
-
     const self = this;
     console.log(options);
     self.data.id = options.id;
@@ -160,7 +159,7 @@ getMainData(isNew){
   counter(e){
     const self = this;
     const id = api.getDataSet(e,'id');
-    const model_id = '';
+    
     if(self.data.products[id]){
 
       if(api.getDataSet(e,'type')=='+'){
@@ -170,7 +169,12 @@ getMainData(isNew){
           self.data.products[id].count--;
 
         }else{
-          delete self.data.products[id];
+         
+          api.deleteFootOne(self.data.products[id],'payPro','salt');
+        
+          console.log(self.data.products[id])
+          /*delete self.data.products[id];*/
+
         }
       };
 
@@ -183,7 +187,8 @@ getMainData(isNew){
     };
 
     api.footOne(self.data.products[id],'model_id',100,'payPro','salt');
-      
+    
+    
     self.setData({
         web_products:self.data.products,
         web_products_one:api.jsonToArray(wx.getStorageSync('payPro'),'push'),

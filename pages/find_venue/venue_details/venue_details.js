@@ -80,13 +80,17 @@ Page({
   collect(){
     const self = this;
     const id = self.data.id;
+
     if(wx.getStorageSync('collectData')&&wx.getStorageSync('collectData')[id]){
-      api.deleteFootOne(id,'collectData');
+
+      console.log(1)
+      api.deleteFootOne(id,'collectData','salt');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectData');
+      api.footOne(self.data.mainData,'id',100,'collectData','salt');
+      
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -109,7 +113,7 @@ Page({
       if(res){
         self.data.mainData = res;
         self.data.mainData.content = api.wxParseReturn(res.content).nodes;
-        console.log(self.data.mainData)
+       
         self.setData({
           web_mainData:self.data.mainData,
         });
@@ -134,7 +138,7 @@ Page({
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = self.data.searchItem;
     const callback = (res)=>{
-      console.log(res);
+      
      if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -164,7 +168,7 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem1); 
     const callback = (res)=>{
       self.data.cardData = res;
-      console.log(self.data.cardData.data[0]);
+     
       self.setData({
         web_cardData:self.data.cardData,
       });
@@ -196,7 +200,7 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem3); 
     const callback = (res)=>{ 
       self.data.coachData = res;
-      console.log(res)
+      
       
       self.setData({
         web_coachData:self.data.coachData,

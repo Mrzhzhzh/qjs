@@ -166,7 +166,7 @@ class Base extends Token{
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
           var limitSum = self.getJsonLength(history);
-          console.log(limitSum);
+          
           
           if(history[res[name]+salt]){
             history[res[name]+salt] = res;
@@ -198,8 +198,8 @@ class Base extends Token{
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
-          console.log(history);
-          if(history[[name]+salt]){
+          
+          if(history[res[name]+salt]){
            history[[name]+salt][fieldName] = field;
             wx.setStorageSync(objName,history);
           }
@@ -213,18 +213,18 @@ class Base extends Token{
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
-          console.log(history);
+          
           if(history[[name]+salt]){
             delete history[[name]+salt];
-            wx.setStorageSync(objName,history);
-          }
+            wx.setStorageSync(objName,history)
+          };
         }else{
           return false;
         }
 
     };
 
-    footTwo(res,limit,objName){
+    footTwo(res,limit,objName,salt){
         const self = this;
         if(wx.getStorageSync(objName)){
             var history = wx.getStorageSync(objName);

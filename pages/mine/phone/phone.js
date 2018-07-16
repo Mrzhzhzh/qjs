@@ -66,6 +66,7 @@ Page({
       };
       
       api.getAuthSetting(callback);
+
     }else{
       api.showToast('请填写手机号','fail');
     };

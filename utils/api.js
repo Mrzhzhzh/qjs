@@ -693,7 +693,8 @@ class Api extends Base{
                     callback&&callback(data);
                 }else{
                     api.showToast('请补全信息','fail');
-                    api.pathTo('/pages/mine/personal_data/personal_data','nav');
+                    setTimeout(function(){
+                        api.pathTo('/pages/mine/phone/phone','nav')},800);                
                 }
                 
             }

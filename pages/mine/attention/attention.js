@@ -10,7 +10,9 @@ Page({
   data: {
     mainData:[],
     productData:[],
-    num:1
+    num:1,
+
+    isLoadAll:false
 
   },
 
@@ -25,10 +27,12 @@ Page({
 
 
 
+
+
   getMainData(){
     const self = this;
-    self.data.productData = api.jsonToArray(wx.getStorageSync('collectProductData'),'unshift');
-    self.data.mainData = api.jsonToArray(wx.getStorageSync('collectData'),'unshift');
+    self.data.productData = api.jsonToArray(wx.getStorageSync('collectProductData'),'push');
+    self.data.mainData = api.jsonToArray(wx.getStorageSync('collectData'),'push');
     console.log(self.data.mainData);
     console.log(self.data.productData);
     self.setData({
@@ -49,8 +53,8 @@ Page({
   cancel(e){
     const self = this;
     console.log(api.getDataSet(e,'id'))
-    api.deleteFootOne(api.getDataSet(e,'id'),'collectData');
-    api.deleteFootOne(api.getDataSet(e,'id'),'collectProductData');
+    api.deleteFootOne(api.getDataSet(e,'id'),'collectData','salt');
+    api.deleteFootOne(api.getDataSet(e,'id'),'collectProductData','salt');
     self.getMainData();
   },
 
@@ -80,5 +84,5 @@ Page({
 
   },
 
-
+  
 })

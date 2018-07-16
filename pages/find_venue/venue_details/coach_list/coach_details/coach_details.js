@@ -26,6 +26,7 @@ Page({
       passage2:'2'
 
     },
+
     
   },
   
@@ -148,7 +149,7 @@ Page({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectProductData');
+      api.footOne(self.data.mainData,'id',100,'collectProductData','salt');
       self.setData({
         url: '/images/favor_ic_1.png',
       });
