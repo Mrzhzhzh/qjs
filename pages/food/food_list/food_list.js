@@ -163,30 +163,33 @@ getMainData(isNew){
     if(self.data.products[id]){
 
       if(api.getDataSet(e,'type')=='+'){
+
         self.data.products[id].count++;
+        api.updateFootOne(id+'salt','payPro','count',self.data.products[id].count);
+
+      }else if(self.data.products[id].count > '1'){
+
+       self.data.products[id].count--;
+       api.updateFootOne(id+'salt','payPro','count',self.data.products[id].count);
+
       }else{
-        if(self.data.products[id].count > '1'){
-          self.data.products[id].count--;
 
-        }else{
-         
-          api.deleteFootOne(self.data.products[id],'payPro','salt');
-        
-          console.log(self.data.products[id])
-          /*delete self.data.products[id];*/
+        delete self.data.products[id];
+        api.deleteFootOne(id+'salt','payPro');
 
-        }
       };
 
     }else{
+
       self.data.products[id] = {};
       self.data.products[id].count = 1;
       self.data.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
-      self.data.products[id].model_id = id
+      self.data.products[id].model_id = id;
+      api.footOne(self.data.products[id],'model_id',100,'payPro','salt');
       
     };
 
-    api.footOne(self.data.products[id],'model_id',100,'payPro','salt');
+    
     
     
     self.setData({

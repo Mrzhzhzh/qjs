@@ -163,7 +163,9 @@ class Base extends Token{
 
     footOne(res,name,limit,objName,salt){
         const self = this;
+        //首先判断微信缓存中是否存在名称为objName的数据
         if(wx.getStorageSync(objName)){
+            
           var history = wx.getStorageSync(objName);
           var limitSum = self.getJsonLength(history);
           
@@ -180,7 +182,7 @@ class Base extends Token{
               historyArray.push(res);
               var history = {};
               for(var i=0;i<historyArray.length;i++){
-                history[historyArray[i][name]] = historyArray[i];
+                history[historyArray[i][name]+salt] = historyArray[i];
               };
             }
             wx.setStorageSync(objName,history);
@@ -194,29 +196,34 @@ class Base extends Token{
 
     };
 
-    updateFootOne(name,objName,fieldName,field,salt){
+    updateFootOne(name,objName,fieldName,field){
         const self = this;
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
-          
-          if(history[res[name]+salt]){
-           history[[name]+salt][fieldName] = field;
+          if(history[name]){
+           history[[name]][fieldName] = field;
             wx.setStorageSync(objName,history);
-          }
+          };
         }else{
           return false;
-        }
-
+        };
     };
 
-    deleteFootOne(name,objName,salt){
+    deleteFootOne(name,objName){
         const self = this;
+        
+
         if(wx.getStorageSync(objName)){
           var history = wx.getStorageSync(objName);
           
-          if(history[[name]+salt]){
-            delete history[[name]+salt];
-            wx.setStorageSync(objName,history)
+          
+          
+          if(history[name]){
+            
+            delete history[name];
+            
+            
+            wx.setStorageSync(objName,history);
           };
         }else{
           return false;
