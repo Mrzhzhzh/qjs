@@ -19,14 +19,14 @@ image.guanzhu_img{
 }
 
 .int_menu{
-  width:50%;
+  width:18%;
   line-height:45px;
   text-align:center;
   font-size:16px;
   border:1px solid #e5e5e5
 }
 .int_menuactive{
-  width:50%;
+  width:18%;
   line-height:45px;
   text-align:center;
   font-size:16px;

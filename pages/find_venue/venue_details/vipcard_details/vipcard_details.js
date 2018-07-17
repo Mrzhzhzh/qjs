@@ -26,6 +26,7 @@ Page({
       passage2:'2'
 
     },
+    buttonClicked: false
     
   },
   
@@ -39,7 +40,7 @@ Page({
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
-     if(wx.getStorageSync('collectProductData')[self.data.id]){
+     if(wx.getStorageSync('cardData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -118,7 +119,7 @@ Page({
   },
 
 
-  pay(){
+/*  pay(){
     const self = this;
     const callback = (res)=>{
       console.log(res);
@@ -137,54 +138,61 @@ Page({
     };
     api.orderAdd(self.data.placeOrder,callback);
     
+  },*/
+
+buttonClicked(){
+  const self = this;
+  self.setData({
+    buttonClicked: true
+  })
+  setTimeout(function () {
+    self.setData({
+      buttonClicked: false
+    })
+  }, 1000)
+},
+
+click(){
+  const self = this;
+  self.buttonClicked();
+    const callback = (res)=>{
+      console.log(res);
+      if(res&&!res.solely_code){
+        const payCallback=(payData)=>{
+          if(payData == 1){
+            
+            api.pathTo('/pages/mine/order/order','nav')
+          }else{
+            
+          }
+        };
+        api.realPay(res,payCallback);
+      }
+      
+    };
+    api.orderAdd(self.data.placeOrder,callback);
   },
+
+
+
+
 
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
-      api.deleteFootOne(id,'collectProductData');
+    if(wx.getStorageSync('cardData')&&wx.getStorageSync('cardData')[id+'salt']){
+      api.deleteFootOne(id+'salt','cardData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectProductData','salt');
+      api.footOne(self.data.mainData,'id',100,'cardData','salt');
       self.setData({
         url: '/images/favor_ic_1.png',
       });
     };
   },
 
-  // checkPhone(){
-  //   const self = this;
-  //   const postData = {};
-  //   postData.token = wx.getStorageSync('token');
-  //   const callback=(data)=>{
-  //     if(data){
-  //       //self.intoInfo();
-  //       self.Pay();
-
-  //     }else{
-  //       self.setData({
-  //         hiddenModal: false
-  //       }) 
-  //     }
-  //   }
-  //   api.checkPhone(postData,callback);
-  // },
-
-  // toPersonnalInfo(){
-  //     wx.navigateTo({
-  //       url:'/pages/mine/phone/phone'
-  //     })
-  // },
-
-
-  // listenerCancel(){
-  //   this.setData({
-  //     hiddenModal: true
-  //   })
-  // },
-
+  
   
 })  

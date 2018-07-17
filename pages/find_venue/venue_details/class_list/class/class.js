@@ -39,7 +39,7 @@ Page({
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
-     if(wx.getStorageSync('collectProductData')[self.data.id]){
+     if(wx.getStorageSync('classData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -142,13 +142,13 @@ Page({
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
-      api.deleteFootOne(id,'collectProductData');
+    if(wx.getStorageSync('classData')&&wx.getStorageSync('classData')[id+'salt']){
+      api.deleteFootOne(id+'salt','classData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectProductData','salt');
+      api.footOne(self.data.mainData,'id',100,'classData','salt');
       self.setData({
         url: '/images/favor_ic_1.png',
       });

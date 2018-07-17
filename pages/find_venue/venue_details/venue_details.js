@@ -66,7 +66,7 @@ Page({
        
     
 
-    if(wx.getStorageSync('collectData')[self.data.id]){
+    if(wx.getStorageSync('venueData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -81,15 +81,15 @@ Page({
     const self = this;
     const id = self.data.id;
 
-    if(wx.getStorageSync('collectData')&&wx.getStorageSync('collectData')[id]){
+    if(wx.getStorageSync('venueData')&&wx.getStorageSync('venueData')[id+'salt']){
 
       console.log(1)
-      api.deleteFootOne(id,'collectData','salt');
+      api.deleteFootOne(id+'salt','venueData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectData','salt');
+      api.footOne(self.data.mainData,'id',100,'venueData','salt');
       
       self.setData({
         url: '/images/favor_ic_1.png',

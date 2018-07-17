@@ -11,7 +11,7 @@
 		</view>
 	</view>	
 
-	<view style="width:93.4%;height:100px;margin:0 auto;display:flex;align-items:center;border-bottom:10px solid #20232C" >
+	<view style="width:93.4%;height:100px;margin:0 auto;display:flex;align-items:center;border-bottom:10px solid #20232C" wx:if="{{web_challenge.mainImg[0].url}}">
 		<view style="width:30%">
 			<image src="{{web_challenge.mainImg[0].url}}" style="width:80px;height:80px;border-radius:6px;"></image>
 		</view>

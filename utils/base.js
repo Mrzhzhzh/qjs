@@ -165,30 +165,36 @@ class Base extends Token{
         const self = this;
         //首先判断微信缓存中是否存在名称为objName的数据
         if(wx.getStorageSync(objName)){
-            
+        //若存在，命名为history。
           var history = wx.getStorageSync(objName);
+        //用limitSum表示Json的长度。
           var limitSum = self.getJsonLength(history);
-          
-          
+        //判断histor中有name属性的数据是否存在。
           if(history[res[name]+salt]){
+        //若存在，将它等于res，并设置缓存。
             history[res[name]+salt] = res;
             wx.setStorageSync(objName,history);
           }else{
+        //若不存在name，先判断Json长度是否小于限制长度Limit，若符合，。
             if(limitSum < limit){
               history[res[name]+salt] = res;
             }else{
+        //若不存在name，且长度已大于Json限制长度，将json转数组添加到数组尾部（push方法）。
               const historyArray = self.jsonToArray(history,'push');
-              historyArray.splice(0,1);
-              historyArray.push(res);
+              historyArray.splice(0,1);//删除数组第0个元素
+              historyArray.push(res);//push res数据
+        //命名history空对象，遍历数组，获得每一条数据。
               var history = {};
               for(var i=0;i<historyArray.length;i++){
                 history[historyArray[i][name]+salt] = historyArray[i];
               };
+        //最终都添加至名为objName的缓存、
             }
             wx.setStorageSync(objName,history);
           }
-          
+        
         }else{
+        //若不存在objName数据，命名history为空对象，将res数据存入history,并设置名为objName的缓存。
           var history = {};
           history[res[name]+salt] = res;
           wx.setStorageSync(objName,history);
@@ -198,13 +204,17 @@ class Base extends Token{
 
     updateFootOne(name,objName,fieldName,field){
         const self = this;
+    //首先判断微信缓存中是否存在名称为objName的数据。
         if(wx.getStorageSync(objName)){
+    //若存在，命名为history。
           var history = wx.getStorageSync(objName);
+    ////判断histor中有name属性的数据是否存在，若存在，将其中fieldName属性更新为新的field，存入objName缓存。
           if(history[name]){
            history[[name]][fieldName] = field;
             wx.setStorageSync(objName,history);
           };
         }else{
+    //若不存在objName，返回错误。
           return false;
         };
     };
@@ -212,20 +222,20 @@ class Base extends Token{
     deleteFootOne(name,objName){
         const self = this;
         
-
+    //首先判断微信缓存中是否存在名称为objName的数据。
         if(wx.getStorageSync(objName)){
+    //若存在，命名为history。
           var history = wx.getStorageSync(objName);
-          
-          
-          
+    
+    //判断histor中有name属性的数据是否存在，若存在，删除这条数据。    
           if(history[name]){
             
-            delete history[name];
-            
-            
+            delete history[name]; 
+    //设置新的objName。
             wx.setStorageSync(objName,history);
           };
         }else{
+     //若不存在objName，返回错误。
           return false;
         }
 
@@ -233,17 +243,24 @@ class Base extends Token{
 
     footTwo(res,limit,objName,salt){
         const self = this;
+        //首先判断微信缓存中是否存在名称为objName的数据。
         if(wx.getStorageSync(objName)){
+        //若存在，命名为history。
             var history = wx.getStorageSync(objName);
+        //命名limitSum表示history的长度。
             var limitSum = history.length;
+        //判断长度是否小于限制长度Limit，若符合，将res数据添加至history的开头。
             if(limitSum < limit){
                 history.unshift(res);
+        //若长度已大于限制长度，删除history最后一个元素，将res数据添加至history的开头（unshift方法）。
             }else{
                 history.splice(limitSum-1,1);
                 history.unshift(res);
             };
+        //最终都添加至名为objName的缓存、
             wx.setStorageSync(objName,history);
         }else{
+        //若不存在objName数据，命名一个history空数据，将res添加至数组，并添加至名为objName的缓存。
           var history = [];
           history.unshift(res);
           wx.setStorageSync(objName,history);

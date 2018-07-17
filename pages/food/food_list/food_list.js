@@ -12,7 +12,7 @@ Page({
     count:0,
     products:{},
     searchItem:{
-      
+      category_id:4,
       passage1:''
     },
 

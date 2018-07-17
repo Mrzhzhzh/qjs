@@ -8,8 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mainData:[],
-    productData:[],
+    venueData:[],
+    foodData:[],
+    classData:[],
+    coachData:[],
+    cardData:[],
     num:1,
 
     isLoadAll:false
@@ -31,17 +34,31 @@ Page({
 
   getMainData(){
     const self = this;
-    self.data.productData = api.jsonToArray(wx.getStorageSync('collectProductData'),'push');
-    self.data.mainData = api.jsonToArray(wx.getStorageSync('collectData'),'push');
-    console.log(self.data.mainData);
-    console.log(self.data.productData);
+    self.data.foodData = api.jsonToArray(wx.getStorageSync('foodData'),'unshift');
+    self.data.venueData = api.jsonToArray(wx.getStorageSync('venueData'),'unshift'); 
+    self.data.classData = api.jsonToArray(wx.getStorageSync('classData'),'unshift');
+    self.data.coachData = api.jsonToArray(wx.getStorageSync('coachData'),'unshift'); 
+    self.data.cardData = api.jsonToArray(wx.getStorageSync('cardData'),'unshift');
+
     self.setData({
-      web_mainData:self.data.mainData,
+      web_foodData:self.data.foodData,
     });
 
     self.setData({
       
-      web_productData:self.data.productData,
+      web_venueData:self.data.venueData,
+    });
+    self.setData({
+      
+      web_classData:self.data.classData,
+    });
+    self.setData({
+      
+      web_coachData:self.data.coachData,
+    });
+    self.setData({
+      
+      web_cardData:self.data.cardData,
     });
   },
 
@@ -53,8 +70,11 @@ Page({
   cancel(e){
     const self = this;
     console.log(api.getDataSet(e,'id'))
-    api.deleteFootOne(api.getDataSet(e,'id'),'collectData','salt');
-    api.deleteFootOne(api.getDataSet(e,'id'),'collectProductData','salt');
+    api.deleteFootOne(api.getDataSet(e,'id')+'salt','foodData');
+    api.deleteFootOne(api.getDataSet(e,'id')+'salt','venueData');
+    api.deleteFootOne(api.getDataSet(e,'id')+'salt','classData');
+    api.deleteFootOne(api.getDataSet(e,'id')+'salt','coachData');
+    api.deleteFootOne(api.getDataSet(e,'id')+'salt','cardData');
     self.getMainData();
   },
 
@@ -73,15 +93,26 @@ Page({
     if(num=='1'){
       
       self.setData({
-        web_mainData:self.data.mainData
+        web_venueData:self.data.venueData
       })
-    }else{
+    }else if(num=='2'){
       self.setData({
-        web_productData:self.data.productData
+        web_foodData:self.data.foodData
       })    
 
-    };
-
+    }else if(num=='3'){
+      self.setData({
+        web_classData:self.data.classData
+      })    
+    }else if(num=='4'){
+      self.setData({
+        web_coachData:self.data.coachData
+      })    
+    }else if(num=='5'){
+      self.setData({
+        web_cardData:self.data.cardData
+      })    
+    }
   },
 
   

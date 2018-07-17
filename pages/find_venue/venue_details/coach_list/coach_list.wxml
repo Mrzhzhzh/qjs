@@ -4,7 +4,7 @@
 		<block wx:for="{{web_mainData}}" wx:key="id">
 			<view style="width:50%;display:flex;align-item:center;justify-content:center;margin-top:2%">
 			<view style="width:90%;background:#171A21;border-radius:12px;height:220px" >
-				<image src="{{item.product.mainImg[0].url}}" style="width:100%;height:60%;border-radius:12px" data-path="/pages/find_venue/venue_details/vipcard_details/vipcard_details?id={{item.id}}" bindtap="intoPath"></image>
+				<image src="{{item.product.mainImg[0].url}}" style="width:100%;height:60%;border-radius:12px" data-path="/pages/find_venue/venue_details/coach_list/coach_details/coach_details?id={{item.id}}" bindtap="intoPath"></image>
 				<view style="width:90%;margin:0 auto;">	
 					<view style="height:30px;line-height:30px;font-size:14px;color:#FFF;text-align:center">{{item.name}}</view>
 					<view style="height:30px;line-height:30px;font-size:14px;color:red;text-align:center">¥{{item.price}}</view>	

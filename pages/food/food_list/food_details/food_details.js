@@ -28,8 +28,9 @@ Page({
     self.data.searchItem.product_id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
+
     self.getRemarkData();
-     if(wx.getStorageSync('collectProductData')[self.data.id]){
+     if(wx.getStorageSync('foodData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -126,14 +127,14 @@ Page({
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
+    if(wx.getStorageSync('foodData')&&wx.getStorageSync('foodData')[id+'salt']){
       
-      api.deleteFootOne(id,'collectProductData','salt');
+      api.deleteFootOne(id+'salt','foodData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectProductData','salt');
+      api.footOne(self.data.mainData,'id',100,'foodData','salt');
       self.setData({
         url: '/images/favor_ic_1.png',
       });

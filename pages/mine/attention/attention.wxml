@@ -1,10 +1,14 @@
 <!--pages/mine/attention.wxml-->
 <view style="width:100%;height:45px;display:flex">
-	<view data-num="1" class="int_menu{{num==1?'active':''}}" bindtap="menuClick" >我关注的场馆</view>
-	<view data-num="2" class="int_menu{{num==2?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">我关注的商品</view>
+	<view data-num="1" class="int_menu{{num==1?'active':''}}" bindtap="menuClick" >场馆</view>
+	<view data-num="2" class="int_menu{{num==2?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">健身餐</view>
+	<view data-num="3" class="int_menu{{num==3?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">课程</view>
+	<view data-num="4" class="int_menu{{num==4?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">教练</view>
+	<view data-num="5" class="int_menu{{num==5?'active':''}}" bindtap="menuClick" style="margin-left:2.5%">会员卡</view>
+	
 </view>
 <view style="width:100%;" wx:if="{{num == '1'}}">
-	<block wx:for="{{web_mainData}}" wx:key="id">
+	<block wx:for="{{web_venueData}}" wx:key="id">
 		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative">
 			<view style="width:50%;">
 				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
@@ -24,7 +28,7 @@
 </view>
 
 <view style="width:100%;" wx:if="{{num == '2'}}">
-	<block wx:for="{{web_productData}}" wx:key="id">
+	<block wx:for="{{web_foodData}}" wx:key="id">
 		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative" >
 			<view style="width:50%;">
 				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
@@ -37,6 +41,63 @@
 					<span style="font-size:14px;color:red">{{item.price}}元</span>
 				</view>
 				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px" data-path="/pages/food/food_list/food_details/food_details?id={{item.id}}"  bindtap="intoPath">查看</view>
+			</view>
+			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
+		</view>
+	</block>
+</view>
+<view style="width:100%;" wx:if="{{num == '3'}}">
+	<block wx:for="{{web_classData}}" wx:key="id">
+		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative" >
+			<view style="width:50%;">
+				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
+			</view>
+			<view style="width:50%">
+				<view style="margin-top:12px">
+					<span style="font-size:18p">{{item.name}}</span>
+				</view>
+				<view style="margin-top:10px">
+					<span style="font-size:14px;color:red">{{item.price}}元</span>
+				</view>
+				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px" data-path="/pages/find_venue/venue_details/class_list/class/class?id={{item.id}}"  bindtap="intoPath">查看</view>
+			</view>
+			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
+		</view>
+	</block>
+</view>
+<view style="width:100%;" wx:if="{{num == '4'}}">
+	<block wx:for="{{web_coachData}}" wx:key="id">
+		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative" >
+			<view style="width:50%;">
+				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
+			</view>
+			<view style="width:50%">
+				<view style="margin-top:12px">
+					<span style="font-size:18p">{{item.name}}</span>
+				</view>
+				<view style="margin-top:10px">
+					<span style="font-size:14px;color:red">{{item.price}}元</span>
+				</view>
+				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px" data-path="/pages/find_venue/venue_details/coach_list/coach_details/coach_details?id={{item.id}}"  bindtap="intoPath">查看</view>
+			</view>
+			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
+		</view>
+	</block>
+</view>
+<view style="width:100%;" wx:if="{{num == '5'}}">
+	<block wx:for="{{web_cardData}}" wx:key="id">
+		<view style="height:130px;border:1px solid #dddddd;text-align:center;border-radius:6px;margin:20rpx 2%;display:flex;position:relative" >
+			<view style="width:50%;">
+				<image src="{{item.mainImg[0].url}}" style="width:95%;height:120px;display:inline-block;margin-top:5px;border-radius:6px"></image>
+			</view>
+			<view style="width:50%">
+				<view style="margin-top:12px">
+					<span style="font-size:18p">{{item.name}}</span>
+				</view>
+				<view style="margin-top:10px">
+					<span style="font-size:14px;color:red">{{item.price}}元</span>
+				</view>
+				<view style="width:70px;height:30px;background:#09C585;border-radius:4px;font-size:14px;color:#fff;line-height:30px;display:inline-block;margin-top:23px" data-path="/pages/find_venue/venue_details/vipcard_details/vipcard_details?id={{item.id}}"  bindtap="intoPath">查看</view>
 			</view>
 			<image src="/images/delete.png" style="width:40rpx;height:40rpx;position:absolute;top:5px;right:5px" data-id="{{item.id}}" bindtap="cancel" />
 		</view>
