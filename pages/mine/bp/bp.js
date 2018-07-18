@@ -12,8 +12,9 @@ Page({
     mainData:[],
     isLoadAll:false,
     searchItem:{
-      
+
     },
+    
     searchChange:{
       pay_user:wx.getStorageSync('token')
     },
@@ -31,21 +32,20 @@ Page({
 
 
   onReachBottom() {
-
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
+
+
   
   getUserData(){
     const self = this;
     const postData = {};
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
-       console.log(res);
       self.setData({
         web_userInfo:res,
       });
@@ -62,10 +62,8 @@ Page({
     };
     const postData = self.data.paginate;
     postData.token = wx.getStorageSync('token');
-    postData.searchItem = api.cloneForm(self.data.searchItem);
-   
+    postData.searchItem = api.cloneForm(self.data.searchItem); 
     const callback = (res)=>{
-      console.log(res);
       self.setData({ 
         score:res.user_score
       });

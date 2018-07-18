@@ -15,6 +15,7 @@ Page({
     searchItem:{
       pay_status:'1',
       passage2:'2'
+      
     },
     
   },
@@ -26,19 +27,19 @@ Page({
       self.changeSearch(options.num)
     }else{
       self.getMainData();
-    }
-    
+    } 
   },
 
-  onReachBottom() {
 
+
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
+
 
   
   getMainData(isNew){
@@ -50,14 +51,12 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem);
     postData.token = wx.getStorageSync('token');
     const callback = (data)=>{
-      console.log(data)
       wx.hideLoading();
       if(data.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,data.data);
         self.setData({
           web_mainData:self.data.mainData,
         });
-
       }else{
         self.data.isLoadAll = true;
         wx.showToast({

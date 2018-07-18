@@ -1,10 +1,10 @@
-//logs.js
 import {Api} from '../../utils/api.js';
 const api = new Api();
 
 Page({
 
   data: {
+
     sliderData:[],
     mainData:[],
     menuData:[],
@@ -15,6 +15,7 @@ Page({
     
       
     },
+    
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -72,7 +73,6 @@ Page({
       parentid:7
     };
     const callback = (res)=>{
-      console.log(res);
       if(res.length>0){
         self.data.menuData.push.apply(self.data.menuData,res);
         self.setData({
@@ -92,14 +92,12 @@ Page({
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.menu_id = 22;
     const callback = (res)=>{
-      console.log(res);
       self.data.sliderData = res.banner;
       self.setData({
           web_sliderData:self.data.sliderData,
         });
     };
     api.menuOne(postData,callback);
-
   },
 
   
@@ -110,15 +108,12 @@ Page({
   getMainData(isNew){
     const self = this;
     if(isNew){
-      api.clearPageIndex(self);
-      
+      api.clearPageIndex(self);  
     };
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
-    postData.searchItem = api.cloneForm(self.data.searchItem);
-    
+    postData.searchItem = api.cloneForm(self.data.searchItem);   
     const callback = (res)=>{
-      console.log(res)
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -146,10 +141,8 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
 

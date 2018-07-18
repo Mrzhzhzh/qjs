@@ -8,15 +8,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     challenge_id:'',
     challengeData:{},
     mainData:{},
     sForm:{
       content:''
     },
+
     starArray:[1,2,3,4,5],
     score:1
+    
   },
+
 
   onLoad(options){
     const self = this;
@@ -32,15 +36,14 @@ Page({
         
         });
       self.getMainData(options.order_id);
-      }else{
+    }else{
       self.data.challenge_id = options.challenge_id
       self.setData({
        web_challengeData:self.data.challengeData,
        web_starArray:self.data.starArray,
        web_score:self.data.score,
       })
-      self.getChallengeData(options.challenge_id);
-      
+      self.getChallengeData(options.challenge_id);   
     }
   },
     
@@ -53,7 +56,6 @@ Page({
     postData.id = id;
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
-      console.log(res);
       if(res.solely_code){
         wx.showToast({
           title:'评价的商品无',
@@ -73,7 +75,6 @@ Page({
       }
     };
     api.orderOne(postData,callback);
-
   },
 
 
@@ -82,8 +83,8 @@ Page({
     const self = this;
     self.data.isALL=false;
     api.fillChange(e,self,'sForm');
-    console.log(self.data.isALL);
   },
+
 
   sendRemark(){
     const self = this;
@@ -95,8 +96,7 @@ Page({
     postData.remarkScore = self.data.score;
     const callback = (res)=>{
       const resType = api.dealRes(res);
-      if(resType){
-        
+      if(resType){  
         wx.navigateBack({
           delta: 1
         })
@@ -123,18 +123,16 @@ Page({
       }else{
         self.sendRemark();
       };
-    },300);
-    
+    },300);   
   },
 
+
   getChallengeData(){
-    const self = this;
-    
+    const self = this; 
     const postData = {};
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.id = self.data.challenge_id;
-       const callback = (res)=>{
-     console.log(res);
+      const callback = (res)=>{
       if(res.solely_code){
         wx.showToast({
           title:'评价的商品无',

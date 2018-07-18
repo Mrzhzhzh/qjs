@@ -12,7 +12,7 @@
 <view class='goods_menu'>
 
   
-  <view data-num="1" class="menu_text {{_num==1?'active':''}}" data-sortby="multi" bindtap="changeSort">
+  <view data-num="1" class="menu_text {{_num==1?'active':''}}" data-sortby="multi" bindtap="{{!buttonClicked?'changeSort':''}}">
     综合
     <block wx:if="{{web_sort.sortby=='multi'&&web_sort.sort=='asc'}}">
       <image style="height:25rpx;" src="/images/asc.png" />
@@ -24,7 +24,7 @@
       <image style="height:25rpx;" src="/images/normal.png" /> 
     </block>
   </view>
-  <view data-num="2" class="menu_text {{_num==2?'active':''}}" data-sortby="sales" bindtap="changeSort">
+  <view data-num="2" class="menu_text {{_num==2?'active':''}}" data-sortby="sales" bindtap="{{!buttonClicked?'changeSort':''}}">
     销量
     <block wx:if="{{web_sort.sortby=='sales'&&web_sort.sort=='asc'}}">
       <image style="height:25rpx;" src="/images/asc.png" />
@@ -36,7 +36,7 @@
       <image style="height:25rpx;" src="/images/normal.png" /> 
     </block>
   </view>
-  <view data-num="3" class="menu_text {{_num==3?'active':''}}" data-sortby="price" bindtap="changeSort">
+  <view data-num="3" class="menu_text {{_num==3?'active':''}}" data-sortby="price" bindtap="{{!buttonClicked?'changeSort':''}}">
     价格
     <block wx:if="{{web_sort.sortby=='price'&&web_sort.sort=='asc'}}">
       <image style="height:25rpx;" src="/images/asc.png" />

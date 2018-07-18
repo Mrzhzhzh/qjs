@@ -79,6 +79,7 @@ class Base extends Token{
     wxParseReturn(data){
         return WxParse.wxParse('article', 'html', data, this);
     };
+    // 1.bindName绑定的数据名(必填)2.type可以为html或者md(必填)3.data为传入的具体数据(必填)4.target为Page对象,一般为this(必填)
 
     cloneForm(form){
         var res =  JSON.parse(JSON.stringify(form));   
@@ -338,11 +339,15 @@ class Base extends Token{
     };
 
     getAuthSetting(callback){
+        //获取用户当前设置。
         wx.getSetting({
+        //setting表示调用成功的返回数据。
             success: setting => {
+        //判断返回值scope为false，隐藏loading提示框，showToast接口调用失败（授权失败）。
               if(!setting.authSetting['scope.userInfo']){
                 wx.hideLoading();
                 this.showToast('授权请点击同意','fail');
+        //若返回值为true，获取用户信息，成功后将用户信息回调给主函数。
               }else{
                 wx.getUserInfo({
                     success: function(user) {

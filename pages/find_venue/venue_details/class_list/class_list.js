@@ -1,4 +1,3 @@
-// pages/find_venue/class_list.js
 import {Api} from '../../../../utils/api.js';
 const api = new Api();
 
@@ -7,53 +6,41 @@ Page({
   data: {
 
     mainData:[],
-    
     searchItem:{
       category_id:6,
       passage1:''
-    },
-
-      
+    }, 
     
-    isLoadAll:false,
-    
+    isLoadAll:false, 
   },
   
 
   onLoad(options){
-
     const self = this;
-    console.log(options);
     self.data.id = options.id;
     self.data.searchItem.passage1 = options.id;
-
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-   
-
   },
 
-  onReachBottom() {
 
+
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
 
   
   getMainData(){
     const self = this;
-   
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.searchItem = api.cloneForm(self.data.searchItem);
-    
     const callback = (res)=>{
-      console.log(res);
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -72,9 +59,8 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
+
 })

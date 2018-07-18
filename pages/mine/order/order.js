@@ -4,17 +4,19 @@ const api = new Api();
 
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+
     num:1,
     mainData:[],
     isLoadAll:false,
-    searchItem:{},
-    
+    searchItem:{}, 
+     
   },
+
+
 
   onLoad(options){
     const self = this;
@@ -23,12 +25,11 @@ Page({
       self.changeSearch(options.num)
     }else{
       self.getMainData();
-    }
-    
+    }  
   },
 
-  onReachBottom() {
 
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
@@ -53,7 +54,6 @@ Page({
         self.setData({
           web_mainData:self.data.mainData,
         });
-
       }else{
         self.data.isLoadAll = true;
         wx.showToast({
@@ -66,6 +66,8 @@ Page({
     };
     api.orderList(postData,callback);
   },
+
+
 
   payNow(e){
     const self = this;

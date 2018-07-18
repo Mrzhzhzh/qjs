@@ -9,10 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mainData:[],
-    
+
+    mainData:[],   
     isLoadAll:false,
     starArray:[1,2,3,4,5],
+    
     },
   
 
@@ -23,7 +24,6 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.collect();
-
     self.setData({
       web_starArray:self.data.starArray,
     })
@@ -31,13 +31,11 @@ Page({
 
 
   onReachBottom() {
-
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
   
@@ -46,7 +44,6 @@ Page({
     const postData = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
     const callback = (res)=>{
-      console.log(res)
       wx.hideLoading();
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
@@ -65,6 +62,8 @@ Page({
     };
     api.getMyRemark(postData,callback);
   },
+
+  
 
   collect(){
     const self = this;

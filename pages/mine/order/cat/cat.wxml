@@ -71,5 +71,5 @@
 
 <view class='total'>
   <text style="font-size:12px;">合计：{{web_Price}}元</text>
-  <button bindtap="pay">结算</button>
+  <button bindtap="{{!buttonClicked?'click':''}}">结算</button>
 </view>

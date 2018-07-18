@@ -1,17 +1,16 @@
-//index.js
 import {Api} from '../../utils/api.js';
 const api = new Api();
 
 Page({
 
   data: {
-    sliderData:[],
-    mainData:[],
     
+    sliderData:[],
+    mainData:[],  
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      
+      thirdapp_id:getApp().globalData.thirdapp_id,   
     },
+
     isLoadAll:false,
     indicatorDots: true,
     autoplay: true,
@@ -21,23 +20,19 @@ Page({
   
 
   onLoad(){
-
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-    
-   
-
   },
 
-  onReachBottom() {
 
+
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
   
@@ -51,7 +46,6 @@ Page({
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     const callback = (res)=>{
-      console.log(res);
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -67,11 +61,10 @@ Page({
   },
 
 
-  intoPath(e){
 
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
 

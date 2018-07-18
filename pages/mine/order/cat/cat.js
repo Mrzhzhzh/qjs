@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    placeOrder:{
 
+    placeOrder:{
       token:'',
       address_id:'0',
       pay_type:'1',
@@ -20,10 +20,9 @@ Page({
       solely_paytype:"true",
       passage1:'自提',
       passage2:'1',
-   
-      
 
     },
+
     searchItem:{},
     sForm:{},
     type:'',
@@ -33,12 +32,14 @@ Page({
     id:'',
     dFee:0,
     isAddress:true,
-    order_no:'',
-    
+    order_no:'',  
+
+    buttonClicked: false  
   },
 
-  onLoad(options){
 
+
+  onLoad(options){
     const self = this;
     self.data.token = wx.getStorageSync('token');
     self.data.placeOrder.products = api.jsonToArray(wx.getStorageSync('payPro'),'push');
@@ -46,11 +47,11 @@ Page({
       web_products:self.data.placeOrder.products
     });
     getApp().globalData.address_id = '';
-
   },
 
-  onShow(){
 
+
+  onShow(){
     const self = this;
     if(getApp().globalData.address_id&&self.data.searchItem.id != getApp().globalData.address_id){
       self.data.searchItem = {};
@@ -61,11 +62,12 @@ Page({
     }else{
       return;
     };
-    self.getDefaultAddress();
-    
+    self.getDefaultAddress();  
   },
 
-   counter(e){
+
+
+  counter(e){
     const self = this;
     const index = api.getDataSet(e,'index');
     if(api.getDataSet(e,'type')=='+'){
@@ -73,8 +75,7 @@ Page({
     }else{
       if(self.data.placeOrder.products[index].count > '1'){
         self.data.placeOrder.products[index].count--;
-      } 
-        
+      }     
     };
 
     self.setData({
@@ -89,26 +90,28 @@ Page({
 
 
 
-  pay(){
+  click(){
     const self = this;
-    console.log(self.data.placeOrder);
+    self.setData({
+      buttonClicked: true
+    });
     const callback = (res)=>{
-      console.log(res);
       if(res&&!res.solely_code){
         const payCallback=(payData)=>{
-          if(payData == 1){
-            
+          if(payData == 1){    
             api.pathTo('/pages/mine/order/order','nav')
           }else{
-            
+            setTimeout(function(){
+              self.setData({
+                buttonClicked: false
+              })
+            }, 1000)  
           }
         };
-        api.realPay(res,payCallback);
-      }
-      
+          api.realPay(res,payCallback);
+      }     
     };
     api.orderAdd(self.data.placeOrder,callback);
-    
   },
 
  
@@ -145,10 +148,8 @@ Page({
   
 
   choose(e){
-
     const self = this;
     const name = api.getDataSet(e,'name');
-
     if(name == '送货上门'&&self.data.placeOrder.address_id=='0'){
         
     }else if(name == '送货上门'&&self.data.placeOrder.address_id!='0'){
@@ -176,20 +177,15 @@ Page({
 
       };
 
-
     }else{
       self.data.placeOrder.passage1 = name;
       self.countTotalPrice();
       delete self.data.placeOrder.order_no;
-
     };
-
 
     self.setData({
       deliverType:self.data.placeOrder.passage1
     });
-
-
 
   },
 
@@ -205,10 +201,8 @@ Page({
     postData.cargo_price = obj[key].info.price;
     postData.is_prepay = 0;
     postData.address_id = self.data.placeOrder.address_id;
-    postData.id = obj[key].info.id;
-    
+    postData.id = obj[key].info.id;  
     const callback = (res)=>{
-
       if(!res.solely_code){
         self.data.dFee = res.fee;
         self.data.order_no = res.order_no;
@@ -227,7 +221,6 @@ Page({
 
 
   countTotalPrice(){  
-
     const self = this;
     var Price = 0;
     var obj = self.data.placeOrder.products;
@@ -240,7 +233,6 @@ Page({
     self.setData({
       web_Price:Price.toFixed(2)
     });
-
   },
 
   

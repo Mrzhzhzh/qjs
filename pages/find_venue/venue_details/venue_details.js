@@ -46,13 +46,11 @@ Page({
 
   onLoad(options){
     const self = this;
-    console.log(options);
     self.data.id = options.id;
     self.data.searchItem.merchant_id = options.id;
     self.data.searchItem1.passage1 = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
-    self.data.searchItem2.passage1 = options.id;
-    
+    self.data.searchItem2.passage1 = options.id;   
     self.data.searchItem3.passage1 = options.id;
   
     self.getMainData();
@@ -64,8 +62,6 @@ Page({
       web_starArray:self.data.starArray,
     })
        
-    
-
     if(wx.getStorageSync('venueData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
@@ -80,17 +76,13 @@ Page({
   collect(){
     const self = this;
     const id = self.data.id;
-
     if(wx.getStorageSync('venueData')&&wx.getStorageSync('venueData')[id+'salt']){
-
-      console.log(1)
       api.deleteFootOne(id+'salt','venueData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'venueData','salt');
-      
+      api.footOne(self.data.mainData,'id',100,'venueData','salt');  
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -112,8 +104,7 @@ Page({
     const callback = (res)=>{
       if(res){
         self.data.mainData = res;
-        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
-       
+        self.data.mainData.content = api.wxParseReturn(res.content).nodes;    
         self.setData({
           web_mainData:self.data.mainData,
         });
@@ -125,7 +116,6 @@ Page({
           mask:true
         })
       }
-
     };
     api.merchantOne(postData,callback);
   },
@@ -137,8 +127,7 @@ Page({
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = self.data.searchItem;
-    const callback = (res)=>{
-      
+    const callback = (res)=>{    
      if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -152,11 +141,9 @@ Page({
           web_remarkData_total:res.total,
 
         })
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
-
   },
 
 
@@ -167,8 +154,7 @@ Page({
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.searchItem = api.cloneForm(self.data.searchItem1); 
     const callback = (res)=>{
-      self.data.cardData = res;
-     
+      self.data.cardData = res;   
       self.setData({
         web_cardData:self.data.cardData,
       });
@@ -184,7 +170,6 @@ Page({
     postData.searchItem = api.cloneForm(self.data.searchItem2); 
     const callback = (res)=>{ 
       self.data.classData = res;
-      console.log(res)
       self.setData({
         web_classData:self.data.classData,
       });
@@ -199,9 +184,7 @@ Page({
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.searchItem = api.cloneForm(self.data.searchItem3); 
     const callback = (res)=>{ 
-      self.data.coachData = res;
-      
-      
+      self.data.coachData = res;        
       self.setData({
         web_coachData:self.data.coachData,
       });
@@ -212,20 +195,17 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
-  onReachBottom() {
 
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getRemarkData();
     };
-
   },
 
   menuClick: function (e) {
@@ -234,30 +214,13 @@ Page({
     self.changeSearch(num);
   },
 
+
   changeSearch(num){
     const self = this;
     this.setData({
       num: num
     });
     self.data.searchItem = {};
-    if(num=='1'){
-
-    }else if(num=='2'){
-      self.data.searchItem.pay_status = '0';
-      self.data.searchItem.order_step = '0';
-    }else if(num=='3'){
-      self.data.searchItem.pay_status = '1';
-      self.data.searchItem.transport_status = '1';
-      self.data.searchItem.order_step = '0';
-      
-    }else if(num=='4'){
-      self.data.searchItem.pay_status = '1';
-      self.data.searchItem.transport_status = '2';
-      self.data.searchItem.order_step = '0';
-      self.data.searchItem.remark_status = 'false';
-    }else if(num=='5'){
-      self.data.searchItem.order_step = '1';
-    };
 
     self.setData({
       web_mainData:[],

@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
     venueData:[],
     foodData:[],
     classData:[],
@@ -23,7 +24,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     const self = this;
     self.getMainData();
   },
@@ -39,8 +39,8 @@ Page({
     self.data.classData = api.jsonToArray(wx.getStorageSync('classData'),'unshift');
     self.data.coachData = api.jsonToArray(wx.getStorageSync('coachData'),'unshift'); 
     self.data.cardData = api.jsonToArray(wx.getStorageSync('cardData'),'unshift');
-
     self.setData({
+
       web_foodData:self.data.foodData,
     });
 
@@ -62,14 +62,17 @@ Page({
     });
   },
 
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
+
+
   cancel(e){
     const self = this;
-    console.log(api.getDataSet(e,'id'))
     api.deleteFootOne(api.getDataSet(e,'id')+'salt','foodData');
     api.deleteFootOne(api.getDataSet(e,'id')+'salt','venueData');
     api.deleteFootOne(api.getDataSet(e,'id')+'salt','classData');
@@ -78,11 +81,15 @@ Page({
     self.getMainData();
   },
 
+
+
   menuClick: function (e) {
     const self = this;
     const num = api.getDataSet(e,'num');
     self.changeSearch(num);
   },
+
+
 
   changeSearch(num){
     const self = this;
@@ -90,8 +97,7 @@ Page({
       num: num
     });
     
-    if(num=='1'){
-      
+    if(num=='1'){  
       self.setData({
         web_venueData:self.data.venueData
       })

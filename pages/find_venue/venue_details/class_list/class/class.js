@@ -7,12 +7,10 @@ Page({
   data: {
 
     mainData:[],
-
-    
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      
+      thirdapp_id:getApp().globalData.thirdapp_id,   
     },
+    
     hiddenModal: true,
     isLoadAll:false,
     placeOrder:{
@@ -24,9 +22,9 @@ Page({
       products:[],
       solely_paytype:"true",
       passage2:'2'
-
     },
-    
+
+    buttonClicked: false
   },
   
 
@@ -35,10 +33,10 @@ Page({
     self.data.id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
+
      if(wx.getStorageSync('classData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
@@ -67,7 +65,6 @@ Page({
       if(res){
         self.data.mainData = res;
         self.data.mainData.content = api.wxParseReturn(res.content).nodes;
-        console.log(self.data.mainData)
         self.setData({
           web_mainData:self.data.mainData,
         });
@@ -79,27 +76,28 @@ Page({
           mask:true
         })
       }
-
     };
     api.productOne(postData,callback);
   },
 
 
-  intoPath(e){
 
+
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
-   getRemarkData(){
+
+
+
+
+  getRemarkData(){
     const self = this;
-    
     const postData = api.cloneForm(self.data.paginate);
     postData.id = self.data.id;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
-      console.log(res);
       if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -110,34 +108,39 @@ Page({
         self.setData({
           web_isLoadAll:self.data.isLoadAll
         })
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
-
   },
 
 
-  pay(){
+
+
+  click(){
     const self = this;
+    self.setData({
+      buttonClicked: true
+    });
     const callback = (res)=>{
-      console.log(res);
       if(res&&!res.solely_code){
         const payCallback=(payData)=>{
-          if(payData == 1){
-            
-            api.pathTo('/pages/mine/order/order','nav')
+          if(payData == 1){    
+           api.pathTo('/pages/mine/order/order','nav')
           }else{
-            
+            setTimeout(function(){
+              self.setData({
+                buttonClicked: false
+              })
+            }, 1000)  
           }
         };
         api.realPay(res,payCallback);
-      }
-      
+      }     
     };
     api.orderAdd(self.data.placeOrder,callback);
-    
   },
+
+
 
   collect(){
     const self = this;

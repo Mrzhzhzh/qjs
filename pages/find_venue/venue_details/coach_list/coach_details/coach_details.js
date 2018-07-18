@@ -7,12 +7,11 @@ Page({
   data: {
 
     mainData:[],
-
-    
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
       
     },
+
     hiddenModal: true,
     isLoadAll:false,
     placeOrder:{
@@ -23,11 +22,10 @@ Page({
       product_type:'product',
       products:[],
       solely_paytype:"true",
-      passage2:'2'
+      passage2:'1'
+    },   
 
-    },
-
-    
+    buttonClicked: false
   },
   
 
@@ -36,11 +34,11 @@ Page({
     self.data.id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-
     self.data.placeOrder.products[0] = {};
     self.data.placeOrder.products[0]['model_id'] = options.id;
     self.data.placeOrder.products[0]['count'] = 1;
-     if(wx.getStorageSync('collectProductData')[self.data.id]){
+
+    if(wx.getStorageSync('coachData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
       });
@@ -86,21 +84,22 @@ Page({
   },
 
 
-  intoPath(e){
 
+
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
-   getRemarkData(){
+
+
+
+  getRemarkData(){
     const self = this;
-    
     const postData = api.cloneForm(self.data.paginate);
     postData.id = self.data.id;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     const callback = (res)=>{
-      console.log(res);
       if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -111,7 +110,6 @@ Page({
         self.setData({
           web_isLoadAll:self.data.isLoadAll
         })
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
@@ -119,37 +117,42 @@ Page({
   },
 
 
-  pay(){
+  click(){
     const self = this;
+    self.setData({
+      buttonClicked: true
+    });
     const callback = (res)=>{
-      console.log(res);
       if(res&&!res.solely_code){
         const payCallback=(payData)=>{
-          if(payData == 1){
-            
+          if(payData == 1){    
             api.pathTo('/pages/mine/order/order','nav')
           }else{
-            
+            setTimeout(function(){
+              self.setData({
+                buttonClicked: false
+              })
+            }, 1000)  
           }
         };
-        api.realPay(res,payCallback);
-      }
-      
+          api.realPay(res,payCallback);
+      }     
     };
-    api.orderAdd(self.data.placeOrder,callback);
-    
+      api.orderAdd(self.data.placeOrder,callback);
   },
+
+
 
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('collectProductData')&&wx.getStorageSync('collectProductData')[id]){
-      api.deleteFootOne(id,'collectProductData');
+    if(wx.getStorageSync('coachData')&&wx.getStorageSync('coachData')[id+'salt']){
+      api.deleteFootOne(id+'salt','coachData');
       self.setData({
         url: '/images/favor_ic.png',
       });
     }else{
-      api.footOne(self.data.mainData,'id',100,'collectProductData','salt');
+      api.footOne(self.data.mainData,'id',100,'coachData','salt');
       self.setData({
         url: '/images/favor_ic_1.png',
       });

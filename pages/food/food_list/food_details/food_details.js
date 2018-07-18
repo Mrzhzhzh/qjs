@@ -8,28 +8,30 @@ Page({
 
     mainData:[],
     remarkData:[],
-    searchItem:{
-      
+    searchItem:{  
       product_id:''
+
     },
+
+
 
     starArray:[1,2,3,4,5],
     score:1,
-    isLoadAll:false,
+    isLoadAll:false, 
+
+    buttonClicked: false
     
   },
   
 
   onLoad(options){
-
     const self = this;
-    console.log(options)
     self.data.id = options.id,
     self.data.searchItem.product_id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-
     self.getRemarkData();
+
      if(wx.getStorageSync('foodData')[self.data.id+'salt']){
       self.setData({
         url: '/images/favor_ic_1.png',
@@ -47,7 +49,20 @@ Page({
 
   },
 
-  
+  check(){
+    const self = this;
+    const callback = res =>{
+    const obj = self.data.products;
+    for(var key in obj){
+    }
+      api.pathTo('/pages/mine/order/cat/cat','nav')
+    };
+    api.checkPhoneCallback(callback);
+  },
+
+
+
+
 
 
   
@@ -75,20 +90,20 @@ Page({
           mask:true
         })
       }
-
     };
     api.productOne(postData,callback);
   },
 
 
-  intoPath(e){
 
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
-  onReachBottom: function () {
+
+
+  onReachBottom: function (){
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
@@ -96,13 +111,13 @@ Page({
     };
   },
 
+
   getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = self.data.searchItem;
     const callback = (res)=>{
-      console.log(res);
       if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -114,21 +129,20 @@ Page({
         self.data.isLoadAll = true;
         self.setData({
           web_isLoadAll:self.data.isLoadAll,
-           web_remarkData_total:res.total,
-
+          web_remarkData_total:res.total,
         });
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
-
   },
+
+
+
 
   collect(){
     const self = this;
     const id = self.data.id;
-    if(wx.getStorageSync('foodData')&&wx.getStorageSync('foodData')[id+'salt']){
-      
+    if(wx.getStorageSync('foodData')&&wx.getStorageSync('foodData')[id+'salt']){  
       api.deleteFootOne(id+'salt','foodData');
       self.setData({
         url: '/images/favor_ic.png',
@@ -140,6 +154,31 @@ Page({
       });
     };
   },
+
+
+  click(){
+    const self = this;
+    self.setData({
+      buttonClicked: true
+    });
+    const callback = (res)=>{
+      if(res&&!res.solely_code){
+      const payCallback=(payData)=>{
+        if(payData == 1){    
+          api.pathTo('/pages/mine/order/order','nav')
+        }else{
+          setTimeout(function(){
+            self.setData({
+              buttonClicked: false
+            })
+          }, 1000)  
+        }
+      };
+      api.realPay(res,payCallback);
+      }     
+    };
+    api.orderAdd(self.data.placeOrder,callback);
+    },
 
   
 })  

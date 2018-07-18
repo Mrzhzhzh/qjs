@@ -30,7 +30,7 @@
 		</view>
 				
 		
-		<view style="width:76%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap="pay">
+		<view style="width:76%;height:40px;background:#09C585;line-height:40px;color:#fff;text-align:center;border-radius:6px;" bindtap="{{!buttonClicked?'click':''}}">
 		购买
 			<modal 
 			     title="补全信息"

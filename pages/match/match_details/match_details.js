@@ -9,8 +9,8 @@ Page({
     mainData:[],
     remarkData:[],
     searchItem:{
-      
      challenge_id:''
+     
     },
 
 
@@ -26,15 +26,13 @@ Page({
   
 
   onLoad(options){
-    console.log(options);
     const self = this;
     self.data.id = options.id;
     self.data.searchItem.challenge_id = options.id; 
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getRemarkData()
-
-     self.setData({
+    self.setData({
       web_starArray:self.data.starArray,
     })
   },
@@ -50,8 +48,8 @@ Page({
       api.dealRes(res);      
     };
     api.userClock(postData,callback);
-
   },
+
 
   
   getMainData(isNew){
@@ -78,10 +76,10 @@ Page({
           mask:true
         })
       }
-
     };
     api.challengeOne(postData,callback);
   },
+
 
 
   intoPath(e){
@@ -98,7 +96,6 @@ Page({
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem = self.data.searchItem;
     const callback = (res)=>{
-      console.log(res);
       if(res.data&&res.data.length>0){
         self.data.remarkData.push.apply(self.data.remarkData,res.data);
         self.setData({
@@ -113,12 +110,13 @@ Page({
           web_remarkData_total:res.total,
 
         });
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
-
   },
+
+
+
 
   onReachBottom: function () {
     const self = this;

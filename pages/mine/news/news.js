@@ -6,13 +6,14 @@ Page({
 
   data: {
 
-    mainData:[],
-    
+    mainData:[],   
     searchItem:{
       menu_id:25,
       thirdapp_id:'',
       passage1:''
+      
     },
+
     products:[],
     isLoadAll:false,
     
@@ -25,18 +26,16 @@ Page({
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.data.searchItem.passage1 = options.id;
     self.getMainData();
-   
-
   },
 
-  onReachBottom() {
 
+
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
 
@@ -46,7 +45,6 @@ Page({
     const postData = api.cloneForm(self.data.paginate);
     postData.searchItem = api.cloneForm(self.data.searchItem);
     const callback = (res)=>{ 
-      console.log(res)
       if(res){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -65,10 +63,8 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   }
 
 

@@ -5,9 +5,8 @@ const api = new Api();
 Page({
 
   data: {
-
-    mainData:[],
     
+    mainData:[], 
     searchItem:{
       category_id:3,
       passage1:''
@@ -17,46 +16,36 @@ Page({
       sortby:'',
       sort:''
     },
-    
-    isLoadAll:false,
-    
+
+    isLoadAll:false,    
   },
   
 
   onLoad(options){
-
     const self = this;
-    console.log(options);
     self.data.id = options.id;
     self.data.searchItem.passage1 = options.id;
-
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
    
-
   },
 
   onReachBottom() {
-
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
 
   
   getMainData(){
-    const self = this;
-   
+    const self = this;   
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
-    postData.searchItem = api.cloneForm(self.data.searchItem);
-    
+    postData.searchItem = api.cloneForm(self.data.searchItem);    
     const callback = (res)=>{
-      console.log(res);
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -75,9 +64,7 @@ Page({
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 })

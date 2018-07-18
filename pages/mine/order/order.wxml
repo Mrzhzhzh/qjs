@@ -15,7 +15,7 @@
 		<view style="width:67%;margin-top:20px">
 		    <view style="display:flex;align-items:center">
 				<view style="font-size:16px;width:63%">{{item.item[0]['snap_product']['product']['name']}}</view>
-				<view style="font-size:14px;width:80px;height:15px;line-height:15px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-id="{{item.id}}" bindtap='deleteOrder' >删除订单</view>
+				<view style="font-size:14px;width:80px;height:15px;line-height:15px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right" data-id="{{item.id}}" bindtap='deleteOrder' wx:if="{{item.pay_status == '0'}}">删除订单</view>
 			</view>
 
 			<view style="font-size:16px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
@@ -27,25 +27,25 @@
 	</view>
 	
 	<view style="width:100%;float:right;border:1px solid #e5e5e5;">
-		<view class='now_state'  data-id="{{item.id}}" bindtap="payNow" >
+		<view class='now_state'  data-id="{{item.id}}" bindtap="payNow" wx:if="{{item.pay_status == '0'&&item.order_step=='0'}}">
 			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">购买</view>
 		</view>
 
-		<view class='now_state' >
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">
 		    <view style="font-size:14px;width:70px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx" data-id="{{item.id}}" bindtap='receiveOrder'>确认收货</view>
 		 </view>
 
-		<view class='now_state' >
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.merchant.type == '2'&&item.order_step == '0'}}">
 			<view style="font-size:14px;width:70px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx" data-path="/pages/mine/order/logistics/logistics?id={{item.id}}" bindtap='intoPath'>
 			查看物流
 			</view>
 		</view>
 	     			
-		<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx" data-id="{{item.id}}" bindtap='cancelOrder' >
+		<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx" data-id="{{item.id}}" bindtap='cancelOrder' wx:if="{{item.pay_status == '1'&&item.order_step=='0'}}">
 		退换货
 		</view>
 
-		<view class='now_state' >
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&pItem.isremark!='0'}}">
 			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx"  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{item.item[0].model_id}}" bindtap='intoPath'>
 		    去评价
 		    </view>

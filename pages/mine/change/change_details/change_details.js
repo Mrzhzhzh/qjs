@@ -12,9 +12,7 @@ Page({
       thirdapp_id:getApp().globalData.thirdapp_id,
       
     },
-
-    
-    
+ 
     isLoadAll:false,
     
   },
@@ -22,17 +20,13 @@ Page({
 
   onLoad(options){
     const self = this;
-    console.log(options);
     self.data.id = options.id;
-    
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
   },
 
   
 
-
-  
   getMainData(isNew){
     const self = this;
     if(isNew){
@@ -45,7 +39,6 @@ Page({
       if(res){
         self.data.mainData = res;
         self.data.mainData.content = api.wxParseReturn(res.article_content.content).nodes;
-        console.log(self.data.mainData)
         self.setData({
           web_mainData:self.data.mainData,
         });
@@ -63,10 +56,9 @@ Page({
   },
 
 
-  intoPath(e){
 
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 })

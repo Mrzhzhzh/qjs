@@ -9,27 +9,31 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     id:'',
     mainData:[],
     markers: [{
+
       iconPath: "/images/coach_list1.png",
       id: 0,
       latitude: '',
       longitude: '',
       width: 50,
       height: 50
+      
     }],
     
     supply:{}
     
   },
 
+
   onLoad(options){
     const self = this;
-    console.log(options)
     self.data.id = options.id; 
     self.getMainData();
   },
+
 
 
   getMainData(isNew){
@@ -38,17 +42,15 @@ Page({
       api.clearPageIndex(self);
     };
     const postData = {};
-     postData.token = wx.getStorageSync('token');
-     postData.id = self.data.id;
-     const callback = (res)=>{
+    postData.token = wx.getStorageSync('token');
+    postData.id = self.data.id;
+    const callback = (res)=>{
       self.data.mainData = res;
       if(res){
-        console.log(self.data.mainData);
         self.data.supply.latitude = res.supplierLat;
         self.data.supply.longitude = res.supplierLng;
         self.data.markers[0].latitude = res.transporterLat;
         self.data.markers[0].longitude = res.transporterLng;
-        console.log(self.data.supply);
         self.setData({
           web_mainData:self.data.mainData, 
           web_supply:self.data.supply, 
@@ -66,5 +68,6 @@ Page({
     };
     api.orderLogistics(postData,callback);
   },
+
 
 })

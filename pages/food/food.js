@@ -1,4 +1,3 @@
-//logs.js
 import {Api} from '../../utils/api.js';
 const api = new Api();
 
@@ -9,36 +8,37 @@ Page({
     mainData:[],
     sliderData:[],
     searchItem:{
-      
       type:2
     },
+
     isLoadAll:false,
-   indicatorDots: true,
+    indicatorDots: true,
     autoplay: true,
     interval: 3000,
     duration: 1000,
+    
   },
   
 
   onLoad(){
-
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
     self.getSliderData();
-   
-
   },
 
-  onReachBottom() {
 
+
+
+  onReachBottom() {
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
+
+
 
    getSliderData(){
     const self = this;
@@ -46,14 +46,12 @@ Page({
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.menu_id = 23;
     const callback = (res)=>{
-      console.log(res);
       self.data.sliderData = res.banner;
       self.setData({
           web_sliderData:self.data.sliderData,
         });
     };
     api.menuOne(postData,callback);
-
   },
 
 
@@ -67,7 +65,6 @@ Page({
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
     postData.searchItem= api.cloneForm(self.data.searchItem);
     const callback = (res)=>{
-      console.log(res);
       if(res.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.data);
       }else{
@@ -83,11 +80,10 @@ Page({
   },
 
 
-  intoPath(e){
 
+  intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
 
 

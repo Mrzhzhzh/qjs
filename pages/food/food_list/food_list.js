@@ -5,6 +5,7 @@ const api = new Api();
 Page({
 
   data: {
+
     minusStatus: 'disabled',
     merchantData:[],
     mainData:[],
@@ -14,12 +15,15 @@ Page({
     searchItem:{
       category_id:4,
       passage1:''
+
     },
 
     sort:{
+
       sortby:'',
       sort:''
     },
+
     open:false,
     isLoadAll:false,
     indicatorDots: true,
@@ -27,14 +31,13 @@ Page({
     interval: 3000,
     duration: 1000,
     isSelect: false,
-    
 
+    buttonClicked: false
   },
   
 
   onLoad(options){
     const self = this;
-    console.log(options);
     self.data.id = options.id;
     self.data.searchItem.passage1 = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
@@ -47,17 +50,15 @@ Page({
 
 
   onReachBottom() {
-
     const self = this;
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getMainData();
     };
-
   },
 
 
-getmerchantData(isNew){
+  getmerchantData(isNew){
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
@@ -69,7 +70,6 @@ getmerchantData(isNew){
       if(res){
         self.data.merchantData = res;
         self.data.merchantData.content = api.wxParseReturn(res.content).nodes;
-        console.log(self.data.merchantData)
         self.setData({
           web_merchantData:self.data.merchantData,
         });
@@ -87,7 +87,8 @@ getmerchantData(isNew){
   },
 
 
-getMainData(isNew){
+
+  getMainData(isNew){
     const self = this;
     if(isNew){
       api.clearPageIndex(self);
@@ -105,35 +106,38 @@ getMainData(isNew){
       postData.sort = self.data.sort.sort;
     };
     const callback = (data)=>{
-        if(data.data.length>0){
-            self.data.mainData.push.apply(self.data.mainData,data.data);
-            self.setData({
-                web_mainData: self.data.mainData,
-                cssName:"origin-a"
-            });
-        }else{
-            self.data.isLoadAll = true;
-            wx.showToast({
-                title: '没有更多了',
-                icon: 'fail',
-                duration: 1000,
-                mask:true
-            });
-        };
+      if(data.data.length>0){
+          self.data.mainData.push.apply(self.data.mainData,data.data);
+          self.setData({
+            web_mainData: self.data.mainData,
+            cssName:"origin-a"
+          });
+      }else{
+          self.data.isLoadAll = true;
+          wx.showToast({
+              title: '没有更多了',
+              icon: 'fail',
+              duration: 1000,
+              mask:true
+          });
+      };
     };
     api.productList(postData,callback);
   },
 
 
   intoPath(e){
-
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
-
   },
+
+
 
   changeSort(e){
     const self = this;
+    self.setData({
+      buttonClicked: true
+    });
     const sortby = api.getDataSet(e,'sortby');
     if(self.data.sort.sortby == sortby){
       if(self.data.sort.sort == 'asc'){
@@ -150,54 +154,45 @@ getMainData(isNew){
     self.setData({
       web_sort:self.data.sort
     });
+    
     if(self.data.sort.sort == 'normal'){
       self.data.sort = {}
     };
+    setTimeout(function(){
+      self.setData({
+        buttonClicked: false
+      })
+    }, 1000);
     self.getMainData(true);
   },
+
+
 
   counter(e){
     const self = this;
     const id = api.getDataSet(e,'id');
-    
     if(self.data.products[id]){
-
       if(api.getDataSet(e,'type')=='+'){
-
         self.data.products[id].count++;
         api.updateFootOne(id+'salt','payPro','count',self.data.products[id].count);
-
       }else if(self.data.products[id].count > '1'){
-
-       self.data.products[id].count--;
-       api.updateFootOne(id+'salt','payPro','count',self.data.products[id].count);
-
+        self.data.products[id].count--;
+        api.updateFootOne(id+'salt','payPro','count',self.data.products[id].count);
       }else{
-
         delete self.data.products[id];
-        api.deleteFootOne(id+'salt','payPro');
-
+        api.deleteFootOne(id+'salt','payPro')
       };
-
     }else{
-
       self.data.products[id] = {};
       self.data.products[id].count = 1;
       self.data.products[id].info = self.data.mainData[api.getDataSet(e,'index')];
       self.data.products[id].model_id = id;
-      api.footOne(self.data.products[id],'model_id',100,'payPro','salt');
-      
+      api.footOne(self.data.products[id],'model_id',100,'payPro','salt');   
     };
-
-    
-    
-    
     self.setData({
         web_products:self.data.products,
         web_products_one:api.jsonToArray(wx.getStorageSync('payPro'),'push'),
-
-    });
-    
+    });  
     self.countTotalPrice();
   },
 
@@ -221,7 +216,6 @@ getMainData(isNew){
     const callback = res =>{
     const obj = self.data.products;
     for(var key in obj){
-   
     }
       api.pathTo('/pages/mine/order/cat/cat','nav')
     };
@@ -251,6 +245,5 @@ getMainData(isNew){
       });
     }
   }
- 
-  
+   
 })  

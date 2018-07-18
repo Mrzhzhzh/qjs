@@ -8,11 +8,10 @@ Page({
 
     mainData:[],
 
-    
     searchItem:{
-      thirdapp_id:getApp().globalData.thirdapp_id,
-      
+      thirdapp_id:getApp().globalData.thirdapp_id,   
     },
+
     hiddenModal: true,
     isLoadAll:false,
     placeOrder:{
@@ -24,8 +23,8 @@ Page({
       products:[],
       solely_paytype:"true",
       passage2:'2'
-
     },
+
     buttonClicked: false
     
   },
@@ -93,9 +92,8 @@ Page({
 
   },
 
-   getRemarkData(){
-    const self = this;
-    
+  getRemarkData(){
+    const self = this;   
     const postData = api.cloneForm(self.data.paginate);
     postData.id = self.data.id;
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -111,7 +109,6 @@ Page({
         self.setData({
           web_isLoadAll:self.data.isLoadAll
         })
-        //api.showToast('没有评论了','fail')
       }
     };
     api.remarkList(postData,callback);
@@ -119,58 +116,28 @@ Page({
   },
 
 
-/*  pay(){
+  click(){
     const self = this;
-    const callback = (res)=>{
-      console.log(res);
-      if(res&&!res.solely_code){
-        const payCallback=(payData)=>{
-          if(payData == 1){
-            
-            api.pathTo('/pages/mine/order/order','nav')
-          }else{
-            
-          }
-        };
-        api.realPay(res,payCallback);
-      }
-      
-    };
-    api.orderAdd(self.data.placeOrder,callback);
-    
-  },*/
-
-buttonClicked(){
-  const self = this;
-  self.setData({
-    buttonClicked: true
-  })
-  setTimeout(function () {
     self.setData({
-      buttonClicked: false
-    })
-  }, 1000)
-},
-
-click(){
-  const self = this;
-  self.buttonClicked();
+      buttonClicked: true
+    });
     const callback = (res)=>{
-      console.log(res);
       if(res&&!res.solely_code){
         const payCallback=(payData)=>{
-          if(payData == 1){
-            
+          if(payData == 1){    
             api.pathTo('/pages/mine/order/order','nav')
-          }else{
-            
+         }else{
+            setTimeout(function(){
+              self.setData({
+                buttonClicked: false
+              })
+            }, 1000)  
           }
         };
-        api.realPay(res,payCallback);
-      }
-      
+          api.realPay(res,payCallback);
+      }     
     };
-    api.orderAdd(self.data.placeOrder,callback);
+      api.orderAdd(self.data.placeOrder,callback);
   },
 
 
@@ -193,6 +160,4 @@ click(){
     };
   },
 
-  
-  
 })  

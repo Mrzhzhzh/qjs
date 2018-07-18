@@ -13,11 +13,13 @@ Page({
 
   },
 
+
   onShow(){
     const self = this;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
   },
+
 
 
   getMainData(isNew){
@@ -27,8 +29,7 @@ Page({
     }
     const postData = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
-    const callback = (res)=>{
-      
+    const callback = (res)=>{   
       if(res.data.length>0){
         self.data.mainData = res.data;
       }else{
@@ -47,14 +48,15 @@ Page({
     api.addressList(postData,callback);
   },
 
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
 
+
   setDefalut(e){
     const self = this;
-    console.log(111)
     const postData = {};
     postData.token = wx.getStorageSync('token');
     postData.id = api.getDataSet(e,'id');
@@ -66,6 +68,8 @@ Page({
     };
     api.addressSet(postData,callback);
   },
+
+
 
   choose(e){
     const self = this;
@@ -80,9 +84,10 @@ Page({
         delta: 1
       });
     },300);
-    
-
   },
+
+
+
 
   deleteAddress(e){
     const self = this;
@@ -97,8 +102,9 @@ Page({
       }
     };
     api.addressDel(postData,callback)
-
   },
+
+  
 
   add_address:function(){
     wx.navigateTo({
