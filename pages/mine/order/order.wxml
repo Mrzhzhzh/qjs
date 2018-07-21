@@ -46,7 +46,14 @@
 		退换货
 		</view>
 
-		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.item[0].isremark!='1'}}">
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.item[0].isremark!='1'&&item.merchant.type == '2'}}">
+			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx"  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{item.item[0].model_id}}" bindtap='intoPath'>
+		    去评价
+		    </view>
+		</view>
+
+
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.item[0].isremark!='1'&&item.merchant.type != '2'}}">
 			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx"  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{item.item[0].model_id}}" bindtap='intoPath'>
 		    去评价
 		    </view>
@@ -54,6 +61,6 @@
 
 		<view wx:if="{{item.item[0].isremark=='1'}}" class='now_state do_or_not' style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">已评价</view>
 
-		<view wx:if="{{item.order_step=='2'}}" class='now_state do_or_not' style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">已完成</view>
+		<view wx:if="{{item.order_step=='3'}}" class='now_state do_or_not' style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">已完成</view>
 	</view>	
 </block>

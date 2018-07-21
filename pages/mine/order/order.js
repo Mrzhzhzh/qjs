@@ -117,11 +117,11 @@ Page({
         
     }else if(num=='4'){
       self.data.searchItem.pay_status = '1';
-      self.data.searchItem.transport_status = '2';
+      //self.data.searchItem.transport_status = '2';
       self.data.searchItem.order_step = '0';
       self.data.searchItem.remark_status = 'false';
     }else if(num=='5'){
-      self.data.searchItem.order_step = '1';
+      self.data.searchItem.order_step = '2';
     };
 
     self.setData({

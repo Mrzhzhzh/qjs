@@ -96,10 +96,14 @@ Page({
     postData.remarkScore = self.data.score;
     const callback = (res)=>{
       const resType = api.dealRes(res);
-      if(resType){  
-        wx.navigateBack({
-          delta: 1
-        })
+      if(resType){ 
+
+        setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          })
+        },500);
+        
       }
     };
     api.remarkAdd(postData,callback);
