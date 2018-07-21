@@ -102,6 +102,8 @@ Page({
     this.setData({
       num: num
     });
+
+ 
     self.data.searchItem = {};
     if(num=='1'){
 
@@ -112,7 +114,7 @@ Page({
       self.data.searchItem.pay_status = '1';
       self.data.searchItem.transport_status = '1';
       self.data.searchItem.order_step = '0';
-      
+        
     }else if(num=='4'){
       self.data.searchItem.pay_status = '1';
       self.data.searchItem.transport_status = '2';
@@ -125,6 +127,7 @@ Page({
     self.setData({
       web_mainData:[],
     });
+
     self.getMainData(true);
 
   },

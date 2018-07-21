@@ -20,8 +20,9 @@
 
 			<view style="font-size:16px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
 
-			<view style="width:100%;display:flex;align-items:center">
-				<view style="width:15%;font-size:16px;color:red">¥{{item.actual_price}}</view>     
+			<view style="width:100%;height:50rpx">
+				<view style="font-size:16px;color:red;float:left;line-height:50rpx">¥{{item.actual_price}}</view>
+				<view style="font-size:12px;color:#999999;float:right;line-height:50rpx">{{item.create_time}}</view>     
 			</view>
 		</view>
 	</view>
@@ -31,7 +32,7 @@
 			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">购买</view>
 		</view>
 
-		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'}}">
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status == '1'&&item.order_step == '0'&&item.merchant.type == '2'}}">
 		    <view style="font-size:14px;width:70px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx" data-id="{{item.id}}" bindtap='receiveOrder'>确认收货</view>
 		 </view>
 
@@ -45,12 +46,14 @@
 		退换货
 		</view>
 
-		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&pItem.isremark!='0'}}">
+		<view class='now_state' wx:if="{{item.pay_status == '1'&&item.transport_status=='2'&&item.item[0].isremark!='1'}}">
 			<view style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx"  data-path="/pages/find_venue/venue_details/evaluate/evaluate?order_id={{item.id}}&model_id={{item.item[0].model_id}}" bindtap='intoPath'>
 		    去评价
 		    </view>
 		</view>    		
 
-		<view wx:if="{{pItem.isremark=='1'}}" class='now_state do_or_not' style="margin-right:15rpx;height:20px;line-height:20px;">已评价</view>
+		<view wx:if="{{item.item[0].isremark=='1'}}" class='now_state do_or_not' style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">已评价</view>
+
+		<view wx:if="{{item.order_step=='2'}}" class='now_state do_or_not' style="font-size:14px;width:60px;height:20px;line-height:20px;color:#09C585;text-align:center;border-radius:6px;border:1px solid #09C585;float:right;margin-right:15rpx">已完成</view>
 	</view>	
 </block>
