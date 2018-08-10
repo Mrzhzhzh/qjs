@@ -77,7 +77,7 @@ Page({
      const callback = (res)=>{
       if(res){
         self.data.mainData = res;
-        self.data.mainData.content = api.wxParseReturn(res.content).nodes;
+        self.data.mainData.product.content = api.wxParseReturn(res.product.content).nodes;
         console.log(self.data.mainData)
         self.setData({
           web_mainData:self.data.mainData,

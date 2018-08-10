@@ -38,7 +38,7 @@
 		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>	
 </view>
 
-<view style="font-size:14px;height:50px;line-height:50px;padding-left:15px;color:#fff">商品评价({{web_remarkData_total}}条)</view>
+<view style="font-size:14px;height:50px;line-height:50px;padding-left:15px;color:#fff">用户留言({{web_remarkData_total}}条)</view>
 	<block wx:for="{{web_remarkData}}" wx:for-item="pitem" >
 		<view style="border-bottom:1px solid #e5e5e5;height:120px">
 			<view style="width:100%;height:70px;display:flex;align-items:center;">
@@ -59,6 +59,6 @@
 <view style="width:100%;height:100rpx;">
 </view>
 <view style="width:100%;height:100rpx;background:#09C585;font-size:32rpx;color:#fff;line-height:100rpx;text-align:center;position:fixed;bottom:0" data-path="/pages/find_venue/venue_details/evaluate/evaluate?challenge_id={{web_mainData.id}}" bindtap='intoPath'>
-  评价
+  参与互动
 </view>
 </view>

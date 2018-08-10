@@ -1,5 +1,5 @@
-  // pages/mine/change/change_details.js
-import {Api} from '../../../../utils/api.js';
+// pages/mine/active.js
+import {Api} from '../../../utils/api.js';
 const api = new Api();
 
 Page({
@@ -23,21 +23,6 @@ Page({
     self.data.id = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData()
-    if(options.type=='1'){
-      self.data.id = options.id;
-      self.getMainData();
-      wx.setNavigationBarTitle({
-        title: '活动详情'
-      })
-    }else if(options.type=='2'){
-      self.data.id = options.id;
-      self.getMenuData();
-      wx.setNavigationBarTitle({
-        title: '积分兑换详情'
-      })
-    }else{
-      api.showToast('参数有误','fail')
-    }
   },
 
   

@@ -1,4 +1,7 @@
 /* pages/find_venue/venue_details.wxss */
+
+@import "../../../wxParse/wxParse.wxss"; 
+
 .guanzhu{
   float: right;
   text-align: center;
@@ -16,4 +19,10 @@ image.guanzhu_img{
   color: #ddd;
   display: block;
   margin-bottom: 30rpx;
+}
+
+page {
+  display: block;
+  min-height: 100%;
+  background-color:#171A21;
 }

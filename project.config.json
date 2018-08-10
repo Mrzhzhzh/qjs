@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -83,7 +83,7 @@
 					"id": 8,
 					"name": "健身餐列表",
 					"pathName": "pages/food/food_list/food_list",
-					"query": "id=2"
+					"query": "id=1"
 				},
 				{
 					"id": 9,
@@ -198,6 +198,12 @@
 					"name": "物流",
 					"pathName": "pages/mine/order/logistics/logistics",
 					"query": "id=30"
+				},
+				{
+					"id": -1,
+					"name": "签到页面",
+					"pathName": "pages/find_venue/sign/sign",
+					"query": "id=1"
 				}
 			]
 		}

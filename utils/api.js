@@ -720,6 +720,33 @@ class Api extends Base{
 
 
 
+    getSignList(param,callback) {
+        var allParams = {
+            url:'JsfUserSign/GetList',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
+    userSignAdd(param,callback) {
+        var allParams = {
+            url:'JsfUserSign/Add',
+            type:'post',
+            data:param,
+            sCallback: function(data){
+                callback&&callback(data);
+            }
+        };
+        this.request(allParams)
+    }
+
+
+
+
 
 
 

@@ -10,6 +10,7 @@ Page({
     cardData:[],
     remarkData:[],
     mainData:[],
+    signData:[],
     id:'',
 
     searchItem:{
@@ -30,6 +31,10 @@ Page({
       passage1:''
     },
 
+    searchItem4:{
+      id:''
+    },
+
 
 
     starArray:[1,2,3,4,5],
@@ -46,18 +51,20 @@ Page({
 
   onLoad(options){
     const self = this;
+    console.log(options)
     self.data.id = options.id;
     self.data.searchItem.merchant_id = options.id;
     self.data.searchItem1.passage1 = options.id;
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.data.searchItem2.passage1 = options.id;   
     self.data.searchItem3.passage1 = options.id;
-  
+    self.data.searchItem4.id = options.id;
     self.getMainData();
     self.getCardData();
     self.getRemarkData();
     self.getClassData();
     self.getcoachData();
+    self.getSignData();
     self.setData({
       web_starArray:self.data.starArray,
     })
@@ -122,7 +129,7 @@ Page({
 
 
   
-   getRemarkData(){
+  getRemarkData(){
     const self = this;
     const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id = getApp().globalData.thirdapp_id;
@@ -180,7 +187,7 @@ Page({
 
   getcoachData(){
     const self = this;
-     const postData = api.cloneForm(self.data.paginate);
+    const postData = api.cloneForm(self.data.paginate);
     postData.thirdapp_id= getApp().globalData.thirdapp_id;
     postData.searchItem = api.cloneForm(self.data.searchItem3); 
     const callback = (res)=>{ 
@@ -194,6 +201,34 @@ Page({
   },
 
 
+  getSignData(){
+    const self = this;
+    const postData = api.cloneForm(self.data.paginate);
+    postData.thirdapp_id= getApp().globalData.thirdapp_id;
+    postData.searchItem = api.cloneForm(self.data.searchItem4); 
+    const callback = (res)=>{ 
+     if(res.data&&res.data.length>0){
+        self.data.signData.push.apply(self.data.signData,res.data);
+        self.setData({
+          web_signData:self.data.signData,
+        });
+        console.log(self.data.signData)
+      }else{
+        self.data.isLoadAll = true;
+          /*wx.showToast({
+            title: '没有更多了',
+            icon: 'fail',
+            duration: 1000,
+            mask:true
+          });*/
+      }
+    };
+    api.getSignList(postData,callback);
+  },
+
+  
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
@@ -205,6 +240,7 @@ Page({
     if(!self.data.isLoadAll){
       self.data.paginate.currentPage++;
       self.getRemarkData();
+      self.getSignData();
     };
   },
 
@@ -221,11 +257,12 @@ Page({
       num: num
     });
     self.data.searchItem = {};
-
-    self.setData({
-      web_mainData:[],
-    });
-    self.getMainData(true);
+    if(num == '1'){
+      self.getRemarkData(true);
+    }else{
+      self.getSignData(true)
+    }   
+    
 
   },
 

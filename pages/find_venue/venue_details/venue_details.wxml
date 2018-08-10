@@ -11,7 +11,6 @@
 	 </swiper>
 </view>
 
-<view style="width:100%;height:auto;background:#171A21;">
 
 	<view style="width:90%;height:50px;margin:0 auto">
 		<view style="width:80%;font-size:20px;line-height:50px;color:#fff;">{{web_mainData.name}}</view>	
@@ -78,14 +77,21 @@
 		</view>
 	</view>
 
-	<view style="width:100%;height:230px;border-bottom:1px solid #e5e5e5">
+	<view style="width:100%;height:auto;border-bottom:1px solid #e5e5e5">
 		<view style="width:100%;height:60px;display:flex;justify-content:center">
 			<view style="width:20px;height:30px;border-bottom:3px solid #09C585"></view>
 			<view style="height:60px;text-align:center;color:#09C585;line-height:60px;font-size:18px">场地介绍</view>
 			<view style="width:20px;height:30px;border-bottom:3px solid #09C585"></view>
 		</view>
-		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>	
-	</view>
+
+		<view class="content ql-editor"  style="font-size:14px;color:#fff;">
+			<import src="../../../wxParse/wxParse.wxml"/>
+	    	<template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+		</view>	
+	
+
+
+
 
 	<view style="width:100%;height:60rpx;display:flex;align-items:center;border-bottom:2rpx solid #E5E5E5;color:#09C585" >
 	    <view  data-num="1" class="int_menu{{num==1?'active':''}}" bindtap="menuClick" style="width:49%;border-right:1px solid #E5E5E5;text-align:center;font-size:15px;" >商品评价
@@ -98,7 +104,7 @@
 
 
 <view style="font-size:14px;height:50px;line-height:50px;padding-left:15px;color:#fff"  wx:if="{{num=='1'}}">商品评价({{web_remarkData_total}}条)</view>
-<block wx:for="{{web_remarkData}}" wx:for-item="pitem" wx:if="{{num=='1'}}">
+<block wx:for="{{web_remarkData}}" wx:for-item="pitem" wx:if="{{num=='1'}}" wx:key="id" >
 	<view style="border-bottom:1px solid #e5e5e5;height:120px">
 		<view style="width:100%;height:70px;display:flex;align-items:center;">
 				<view style="width:20%;display:flex;justify-content:center">
@@ -127,15 +133,16 @@
 			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">打卡次数</view>
 			<view  style="width:25%;font-size:14px;color:#fff;line-height:80rpx">排名</view>	
 		</view>
-
-		<view style="width:100%;height:140rpx;display:flex;border-bottom:2rpx solid #e5e5e5;text-align:center">
-			<view  style="width:25%;display:flex;align-items:center;justify-content:center">
-				<view style="width:100rpx;height:100rpx;border-radius:50%;overflow:hidden"><open-data  type="userAvatarUrl"></open-data></view>
+		<block wx:for="{{web_signData}}"  wx:if="{{num=='2'}}" wx:key="id">
+			<view style="width:100%;height:140rpx;display:flex;text-align:center">
+				<view  style="width:25%;display:flex;align-items:center;justify-content:center">
+					<view ><image src="{{item.user.headimgurl[0].url}}" style="width:100rpx;height:100rpx;border-radius:50%;overflow:hidden" /></view>
+				</view>
+				<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">{{item.user.nickname}}</view>
+				<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">{{item.count}}次</view>
+				<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">{{index+1}}</view>	
 			</view>
-			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">Mr</view>
-			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">1次</view>
-			<view  style="width:25%;font-size:14px;color:#fff;line-height:140rpx">1</view>	
-		</view>
+		</block>
 	</view>
 </view>
 

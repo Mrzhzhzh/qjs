@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/find_venue/find_venue",
+    "pages/find_venue/sign/sign",
     "pages/find_venue/venue_details/venue_details",
     "pages/find_venue/venue_details/vipcard_details/vipcard_details",
     "pages/find_venue/venue_details/class_list/class_list",
@@ -28,7 +29,8 @@
     "pages/mine/addres/addres",
     "pages/mine/news/news",
     "pages/mine/phone/phone",
-    "pages/mine/attention/attention"
+    "pages/mine/attention/attention",
+    "pages/mine/active/active"
   ],
   "window": {
     "backgroundTextStyle": "light",

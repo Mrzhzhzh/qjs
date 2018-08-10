@@ -103,7 +103,7 @@ class Base extends Token{
             wx.showToast({
                 title: res.msg,
                 icon: 'succes',
-                duration: 1000,
+                duration: 2000,
                 mask:true
             });
             return true;

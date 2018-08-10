@@ -16,12 +16,12 @@
 		<image src="{{web_mainData.product.bannerImg[1].url}}" style="width:135px;height:120px;margin-top:5px"></image>
 	</view> 
 	<view style="width:60%;height:198px;border:1px solid #09C585;position:relative">
-		<view style="font-size:18px;position:absolute;top:-12px;left:19px;height:20px;width:115px;background:#fff;text-align:center">{{web_mainData.product.passage2}}</view>
+		<view style="font-size:18px;position:absolute;top:-12px;left:19px;height:25px;width:130px;background:#fff;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{web_mainData.product.passage2}}</view>
 		<view style="font-size:14px;position:absolute;left:23px;top:36px">食材：</view>
-		<view style="font-size:14px;color:#808080;position:absolute;left:62px;top:36px">{{web_mainData.content[0].nodes[0].text}}</view>
+		<view style="font-size:14px;color:#808080;position:absolute;left:62px;top:36px">{{web_mainData.product.content[0].nodes[0].text}}</view>
 		<view style="width:80px;height:30px;border:1px solid #bbbbbb;font-size:14px;text-align:center;line-height:30px;border-radius:6px;position:absolute;left:14px;top:110px;color:#bbbbbb">{{web_mainData.product.passage3}}</view>
 		<view style="width:80px;height:30px;border:1px solid #bbbbbb;font-size:14px;text-align:center;line-height:30px;border-radius:6px;position:absolute;left:114px;top:110px;color:#bbbbbb">{{web_mainData.product.passage4}}</view>
-		<view style="font-size:12px;position:absolute;top:160px;left:21px">KKT营养健身餐，健身运动管理</view>
+		
 	</view>
 </view>
 

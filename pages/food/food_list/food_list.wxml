@@ -59,12 +59,8 @@
 		<view style="width:67%;margin-top:20px">
 		    <view style="display:flex">
 				<view style="font-size:18px;width:63%">{{item.name}}</view>
-				<view style="display:flex;">
-					<image src="/images/food_list_ic2.png" style="width:15px;height:20px;"></image>
-					<view style="font-size:14px;color:#bbbbbb">科技路西口</view>
-			    </view> 
 			</view>
-			<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px">您身边的健康轻体餐专家</view>
+			<view style="font-size:18px;color:#bbbbbb;height:50px;line-height:50px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap">{{item.passage2}}</view>
 
 			<view style="width:100%;display:flex;align-items:center">
 				

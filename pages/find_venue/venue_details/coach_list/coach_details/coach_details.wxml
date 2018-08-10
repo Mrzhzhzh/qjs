@@ -17,10 +17,13 @@
 			<view style="height:60px;text-align:center;color:#09C585;line-height:60px;font-size:18px">教练介绍</view>
 			<view style="width:20px;height:30px;border-bottom:3px solid #09C585"></view>
 		</view>
-		<view style="width:93.4%;height:160px;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">{{web_mainData.content[0].nodes[0].text}}</view>	
+		<view style="width:93.4%;height:auto;overflow:hidden;font-size:14px;color:#fff;margin:0 auto">
+			<import src="../../../../../wxParse/wxParse.wxml"/>
+	    	<template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+	    </view>	
 	</view>
 
-	<view style="width:100%;height:80px;display:flex;align-items:center;margin-top:10px;background:#171A21">
+	<view style="width:100%;height:80px;display:flex;align-items:center;margin-top:10px;background:#171A21;position:absolute;bottom:0">
 		<view style="width:20%;display:flex;justify-content:center">	
 			<view style="text-align:center"  bindtap='collect'>		
 				<image src="{{url?url:'/images/favor_ic.png'}}" style="width:20px;height:20px"></image>

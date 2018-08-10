@@ -10,10 +10,12 @@ Page({
     menuData:[],
     searchItem:{
       thirdapp_id:getApp().globalData.thirdapp_id,
+      type:1,   
+    },
     
-      type:1,
-    
-      
+    searchItem2:{
+      menu_id:40,
+      thirdapp_id:getApp().globalData.thirdapp_id,
     },
     
     isLoadAll:false,
@@ -86,18 +88,25 @@ Page({
 
   },
 
+
+
   getSliderData(){
     const self = this;
-    const postData = {};
-    postData.thirdapp_id = getApp().globalData.thirdapp_id;
-    postData.menu_id = 22;
-    const callback = (res)=>{
-      self.data.sliderData = res.banner;
+    const postData = api.cloneForm(self.data.paginate);
+    postData.searchItem = api.cloneForm(self.data.searchItem2);
+    const callback = (res)=>{ 
+      if(res){
+        self.data.sliderData.push.apply(self.data.sliderData,res.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
       self.setData({
-          web_sliderData:self.data.sliderData,
-        });
+        web_sliderData:self.data.sliderData,
+      });
+
     };
-    api.menuOne(postData,callback);
+    api.articleList(postData,callback);
   },
 
   

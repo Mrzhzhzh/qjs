@@ -4,7 +4,7 @@
 	<view data-num="2" class="int_menu{{num==2?'active':''}}" bindtap="menuClick" style="margin-left:2.5%;font-size:14px">待付款</view>
 	<view data-num="3" class="int_menu{{num==3?'active':''}}" bindtap="menuClick" style="margin-left:2.5%;font-size:14px">待收货</view>
 	<view data-num="4" class="int_menu{{num==4?'active':''}}" bindtap="menuClick" style="margin-left:2.5%;font-size:14px">待评论</view>
-	<view data-num="5" class="int_menu{{num==5?'active':''}}" bindtap="menuClick" style="margin-left:2.5%;font-size:14px">已完成</view>
+	<view data-num="5" class="int_menu{{num==5?'active':''}}" bindtap="menuClick" style="margin-left:2.5%;font-size:14px">已撤单</view>
 </view>
 
 <block wx:for="{{web_mainData}}" wx:key="id">
